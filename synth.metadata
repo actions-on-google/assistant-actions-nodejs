@@ -1,0 +1,23 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "7e17784e6465431981f36806e6376d69de1fc424",
+        "internalRef": "341987835"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "actions",
+        "apiVersion": "v2",
+        "language": "nodejs",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "@assistant/actions",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Actions API client for Node.js",
   "repository": "actions-on-google/assistant-actions-nodejs",
   "license": "Apache-2.0",

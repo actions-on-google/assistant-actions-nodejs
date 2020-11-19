@@ -17,9 +17,11 @@
 // ** All changes to this file may be overwritten. **
 
 import * as gax from 'google-gax';
-import {Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
+import {Callback, CallOptions, Descriptors, ClientOptions, PaginationCallback, GaxCall} from 'google-gax';
 import * as path from 'path';
 
+import { Transform } from 'stream';
+import { RequestType } from 'google-gax/build/src/apitypes';
 import * as protos from '../../protos/protos';
 import * as gapicConfig from './actions_sdk_client_config.json';
 
@@ -85,11 +87,10 @@ export class ActionsSdkClient {
   constructor(opts?: ClientOptions) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof ActionsSdkClient;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback = opts?.fallback ?? typeof window !== 'undefined';
+    const fallback = opts?.fallback ?? (typeof window !== "undefined");
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // If scopes are unset in options and we're connecting to a non-default endpoint, set scopes just in case.
@@ -107,7 +108,7 @@ export class ActionsSdkClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set the default scopes in auth client if needed.
     if (servicePath === staticMembers.servicePath) {
@@ -115,7 +116,10 @@ export class ActionsSdkClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -131,47 +135,59 @@ export class ActionsSdkClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     this._protos = this._gaxGrpc.loadProto(
-      opts.fallback
-        ? // eslint-disable-next-line @typescript-eslint/no-var-requires
-          require('../../protos/protos.json')
-        : nodejsProtoPath
+      opts.fallback ?
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this.pathTemplates = {
+      draftPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/draft'
+      ),
       previewPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/previews/{preview}'
       ),
       projectPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}'
       ),
+      releaseChannelPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/releaseChannels/{release_channel}'
+      ),
+      versionPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/versions/{version}'
+      ),
+    };
+
+    // Some of the methods on this service return "paged" results,
+    // (e.g. 50 results at a time, with tokens to get subsequent
+    // pages). Denote the keys used for pagination and results.
+    this.descriptors.page = {
+      listReleaseChannels:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'releaseChannels'),
+      listVersions:
+          new this._gaxModule.PageDescriptor('pageToken', 'nextPageToken', 'versions')
     };
 
     // Some of the methods on this service provide streaming responses.
     // Provide descriptors for these.
     this.descriptors.stream = {
-      writePreview: new this._gaxModule.StreamDescriptor(
-        gax.StreamType.CLIENT_STREAMING
-      ),
+      writeDraft: new this._gaxModule.StreamDescriptor(gax.StreamType.CLIENT_STREAMING),
+      writePreview: new this._gaxModule.StreamDescriptor(gax.StreamType.CLIENT_STREAMING),
+      createVersion: new this._gaxModule.StreamDescriptor(gax.StreamType.CLIENT_STREAMING),
+      readDraft: new this._gaxModule.StreamDescriptor(gax.StreamType.SERVER_STREAMING),
+      readVersion: new this._gaxModule.StreamDescriptor(gax.StreamType.SERVER_STREAMING)
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.actions.sdk.v2.ActionsSdk',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.actions.sdk.v2.ActionsSdk', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -199,18 +215,16 @@ export class ActionsSdkClient {
     // Put together the "service stub" for
     // google.actions.sdk.v2.ActionsSdk.
     this.actionsSdkStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.actions.sdk.v2.ActionsSdk'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.actions.sdk.v2.ActionsSdk') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.actions.sdk.v2.ActionsSdk,
-      this._opts
-    ) as Promise<{[method: string]: Function}>;
+        this._opts) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const actionsSdkStubMethods = ['writePreview'];
+    const actionsSdkStubMethods =
+        ['writeDraft', 'writePreview', 'createVersion', 'readDraft', 'readVersion', 'encryptSecret', 'decryptSecret', 'listReleaseChannels', 'listVersions'];
     for (const methodName of actionsSdkStubMethods) {
       const callPromise = this.actionsSdkStub.then(
         stub => (...args: Array<{}>) => {
@@ -220,12 +234,14 @@ export class ActionsSdkClient {
           const func = stub[methodName];
           return func.apply(stub, args);
         },
-        (err: Error | null | undefined) => () => {
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = this.descriptors.stream[methodName] || undefined;
+      const descriptor =
+        this.descriptors.page[methodName] ||
+        this.descriptors.stream[methodName] ||
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -278,9 +294,8 @@ export class ActionsSdkClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -291,63 +306,780 @@ export class ActionsSdkClient {
   // -------------------
   // -- Service calls --
   // -------------------
+  encryptSecret(
+      request: protos.google.actions.sdk.v2.IEncryptSecretRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.IEncryptSecretResponse,
+        protos.google.actions.sdk.v2.IEncryptSecretRequest|undefined, {}|undefined
+      ]>;
+  encryptSecret(
+      request: protos.google.actions.sdk.v2.IEncryptSecretRequest,
+      options: gax.CallOptions,
+      callback: Callback<
+          protos.google.actions.sdk.v2.IEncryptSecretResponse,
+          protos.google.actions.sdk.v2.IEncryptSecretRequest|null|undefined,
+          {}|null|undefined>): void;
+  encryptSecret(
+      request: protos.google.actions.sdk.v2.IEncryptSecretRequest,
+      callback: Callback<
+          protos.google.actions.sdk.v2.IEncryptSecretResponse,
+          protos.google.actions.sdk.v2.IEncryptSecretRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Encrypts the OAuth client secret used in account linking flows.
+ * This can be used to encrypt the client secret for the first time (e.g.
+ * before the first push or after changing the client secret) or to re-encrypt
+ * a client secret using the latest primary key version (considering key
+ * rotation).
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.clientSecret
+ *   Required. The account linking client secret plaintext.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [EncryptSecretResponse]{@link google.actions.sdk.v2.EncryptSecretResponse}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.encryptSecret(request);
+ */
+  encryptSecret(
+      request: protos.google.actions.sdk.v2.IEncryptSecretRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protos.google.actions.sdk.v2.IEncryptSecretResponse,
+          protos.google.actions.sdk.v2.IEncryptSecretRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.actions.sdk.v2.IEncryptSecretResponse,
+          protos.google.actions.sdk.v2.IEncryptSecretRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.actions.sdk.v2.IEncryptSecretResponse,
+        protos.google.actions.sdk.v2.IEncryptSecretRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    this.initialize();
+    return this.innerApiCalls.encryptSecret(request, options, callback);
+  }
+  decryptSecret(
+      request: protos.google.actions.sdk.v2.IDecryptSecretRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.IDecryptSecretResponse,
+        protos.google.actions.sdk.v2.IDecryptSecretRequest|undefined, {}|undefined
+      ]>;
+  decryptSecret(
+      request: protos.google.actions.sdk.v2.IDecryptSecretRequest,
+      options: gax.CallOptions,
+      callback: Callback<
+          protos.google.actions.sdk.v2.IDecryptSecretResponse,
+          protos.google.actions.sdk.v2.IDecryptSecretRequest|null|undefined,
+          {}|null|undefined>): void;
+  decryptSecret(
+      request: protos.google.actions.sdk.v2.IDecryptSecretRequest,
+      callback: Callback<
+          protos.google.actions.sdk.v2.IDecryptSecretResponse,
+          protos.google.actions.sdk.v2.IDecryptSecretRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Decrypts the OAuth client secret used in account linking flows.
+ * This can be used to view the client secret (e.g. after pulling a project).
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {Buffer} request.encryptedClientSecret
+ *   Required. The account linking client secret ciphertext.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [DecryptSecretResponse]{@link google.actions.sdk.v2.DecryptSecretResponse}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.decryptSecret(request);
+ */
+  decryptSecret(
+      request: protos.google.actions.sdk.v2.IDecryptSecretRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protos.google.actions.sdk.v2.IDecryptSecretResponse,
+          protos.google.actions.sdk.v2.IDecryptSecretRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.actions.sdk.v2.IDecryptSecretResponse,
+          protos.google.actions.sdk.v2.IDecryptSecretRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.actions.sdk.v2.IDecryptSecretResponse,
+        protos.google.actions.sdk.v2.IDecryptSecretRequest|undefined, {}|undefined
+      ]>|void {
+    request = request || {};
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    this.initialize();
+    return this.innerApiCalls.decryptSecret(request, options, callback);
+  }
+
+  writeDraft(
+      options?: gax.CallOptions,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IDraft,
+        protos.google.actions.sdk.v2.IWriteDraftRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
+  writeDraft(
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IDraft,
+        protos.google.actions.sdk.v2.IWriteDraftRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
+/**
+ * Updates the project draft based on the model.
+ *
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream} - A writable stream which accepts objects representing
+ * [WriteDraftRequest]{@link google.actions.sdk.v2.WriteDraftRequest}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#client-streaming)
+ *   for more details and examples.
+ * @example
+ * const stream = client.writeDraft(callback);
+ * stream.write(request);
+ * stream.end();
+ */
+  writeDraft(
+      optionsOrCallback?: gax.CallOptions|Callback<
+        protos.google.actions.sdk.v2.IDraft,
+        protos.google.actions.sdk.v2.IWriteDraftRequest|null|undefined,
+        {}|null|undefined>,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IDraft,
+        protos.google.actions.sdk.v2.IWriteDraftRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream {
+    if (optionsOrCallback instanceof Function && callback === undefined) {
+        callback = optionsOrCallback;
+        optionsOrCallback = {};
+    }
+    const options = optionsOrCallback as gax.CallOptions;
+    this.initialize();
+    return this.innerApiCalls.writeDraft(null, options, callback);
+  }
 
   writePreview(
-    options?: gax.CallOptions,
-    callback?: Callback<
-      protos.google.actions.sdk.v2.IPreview,
-      protos.google.actions.sdk.v2.IWritePreviewRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): gax.CancellableStream;
+      options?: gax.CallOptions,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IPreview,
+        protos.google.actions.sdk.v2.IWritePreviewRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
   writePreview(
-    callback?: Callback<
-      protos.google.actions.sdk.v2.IPreview,
-      protos.google.actions.sdk.v2.IWritePreviewRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): gax.CancellableStream;
-  /**
-   * Updates the user's project preview based on the model.
-   *
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream} - A writable stream which accepts objects representing
-   * [WritePreviewRequest]{@link google.actions.sdk.v2.WritePreviewRequest}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#client-streaming)
-   *   for more details and examples.
-   * @example
-   * const stream = client.writePreview(callback);
-   * stream.write(request);
-   * stream.end();
-   */
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IPreview,
+        protos.google.actions.sdk.v2.IWritePreviewRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
+/**
+ * Updates the user's project preview based on the model.
+ *
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream} - A writable stream which accepts objects representing
+ * [WritePreviewRequest]{@link google.actions.sdk.v2.WritePreviewRequest}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#client-streaming)
+ *   for more details and examples.
+ * @example
+ * const stream = client.writePreview(callback);
+ * stream.write(request);
+ * stream.end();
+ */
   writePreview(
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
-          protos.google.actions.sdk.v2.IPreview,
-          protos.google.actions.sdk.v2.IWritePreviewRequest | null | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.actions.sdk.v2.IPreview,
-      protos.google.actions.sdk.v2.IWritePreviewRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): gax.CancellableStream {
+      optionsOrCallback?: gax.CallOptions|Callback<
+        protos.google.actions.sdk.v2.IPreview,
+        protos.google.actions.sdk.v2.IWritePreviewRequest|null|undefined,
+        {}|null|undefined>,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IPreview,
+        protos.google.actions.sdk.v2.IWritePreviewRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream {
     if (optionsOrCallback instanceof Function && callback === undefined) {
-      callback = optionsOrCallback;
-      optionsOrCallback = {};
+        callback = optionsOrCallback;
+        optionsOrCallback = {};
     }
     const options = optionsOrCallback as gax.CallOptions;
     this.initialize();
     return this.innerApiCalls.writePreview(null, options, callback);
   }
 
+  createVersion(
+      options?: gax.CallOptions,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IVersion,
+        protos.google.actions.sdk.v2.ICreateVersionRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
+  createVersion(
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IVersion,
+        protos.google.actions.sdk.v2.ICreateVersionRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream;
+/**
+ * Creates a project version based on the model and triggers deployment to the
+ * specified release channel, if specified.
+ *
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream} - A writable stream which accepts objects representing
+ * [CreateVersionRequest]{@link google.actions.sdk.v2.CreateVersionRequest}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#client-streaming)
+ *   for more details and examples.
+ * @example
+ * const stream = client.createVersion(callback);
+ * stream.write(request);
+ * stream.end();
+ */
+  createVersion(
+      optionsOrCallback?: gax.CallOptions|Callback<
+        protos.google.actions.sdk.v2.IVersion,
+        protos.google.actions.sdk.v2.ICreateVersionRequest|null|undefined,
+        {}|null|undefined>,
+      callback?: Callback<
+        protos.google.actions.sdk.v2.IVersion,
+        protos.google.actions.sdk.v2.ICreateVersionRequest|null|undefined,
+        {}|null|undefined>):
+    gax.CancellableStream {
+    if (optionsOrCallback instanceof Function && callback === undefined) {
+        callback = optionsOrCallback;
+        optionsOrCallback = {};
+    }
+    const options = optionsOrCallback as gax.CallOptions;
+    this.initialize();
+    return this.innerApiCalls.createVersion(null, options, callback);
+  }
+
+/**
+ * Reads the entire content of the project draft.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the resource in the format `projects/{project}/draft`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {string} [request.clientSecretEncryptionKeyVersion]
+ *   Optional. The version of the crypto key used to encrypt the account linking OAuth
+ *   client secret. If not specified, the primary key version is used for
+ *   encryption. Only relevant for projects with account linking with client
+ *   secret.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits [ReadDraftResponse]{@link google.actions.sdk.v2.ReadDraftResponse} on 'data' event.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#server-streaming)
+ *   for more details and examples.
+ * @example
+ * const stream = client.readDraft(request);
+ * stream.on('data', (response) => { ... });
+ * stream.on('end', () => { ... });
+ */
+  readDraft(
+      request?: protos.google.actions.sdk.v2.IReadDraftRequest,
+      options?: gax.CallOptions):
+    gax.CancellableStream{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'name': request.name || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.readDraft(request, options);
+  }
+
+/**
+ * Reads the entire content of a project version.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.name
+ *   Required. The name of the version resource in the format
+ *   `projects/{project}/versions/{version}`. `{project}` is the
+ *   cloud project ID associated with the project, `{version}` is the
+ *   identifier of the version being read.
+ * @param {string} [request.clientSecretEncryptionKeyVersion]
+ *   Optional. The version of the crypto key used to encrypt the account linking OAuth
+ *   client secret. If not specified, the primary key version is used for
+ *   encryption. Only relevant for projects with account linking with client
+ *   secret.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits [ReadVersionResponse]{@link google.actions.sdk.v2.ReadVersionResponse} on 'data' event.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#server-streaming)
+ *   for more details and examples.
+ * @example
+ * const stream = client.readVersion(request);
+ * stream.on('data', (response) => { ... });
+ * stream.on('end', () => { ... });
+ */
+  readVersion(
+      request?: protos.google.actions.sdk.v2.IReadVersionRequest,
+      options?: gax.CallOptions):
+    gax.CancellableStream{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'name': request.name || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.readVersion(request, options);
+  }
+
+  listReleaseChannels(
+      request: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.IReleaseChannel[],
+        protos.google.actions.sdk.v2.IListReleaseChannelsRequest|null,
+        protos.google.actions.sdk.v2.IListReleaseChannelsResponse
+      ]>;
+  listReleaseChannels(
+      request: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
+          protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+          protos.google.actions.sdk.v2.IListReleaseChannelsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IReleaseChannel>): void;
+  listReleaseChannels(
+      request: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      callback: PaginationCallback<
+          protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+          protos.google.actions.sdk.v2.IListReleaseChannelsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IReleaseChannel>): void;
+/**
+ * Lists all release channels and corresponding versions, if any.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of release channels to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 release channels will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListReleaseChannels` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListReleaseChannels`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [ReleaseChannel]{@link google.actions.sdk.v2.ReleaseChannel}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listReleaseChannelsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ */
+  listReleaseChannels(
+      request: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+          protos.google.actions.sdk.v2.IListReleaseChannelsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IReleaseChannel>,
+      callback?: PaginationCallback<
+          protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+          protos.google.actions.sdk.v2.IListReleaseChannelsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IReleaseChannel>):
+      Promise<[
+        protos.google.actions.sdk.v2.IReleaseChannel[],
+        protos.google.actions.sdk.v2.IListReleaseChannelsRequest|null,
+        protos.google.actions.sdk.v2.IListReleaseChannelsResponse
+      ]>|void {
+    request = request || {};
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.listReleaseChannels(request, options, callback);
+  }
+
+/**
+ * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of release channels to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 release channels will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListReleaseChannels` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListReleaseChannels`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [ReleaseChannel]{@link google.actions.sdk.v2.ReleaseChannel} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listReleaseChannelsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ */
+  listReleaseChannelsStream(
+      request?: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      options?: gax.CallOptions):
+    Transform{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listReleaseChannels.createStream(
+      this.innerApiCalls.listReleaseChannels as gax.GaxCall,
+      request,
+      callSettings
+    );
+  }
+
+/**
+ * Equivalent to `listReleaseChannels`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of release channels to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 release channels will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListReleaseChannels` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListReleaseChannels`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows [async iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   [ReleaseChannel]{@link google.actions.sdk.v2.ReleaseChannel}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ * @example
+ * const iterable = client.listReleaseChannelsAsync(request);
+ * for await (const response of iterable) {
+ *   // process response
+ * }
+ */
+  listReleaseChannelsAsync(
+      request?: protos.google.actions.sdk.v2.IListReleaseChannelsRequest,
+      options?: gax.CallOptions):
+    AsyncIterable<protos.google.actions.sdk.v2.IReleaseChannel>{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    options = options || {};
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listReleaseChannels.asyncIterate(
+      this.innerApiCalls['listReleaseChannels'] as GaxCall,
+      request as unknown as RequestType,
+      callSettings
+    ) as AsyncIterable<protos.google.actions.sdk.v2.IReleaseChannel>;
+  }
+  listVersions(
+      request: protos.google.actions.sdk.v2.IListVersionsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.IVersion[],
+        protos.google.actions.sdk.v2.IListVersionsRequest|null,
+        protos.google.actions.sdk.v2.IListVersionsResponse
+      ]>;
+  listVersions(
+      request: protos.google.actions.sdk.v2.IListVersionsRequest,
+      options: gax.CallOptions,
+      callback: PaginationCallback<
+          protos.google.actions.sdk.v2.IListVersionsRequest,
+          protos.google.actions.sdk.v2.IListVersionsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IVersion>): void;
+  listVersions(
+      request: protos.google.actions.sdk.v2.IListVersionsRequest,
+      callback: PaginationCallback<
+          protos.google.actions.sdk.v2.IListVersionsRequest,
+          protos.google.actions.sdk.v2.IListVersionsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IVersion>): void;
+/**
+ * Lists all versions and their current states.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of versions to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 versions will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListVersions` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListVersions`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is Array of [Version]{@link google.actions.sdk.v2.Version}.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed and will merge results from all the pages into this array.
+ *   Note that it can affect your quota.
+ *   We recommend using `listVersionsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ */
+  listVersions(
+      request: protos.google.actions.sdk.v2.IListVersionsRequest,
+      optionsOrCallback?: gax.CallOptions|PaginationCallback<
+          protos.google.actions.sdk.v2.IListVersionsRequest,
+          protos.google.actions.sdk.v2.IListVersionsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IVersion>,
+      callback?: PaginationCallback<
+          protos.google.actions.sdk.v2.IListVersionsRequest,
+          protos.google.actions.sdk.v2.IListVersionsResponse|null|undefined,
+          protos.google.actions.sdk.v2.IVersion>):
+      Promise<[
+        protos.google.actions.sdk.v2.IVersion[],
+        protos.google.actions.sdk.v2.IListVersionsRequest|null,
+        protos.google.actions.sdk.v2.IListVersionsResponse
+      ]>|void {
+    request = request || {};
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    }
+    else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.listVersions(request, options, callback);
+  }
+
+/**
+ * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of versions to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 versions will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListVersions` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListVersions`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Stream}
+ *   An object stream which emits an object representing [Version]{@link google.actions.sdk.v2.Version} on 'data' event.
+ *   The client library will perform auto-pagination by default: it will call the API as many
+ *   times as needed. Note that it can affect your quota.
+ *   We recommend using `listVersionsAsync()`
+ *   method described below for async iteration which you can stop as needed.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ */
+  listVersionsStream(
+      request?: protos.google.actions.sdk.v2.IListVersionsRequest,
+      options?: gax.CallOptions):
+    Transform{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listVersions.createStream(
+      this.innerApiCalls.listVersions as gax.GaxCall,
+      request,
+      callSettings
+    );
+  }
+
+/**
+ * Equivalent to `listVersions`, but returns an iterable object.
+ *
+ * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.parent
+ *   Required. The name of the resource in the format `projects/{project}`. The
+ *   `{project}` is the cloud project ID associated with the project.
+ * @param {number} request.pageSize
+ *   The maximum number of versions to return. The service may return
+ *   fewer than this value. If unspecified, at most 50 versions will be
+ *   returned.
+ * @param {string} request.pageToken
+ *   A page token, received from a previous `ListVersions` call.
+ *   Provide this to retrieve the subsequent page.
+ *   When paginating, all other parameters provided to `ListVersions`
+ *   must match the call that provided the page token.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Object}
+ *   An iterable Object that allows [async iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
+ *   When you iterate the returned iterable, each element will be an object representing
+ *   [Version]{@link google.actions.sdk.v2.Version}. The API will be called under the hood as needed, once per the page,
+ *   so you can stop the iteration when you don't need more results.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
+ *   for more details and examples.
+ * @example
+ * const iterable = client.listVersionsAsync(request);
+ * for await (const response of iterable) {
+ *   // process response
+ * }
+ */
+  listVersionsAsync(
+      request?: protos.google.actions.sdk.v2.IListVersionsRequest,
+      options?: gax.CallOptions):
+    AsyncIterable<protos.google.actions.sdk.v2.IVersion>{
+    request = request || {};
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      'parent': request.parent || '',
+    });
+    options = options || {};
+    const callSettings = new gax.CallSettings(options);
+    this.initialize();
+    return this.descriptors.page.listVersions.asyncIterate(
+      this.innerApiCalls['listVersions'] as GaxCall,
+      request as unknown as RequestType,
+      callSettings
+    ) as AsyncIterable<protos.google.actions.sdk.v2.IVersion>;
+  }
   // --------------------
   // -- Path templates --
   // --------------------
+
+  /**
+   * Return a fully-qualified draft resource name string.
+   *
+   * @param {string} project
+   * @returns {string} Resource name string.
+   */
+  draftPath(project:string) {
+    return this.pathTemplates.draftPathTemplate.render({
+      project: project,
+    });
+  }
+
+  /**
+   * Parse the project from Draft resource.
+   *
+   * @param {string} draftName
+   *   A fully-qualified path representing Draft resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromDraftName(draftName: string) {
+    return this.pathTemplates.draftPathTemplate.match(draftName).project;
+  }
 
   /**
    * Return a fully-qualified preview resource name string.
@@ -356,7 +1088,7 @@ export class ActionsSdkClient {
    * @param {string} preview
    * @returns {string} Resource name string.
    */
-  previewPath(project: string, preview: string) {
+  previewPath(project:string,preview:string) {
     return this.pathTemplates.previewPathTemplate.render({
       project: project,
       preview: preview,
@@ -391,7 +1123,7 @@ export class ActionsSdkClient {
    * @param {string} project
    * @returns {string} Resource name string.
    */
-  projectPath(project: string) {
+  projectPath(project:string) {
     return this.pathTemplates.projectPathTemplate.render({
       project: project,
     });
@@ -406,6 +1138,78 @@ export class ActionsSdkClient {
    */
   matchProjectFromProjectName(projectName: string) {
     return this.pathTemplates.projectPathTemplate.match(projectName).project;
+  }
+
+  /**
+   * Return a fully-qualified releaseChannel resource name string.
+   *
+   * @param {string} project
+   * @param {string} release_channel
+   * @returns {string} Resource name string.
+   */
+  releaseChannelPath(project:string,releaseChannel:string) {
+    return this.pathTemplates.releaseChannelPathTemplate.render({
+      project: project,
+      release_channel: releaseChannel,
+    });
+  }
+
+  /**
+   * Parse the project from ReleaseChannel resource.
+   *
+   * @param {string} releaseChannelName
+   *   A fully-qualified path representing ReleaseChannel resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromReleaseChannelName(releaseChannelName: string) {
+    return this.pathTemplates.releaseChannelPathTemplate.match(releaseChannelName).project;
+  }
+
+  /**
+   * Parse the release_channel from ReleaseChannel resource.
+   *
+   * @param {string} releaseChannelName
+   *   A fully-qualified path representing ReleaseChannel resource.
+   * @returns {string} A string representing the release_channel.
+   */
+  matchReleaseChannelFromReleaseChannelName(releaseChannelName: string) {
+    return this.pathTemplates.releaseChannelPathTemplate.match(releaseChannelName).release_channel;
+  }
+
+  /**
+   * Return a fully-qualified version resource name string.
+   *
+   * @param {string} project
+   * @param {string} version
+   * @returns {string} Resource name string.
+   */
+  versionPath(project:string,version:string) {
+    return this.pathTemplates.versionPathTemplate.render({
+      project: project,
+      version: version,
+    });
+  }
+
+  /**
+   * Parse the project from Version resource.
+   *
+   * @param {string} versionName
+   *   A fully-qualified path representing Version resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromVersionName(versionName: string) {
+    return this.pathTemplates.versionPathTemplate.match(versionName).project;
+  }
+
+  /**
+   * Parse the version from Version resource.
+   *
+   * @param {string} versionName
+   *   A fully-qualified path representing Version resource.
+   * @returns {string} A string representing the version.
+   */
+  matchVersionFromVersionName(versionName: string) {
+    return this.pathTemplates.versionPathTemplate.match(versionName).version;
   }
 
   /**

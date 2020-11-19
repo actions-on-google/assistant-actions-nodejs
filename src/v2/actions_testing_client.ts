@@ -85,11 +85,10 @@ export class ActionsTestingClient {
   constructor(opts?: ClientOptions) {
     // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof ActionsTestingClient;
-    const servicePath =
-      opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    const servicePath = opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
-    const fallback = opts?.fallback ?? typeof window !== 'undefined';
+    const fallback = opts?.fallback ?? (typeof window !== "undefined");
     opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
     // If scopes are unset in options and we're connecting to a non-default endpoint, set scopes just in case.
@@ -107,7 +106,7 @@ export class ActionsTestingClient {
     this._opts = opts;
 
     // Save the auth object to the client, for use by other methods.
-    this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+    this.auth = (this._gaxGrpc.auth as gax.GoogleAuth);
 
     // Set the default scopes in auth client if needed.
     if (servicePath === staticMembers.servicePath) {
@@ -115,7 +114,10 @@ export class ActionsTestingClient {
     }
 
     // Determine the client header string.
-    const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
+    const clientHeader = [
+      `gax/${this._gaxModule.version}`,
+      `gapic/${version}`,
+    ];
     if (typeof process !== 'undefined' && 'versions' in process) {
       clientHeader.push(`gl-node/${process.versions.node}`);
     } else {
@@ -131,36 +133,36 @@ export class ActionsTestingClient {
     // For Node.js, pass the path to JSON proto file.
     // For browsers, pass the JSON content.
 
-    const nodejsProtoPath = path.join(
-      __dirname,
-      '..',
-      '..',
-      'protos',
-      'protos.json'
-    );
+    const nodejsProtoPath = path.join(__dirname, '..', '..', 'protos', 'protos.json');
     this._protos = this._gaxGrpc.loadProto(
-      opts.fallback
-        ? // eslint-disable-next-line @typescript-eslint/no-var-requires
-          require('../../protos/protos.json')
-        : nodejsProtoPath
+      opts.fallback ?
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        require("../../protos/protos.json") :
+        nodejsProtoPath
     );
 
     // This API contains "path templates"; forward-slash-separated
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this.pathTemplates = {
+      draftPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/draft'
+      ),
       previewPathTemplate: new this._gaxModule.PathTemplate(
         'projects/{project}/previews/{preview}'
+      ),
+      releaseChannelPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/releaseChannels/{release_channel}'
+      ),
+      versionPathTemplate: new this._gaxModule.PathTemplate(
+        'projects/{project}/versions/{version}'
       ),
     };
 
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
-      'google.actions.sdk.v2.ActionsTesting',
-      gapicConfig as gax.ClientConfig,
-      opts.clientConfig || {},
-      {'x-goog-api-client': clientHeader.join(' ')}
-    );
+        'google.actions.sdk.v2.ActionsTesting', gapicConfig as gax.ClientConfig,
+        opts.clientConfig || {}, {'x-goog-api-client': clientHeader.join(' ')});
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -188,22 +190,16 @@ export class ActionsTestingClient {
     // Put together the "service stub" for
     // google.actions.sdk.v2.ActionsTesting.
     this.actionsTestingStub = this._gaxGrpc.createStub(
-      this._opts.fallback
-        ? (this._protos as protobuf.Root).lookupService(
-            'google.actions.sdk.v2.ActionsTesting'
-          )
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this._opts.fallback ?
+          (this._protos as protobuf.Root).lookupService('google.actions.sdk.v2.ActionsTesting') :
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (this._protos as any).google.actions.sdk.v2.ActionsTesting,
-      this._opts
-    ) as Promise<{[method: string]: Function}>;
+        this._opts) as Promise<{[method: string]: Function}>;
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
-    const actionsTestingStubMethods = [
-      'sendInteraction',
-      'matchIntents',
-      'setWebAndAppActivityControl',
-    ];
+    const actionsTestingStubMethods =
+        ['sendInteraction', 'matchIntents', 'setWebAndAppActivityControl'];
     for (const methodName of actionsTestingStubMethods) {
       const callPromise = this.actionsTestingStub.then(
         stub => (...args: Array<{}>) => {
@@ -213,12 +209,12 @@ export class ActionsTestingClient {
           const func = stub[methodName];
           return func.apply(stub, args);
         },
-        (err: Error | null | undefined) => () => {
+        (err: Error|null|undefined) => () => {
           throw err;
-        }
-      );
+        });
 
-      const descriptor = undefined;
+      const descriptor =
+        undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -271,9 +267,8 @@ export class ActionsTestingClient {
    * Return the project ID used by this class.
    * @returns {Promise} A promise that resolves to string containing the project ID.
    */
-  getProjectId(
-    callback?: Callback<string, undefined, undefined>
-  ): Promise<string> | void {
+  getProjectId(callback?: Callback<string, undefined, undefined>):
+      Promise<string>|void {
     if (callback) {
       this.auth.getProjectId(callback);
       return;
@@ -285,88 +280,73 @@ export class ActionsTestingClient {
   // -- Service calls --
   // -------------------
   sendInteraction(
-    request: protos.google.actions.sdk.v2.ISendInteractionRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protos.google.actions.sdk.v2.ISendInteractionResponse,
-      protos.google.actions.sdk.v2.ISendInteractionRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protos.google.actions.sdk.v2.ISendInteractionRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.ISendInteractionResponse,
+        protos.google.actions.sdk.v2.ISendInteractionRequest|undefined, {}|undefined
+      ]>;
   sendInteraction(
-    request: protos.google.actions.sdk.v2.ISendInteractionRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protos.google.actions.sdk.v2.ISendInteractionResponse,
-      protos.google.actions.sdk.v2.ISendInteractionRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  sendInteraction(
-    request: protos.google.actions.sdk.v2.ISendInteractionRequest,
-    callback: Callback<
-      protos.google.actions.sdk.v2.ISendInteractionResponse,
-      protos.google.actions.sdk.v2.ISendInteractionRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Plays one round of the conversation.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.project
-   *   Required. The project being tested, indicated by the Project ID.
-   *   Format: projects/{project}
-   * @param {google.actions.sdk.v2.UserInput} request.input
-   *   Required. Input provided by the user.
-   * @param {google.actions.sdk.v2.DeviceProperties} request.deviceProperties
-   *   Required. Properties of the device used for interacting with the Action.
-   * @param {string} request.conversationToken
-   *   Opaque token that must be passed as received from SendInteractionResponse
-   *   on the previous interaction. This can be left unset in order to start a new
-   *   conversation, either as the first interaction of a testing session or to
-   *   abandon a previous conversation and start a new one.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [SendInteractionResponse]{@link google.actions.sdk.v2.SendInteractionResponse}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
-   *   for more details and examples.
-   * @example
-   * const [response] = await client.sendInteraction(request);
-   */
-  sendInteraction(
-    request: protos.google.actions.sdk.v2.ISendInteractionRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protos.google.actions.sdk.v2.ISendInteractionRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protos.google.actions.sdk.v2.ISendInteractionResponse,
-          | protos.google.actions.sdk.v2.ISendInteractionRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.actions.sdk.v2.ISendInteractionResponse,
-      protos.google.actions.sdk.v2.ISendInteractionRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.actions.sdk.v2.ISendInteractionResponse,
-      protos.google.actions.sdk.v2.ISendInteractionRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protos.google.actions.sdk.v2.ISendInteractionRequest|null|undefined,
+          {}|null|undefined>): void;
+  sendInteraction(
+      request: protos.google.actions.sdk.v2.ISendInteractionRequest,
+      callback: Callback<
+          protos.google.actions.sdk.v2.ISendInteractionResponse,
+          protos.google.actions.sdk.v2.ISendInteractionRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Plays one round of the conversation.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.project
+ *   Required. The project being tested, indicated by the Project ID.
+ *   Format: projects/{project}
+ * @param {google.actions.sdk.v2.UserInput} request.input
+ *   Required. Input provided by the user.
+ * @param {google.actions.sdk.v2.DeviceProperties} request.deviceProperties
+ *   Required. Properties of the device used for interacting with the Action.
+ * @param {string} request.conversationToken
+ *   Opaque token that must be passed as received from SendInteractionResponse
+ *   on the previous interaction. This can be left unset in order to start a new
+ *   conversation, either as the first interaction of a testing session or to
+ *   abandon a previous conversation and start a new one.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [SendInteractionResponse]{@link google.actions.sdk.v2.SendInteractionResponse}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.sendInteraction(request);
+ */
+  sendInteraction(
+      request: protos.google.actions.sdk.v2.ISendInteractionRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protos.google.actions.sdk.v2.ISendInteractionResponse,
+          protos.google.actions.sdk.v2.ISendInteractionRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.actions.sdk.v2.ISendInteractionResponse,
+          protos.google.actions.sdk.v2.ISendInteractionRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.actions.sdk.v2.ISendInteractionResponse,
+        protos.google.actions.sdk.v2.ISendInteractionRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -375,90 +355,77 @@ export class ActionsTestingClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      project: request.project || '',
+      'project': request.project || '',
     });
     this.initialize();
     return this.innerApiCalls.sendInteraction(request, options, callback);
   }
   matchIntents(
-    request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protos.google.actions.sdk.v2.IMatchIntentsResponse,
-      protos.google.actions.sdk.v2.IMatchIntentsRequest | undefined,
-      {} | undefined
-    ]
-  >;
+      request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.actions.sdk.v2.IMatchIntentsResponse,
+        protos.google.actions.sdk.v2.IMatchIntentsRequest|undefined, {}|undefined
+      ]>;
   matchIntents(
-    request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protos.google.actions.sdk.v2.IMatchIntentsResponse,
-      protos.google.actions.sdk.v2.IMatchIntentsRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  matchIntents(
-    request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
-    callback: Callback<
-      protos.google.actions.sdk.v2.IMatchIntentsResponse,
-      protos.google.actions.sdk.v2.IMatchIntentsRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Finds the intents that match a given query.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.project
-   *   Required. The project being tested, indicated by the Project ID.
-   *   Format: projects/{project}
-   * @param {string} request.query
-   *   Required. User query as plain text.
-   * @param {string} request.locale
-   *   Required. Locale to use to evaluate the query, such as "en".
-   *   The format should follow BCP 47: https://tools.ietf.org/html/bcp47
-   *   See the list of supported languages in
-   *   https://developers.google.com/assistant/console/languages-locales
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [MatchIntentsResponse]{@link google.actions.sdk.v2.MatchIntentsResponse}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
-   *   for more details and examples.
-   * @example
-   * const [response] = await client.matchIntents(request);
-   */
-  matchIntents(
-    request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protos.google.actions.sdk.v2.IMatchIntentsResponse,
-          protos.google.actions.sdk.v2.IMatchIntentsRequest | null | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.actions.sdk.v2.IMatchIntentsResponse,
-      protos.google.actions.sdk.v2.IMatchIntentsRequest | null | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.actions.sdk.v2.IMatchIntentsResponse,
-      protos.google.actions.sdk.v2.IMatchIntentsRequest | undefined,
-      {} | undefined
-    ]
-  > | void {
+          protos.google.actions.sdk.v2.IMatchIntentsRequest|null|undefined,
+          {}|null|undefined>): void;
+  matchIntents(
+      request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
+      callback: Callback<
+          protos.google.actions.sdk.v2.IMatchIntentsResponse,
+          protos.google.actions.sdk.v2.IMatchIntentsRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Finds the intents that match a given query.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {string} request.project
+ *   Required. The project being tested, indicated by the Project ID.
+ *   Format: projects/{project}
+ * @param {string} request.query
+ *   Required. User query as plain text.
+ * @param {string} request.locale
+ *   Required. Locale to use to evaluate the query, such as "en".
+ *   The format should follow BCP 47: https://tools.ietf.org/html/bcp47
+ *   See the list of supported languages in
+ *   https://developers.google.com/assistant/console/languages-locales
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [MatchIntentsResponse]{@link google.actions.sdk.v2.MatchIntentsResponse}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.matchIntents(request);
+ */
+  matchIntents(
+      request: protos.google.actions.sdk.v2.IMatchIntentsRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protos.google.actions.sdk.v2.IMatchIntentsResponse,
+          protos.google.actions.sdk.v2.IMatchIntentsRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.actions.sdk.v2.IMatchIntentsResponse,
+          protos.google.actions.sdk.v2.IMatchIntentsRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.actions.sdk.v2.IMatchIntentsResponse,
+        protos.google.actions.sdk.v2.IMatchIntentsRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
@@ -467,120 +434,112 @@ export class ActionsTestingClient {
     options.otherArgs.headers[
       'x-goog-request-params'
     ] = gax.routingHeader.fromParams({
-      project: request.project || '',
+      'project': request.project || '',
     });
     this.initialize();
     return this.innerApiCalls.matchIntents(request, options, callback);
   }
   setWebAndAppActivityControl(
-    request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      (
-        | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
+      request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
+      options?: gax.CallOptions):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|undefined, {}|undefined
+      ]>;
   setWebAndAppActivityControl(
-    request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  setWebAndAppActivityControl(
-    request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
-    callback: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Sets the Web & App Activity control on a service account.
-   *
-   * It is necessary to have this setting enabled in order to use call Actions.
-   * The setting is originally disabled for service accounts, and it is
-   * preserved until set to a different value. This means it only needs to be
-   * enabled once per account (and not necessarily once per test), unless it is
-   * later disabled.
-   *
-   * Returns an error if the caller is not a service account. User accounts can
-   * change this setting via the Activity Controls page. See
-   * https://support.google.com/websearch/answer/54068.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {boolean} request.enabled
-   *   Whether the setting should be set to an enabled or disabled state.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
-   *   for more details and examples.
-   * @example
-   * const [response] = await client.setWebAndAppActivityControl(request);
-   */
-  setWebAndAppActivityControl(
-    request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
+      request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
+      options: gax.CallOptions,
+      callback: Callback<
           protos.google.protobuf.IEmpty,
-          | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.protobuf.IEmpty,
-      | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.protobuf.IEmpty,
-      (
-        | protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
+          protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|null|undefined,
+          {}|null|undefined>): void;
+  setWebAndAppActivityControl(
+      request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
+      callback: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|null|undefined,
+          {}|null|undefined>): void;
+/**
+ * Sets the Web & App Activity control on a service account.
+ *
+ * It is necessary to have this setting enabled in order to use call Actions.
+ * The setting is originally disabled for service accounts, and it is
+ * preserved until set to a different value. This means it only needs to be
+ * enabled once per account (and not necessarily once per test), unless it is
+ * later disabled.
+ *
+ * Returns an error if the caller is not a service account. User accounts can
+ * change this setting via the Activity Controls page. See
+ * https://support.google.com/websearch/answer/54068.
+ *
+ * @param {Object} request
+ *   The request object that will be sent.
+ * @param {boolean} request.enabled
+ *   Whether the setting should be set to an enabled or disabled state.
+ * @param {object} [options]
+ *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+ * @returns {Promise} - The promise which resolves to an array.
+ *   The first element of the array is an object representing [Empty]{@link google.protobuf.Empty}.
+ *   Please see the
+ *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+ *   for more details and examples.
+ * @example
+ * const [response] = await client.setWebAndAppActivityControl(request);
+ */
+  setWebAndAppActivityControl(
+      request: protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest,
+      optionsOrCallback?: gax.CallOptions|Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|null|undefined,
+          {}|null|undefined>,
+      callback?: Callback<
+          protos.google.protobuf.IEmpty,
+          protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|null|undefined,
+          {}|null|undefined>):
+      Promise<[
+        protos.google.protobuf.IEmpty,
+        protos.google.actions.sdk.v2.ISetWebAndAppActivityControlRequest|undefined, {}|undefined
+      ]>|void {
     request = request || {};
     let options: gax.CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
-    } else {
+    }
+    else {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
     this.initialize();
-    return this.innerApiCalls.setWebAndAppActivityControl(
-      request,
-      options,
-      callback
-    );
+    return this.innerApiCalls.setWebAndAppActivityControl(request, options, callback);
   }
 
   // --------------------
   // -- Path templates --
   // --------------------
+
+  /**
+   * Return a fully-qualified draft resource name string.
+   *
+   * @param {string} project
+   * @returns {string} Resource name string.
+   */
+  draftPath(project:string) {
+    return this.pathTemplates.draftPathTemplate.render({
+      project: project,
+    });
+  }
+
+  /**
+   * Parse the project from Draft resource.
+   *
+   * @param {string} draftName
+   *   A fully-qualified path representing Draft resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromDraftName(draftName: string) {
+    return this.pathTemplates.draftPathTemplate.match(draftName).project;
+  }
 
   /**
    * Return a fully-qualified preview resource name string.
@@ -589,7 +548,7 @@ export class ActionsTestingClient {
    * @param {string} preview
    * @returns {string} Resource name string.
    */
-  previewPath(project: string, preview: string) {
+  previewPath(project:string,preview:string) {
     return this.pathTemplates.previewPathTemplate.render({
       project: project,
       preview: preview,
@@ -616,6 +575,78 @@ export class ActionsTestingClient {
    */
   matchPreviewFromPreviewName(previewName: string) {
     return this.pathTemplates.previewPathTemplate.match(previewName).preview;
+  }
+
+  /**
+   * Return a fully-qualified releaseChannel resource name string.
+   *
+   * @param {string} project
+   * @param {string} release_channel
+   * @returns {string} Resource name string.
+   */
+  releaseChannelPath(project:string,releaseChannel:string) {
+    return this.pathTemplates.releaseChannelPathTemplate.render({
+      project: project,
+      release_channel: releaseChannel,
+    });
+  }
+
+  /**
+   * Parse the project from ReleaseChannel resource.
+   *
+   * @param {string} releaseChannelName
+   *   A fully-qualified path representing ReleaseChannel resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromReleaseChannelName(releaseChannelName: string) {
+    return this.pathTemplates.releaseChannelPathTemplate.match(releaseChannelName).project;
+  }
+
+  /**
+   * Parse the release_channel from ReleaseChannel resource.
+   *
+   * @param {string} releaseChannelName
+   *   A fully-qualified path representing ReleaseChannel resource.
+   * @returns {string} A string representing the release_channel.
+   */
+  matchReleaseChannelFromReleaseChannelName(releaseChannelName: string) {
+    return this.pathTemplates.releaseChannelPathTemplate.match(releaseChannelName).release_channel;
+  }
+
+  /**
+   * Return a fully-qualified version resource name string.
+   *
+   * @param {string} project
+   * @param {string} version
+   * @returns {string} Resource name string.
+   */
+  versionPath(project:string,version:string) {
+    return this.pathTemplates.versionPathTemplate.render({
+      project: project,
+      version: version,
+    });
+  }
+
+  /**
+   * Parse the project from Version resource.
+   *
+   * @param {string} versionName
+   *   A fully-qualified path representing Version resource.
+   * @returns {string} A string representing the project.
+   */
+  matchProjectFromVersionName(versionName: string) {
+    return this.pathTemplates.versionPathTemplate.match(versionName).project;
+  }
+
+  /**
+   * Parse the version from Version resource.
+   *
+   * @param {string} versionName
+   *   A fully-qualified path representing Version resource.
+   * @returns {string} A string representing the version.
+   */
+  matchVersionFromVersionName(versionName: string) {
+    return this.pathTemplates.versionPathTemplate.match(versionName).version;
   }
 
   /**

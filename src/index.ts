@@ -24,4 +24,4 @@ type ActionsTestingClient = v2.ActionsTestingClient;
 export {v2, ActionsSdkClient, ActionsTestingClient};
 export default {v2, ActionsSdkClient, ActionsTestingClient};
 import * as protos from '../protos/protos';
-export {protos};
+export {protos}

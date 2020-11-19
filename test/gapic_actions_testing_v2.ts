@@ -20,484 +20,476 @@ import * as protos from '../protos/protos';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 import {SinonStub} from 'sinon';
-import {describe, it} from 'mocha';
+import { describe, it } from 'mocha';
 import * as actionstestingModule from '../src';
 
 import {protobuf} from 'google-gax';
 
 function generateSampleMessage<T extends object>(instance: T) {
-  const filledObject = (instance.constructor as typeof protobuf.Message).toObject(
-    instance as protobuf.Message<T>,
-    {defaults: true}
-  );
-  return (instance.constructor as typeof protobuf.Message).fromObject(
-    filledObject
-  ) as T;
+    const filledObject = (instance.constructor as typeof protobuf.Message)
+        .toObject(instance as protobuf.Message<T>, {defaults: true});
+    return (instance.constructor as typeof protobuf.Message).fromObject(filledObject) as T;
 }
 
 function stubSimpleCall<ResponseType>(response?: ResponseType, error?: Error) {
-  return error
-    ? sinon.stub().rejects(error)
-    : sinon.stub().resolves([response]);
+    return error ? sinon.stub().rejects(error) : sinon.stub().resolves([response]);
 }
 
-function stubSimpleCallWithCallback<ResponseType>(
-  response?: ResponseType,
-  error?: Error
-) {
-  return error
-    ? sinon.stub().callsArgWith(2, error)
-    : sinon.stub().callsArgWith(2, null, response);
+function stubSimpleCallWithCallback<ResponseType>(response?: ResponseType, error?: Error) {
+    return error ? sinon.stub().callsArgWith(2, error) : sinon.stub().callsArgWith(2, null, response);
 }
 
 describe('v2.ActionsTestingClient', () => {
-  it('has servicePath', () => {
-    const servicePath =
-      actionstestingModule.v2.ActionsTestingClient.servicePath;
-    assert(servicePath);
-  });
-
-  it('has apiEndpoint', () => {
-    const apiEndpoint =
-      actionstestingModule.v2.ActionsTestingClient.apiEndpoint;
-    assert(apiEndpoint);
-  });
-
-  it('has port', () => {
-    const port = actionstestingModule.v2.ActionsTestingClient.port;
-    assert(port);
-    assert(typeof port === 'number');
-  });
-
-  it('should create a client with no option', () => {
-    const client = new actionstestingModule.v2.ActionsTestingClient();
-    assert(client);
-  });
-
-  it('should create a client with gRPC fallback', () => {
-    const client = new actionstestingModule.v2.ActionsTestingClient({
-      fallback: true,
-    });
-    assert(client);
-  });
-
-  it('has initialize method and supports deferred initialization', async () => {
-    const client = new actionstestingModule.v2.ActionsTestingClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
-    });
-    assert.strictEqual(client.actionsTestingStub, undefined);
-    await client.initialize();
-    assert(client.actionsTestingStub);
-  });
-
-  it('has close method', () => {
-    const client = new actionstestingModule.v2.ActionsTestingClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
-    });
-    client.close();
-  });
-
-  it('has getProjectId method', async () => {
-    const fakeProjectId = 'fake-project-id';
-    const client = new actionstestingModule.v2.ActionsTestingClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
-    });
-    client.auth.getProjectId = sinon.stub().resolves(fakeProjectId);
-    const result = await client.getProjectId();
-    assert.strictEqual(result, fakeProjectId);
-    assert((client.auth.getProjectId as SinonStub).calledWithExactly());
-  });
-
-  it('has getProjectId method with callback', async () => {
-    const fakeProjectId = 'fake-project-id';
-    const client = new actionstestingModule.v2.ActionsTestingClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
-    });
-    client.auth.getProjectId = sinon
-      .stub()
-      .callsArgWith(0, null, fakeProjectId);
-    const promise = new Promise((resolve, reject) => {
-      client.getProjectId((err?: Error | null, projectId?: string | null) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(projectId);
-        }
-      });
-    });
-    const result = await promise;
-    assert.strictEqual(result, fakeProjectId);
-  });
-
-  describe('sendInteraction', () => {
-    it('invokes sendInteraction without error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SendInteractionRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedResponse = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SendInteractionResponse()
-      );
-      client.innerApiCalls.sendInteraction = stubSimpleCall(expectedResponse);
-      const [response] = await client.sendInteraction(request);
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.sendInteraction as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
+    it('has servicePath', () => {
+        const servicePath = actionstestingModule.v2.ActionsTestingClient.servicePath;
+        assert(servicePath);
     });
 
-    it('invokes sendInteraction without error using callback', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SendInteractionRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedResponse = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SendInteractionResponse()
-      );
-      client.innerApiCalls.sendInteraction = stubSimpleCallWithCallback(
-        expectedResponse
-      );
-      const promise = new Promise((resolve, reject) => {
-        client.sendInteraction(
-          request,
-          (
-            err?: Error | null,
-            result?: protos.google.actions.sdk.v2.ISendInteractionResponse | null
-          ) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
-            }
-          }
-        );
-      });
-      const response = await promise;
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.sendInteraction as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions /*, callback defined above */)
-      );
+    it('has apiEndpoint', () => {
+        const apiEndpoint = actionstestingModule.v2.ActionsTestingClient.apiEndpoint;
+        assert(apiEndpoint);
     });
 
-    it('invokes sendInteraction with error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SendInteractionRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedError = new Error('expected');
-      client.innerApiCalls.sendInteraction = stubSimpleCall(
-        undefined,
-        expectedError
-      );
-      await assert.rejects(client.sendInteraction(request), expectedError);
-      assert(
-        (client.innerApiCalls.sendInteraction as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
-    });
-  });
-
-  describe('matchIntents', () => {
-    it('invokes matchIntents without error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.MatchIntentsRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedResponse = generateSampleMessage(
-        new protos.google.actions.sdk.v2.MatchIntentsResponse()
-      );
-      client.innerApiCalls.matchIntents = stubSimpleCall(expectedResponse);
-      const [response] = await client.matchIntents(request);
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.matchIntents as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
+    it('has port', () => {
+        const port = actionstestingModule.v2.ActionsTestingClient.port;
+        assert(port);
+        assert(typeof port === 'number');
     });
 
-    it('invokes matchIntents without error using callback', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.MatchIntentsRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedResponse = generateSampleMessage(
-        new protos.google.actions.sdk.v2.MatchIntentsResponse()
-      );
-      client.innerApiCalls.matchIntents = stubSimpleCallWithCallback(
-        expectedResponse
-      );
-      const promise = new Promise((resolve, reject) => {
-        client.matchIntents(
-          request,
-          (
-            err?: Error | null,
-            result?: protos.google.actions.sdk.v2.IMatchIntentsResponse | null
-          ) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
-            }
-          }
-        );
-      });
-      const response = await promise;
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.matchIntents as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions /*, callback defined above */)
-      );
+    it('should create a client with no option', () => {
+        const client = new actionstestingModule.v2.ActionsTestingClient();
+        assert(client);
     });
 
-    it('invokes matchIntents with error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.MatchIntentsRequest()
-      );
-      request.project = '';
-      const expectedHeaderRequestParams = 'project=';
-      const expectedOptions = {
-        otherArgs: {
-          headers: {
-            'x-goog-request-params': expectedHeaderRequestParams,
-          },
-        },
-      };
-      const expectedError = new Error('expected');
-      client.innerApiCalls.matchIntents = stubSimpleCall(
-        undefined,
-        expectedError
-      );
-      await assert.rejects(client.matchIntents(request), expectedError);
-      assert(
-        (client.innerApiCalls.matchIntents as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
-    });
-  });
-
-  describe('setWebAndAppActivityControl', () => {
-    it('invokes setWebAndAppActivityControl without error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest()
-      );
-      const expectedOptions = {};
-      const expectedResponse = generateSampleMessage(
-        new protos.google.protobuf.Empty()
-      );
-      client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCall(
-        expectedResponse
-      );
-      const [response] = await client.setWebAndAppActivityControl(request);
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
+    it('should create a client with gRPC fallback', () => {
+        const client = new actionstestingModule.v2.ActionsTestingClient({
+            fallback: true,
+        });
+        assert(client);
     });
 
-    it('invokes setWebAndAppActivityControl without error using callback', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest()
-      );
-      const expectedOptions = {};
-      const expectedResponse = generateSampleMessage(
-        new protos.google.protobuf.Empty()
-      );
-      client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCallWithCallback(
-        expectedResponse
-      );
-      const promise = new Promise((resolve, reject) => {
-        client.setWebAndAppActivityControl(
-          request,
-          (
-            err?: Error | null,
-            result?: protos.google.protobuf.IEmpty | null
-          ) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
-            }
-          }
-        );
-      });
-      const response = await promise;
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions /*, callback defined above */)
-      );
+    it('has initialize method and supports deferred initialization', async () => {
+        const client = new actionstestingModule.v2.ActionsTestingClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        assert.strictEqual(client.actionsTestingStub, undefined);
+        await client.initialize();
+        assert(client.actionsTestingStub);
     });
 
-    it('invokes setWebAndAppActivityControl with error', async () => {
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest()
-      );
-      const expectedOptions = {};
-      const expectedError = new Error('expected');
-      client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCall(
-        undefined,
-        expectedError
-      );
-      await assert.rejects(
-        client.setWebAndAppActivityControl(request),
-        expectedError
-      );
-      assert(
-        (client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
-          .getCall(0)
-          .calledWith(request, expectedOptions, undefined)
-      );
+    it('has close method', () => {
+        const client = new actionstestingModule.v2.ActionsTestingClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.close();
     });
-  });
 
-  describe('Path templates', () => {
-    describe('preview', () => {
-      const fakePath = '/rendered/path/preview';
-      const expectedParameters = {
-        project: 'projectValue',
-        preview: 'previewValue',
-      };
-      const client = new actionstestingModule.v2.ActionsTestingClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      client.pathTemplates.previewPathTemplate.render = sinon
-        .stub()
-        .returns(fakePath);
-      client.pathTemplates.previewPathTemplate.match = sinon
-        .stub()
-        .returns(expectedParameters);
-
-      it('previewPath', () => {
-        const result = client.previewPath('projectValue', 'previewValue');
-        assert.strictEqual(result, fakePath);
-        assert(
-          (client.pathTemplates.previewPathTemplate.render as SinonStub)
-            .getCall(-1)
-            .calledWith(expectedParameters)
-        );
-      });
-
-      it('matchProjectFromPreviewName', () => {
-        const result = client.matchProjectFromPreviewName(fakePath);
-        assert.strictEqual(result, 'projectValue');
-        assert(
-          (client.pathTemplates.previewPathTemplate.match as SinonStub)
-            .getCall(-1)
-            .calledWith(fakePath)
-        );
-      });
-
-      it('matchPreviewFromPreviewName', () => {
-        const result = client.matchPreviewFromPreviewName(fakePath);
-        assert.strictEqual(result, 'previewValue');
-        assert(
-          (client.pathTemplates.previewPathTemplate.match as SinonStub)
-            .getCall(-1)
-            .calledWith(fakePath)
-        );
-      });
+    it('has getProjectId method', async () => {
+        const fakeProjectId = 'fake-project-id';
+        const client = new actionstestingModule.v2.ActionsTestingClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.auth.getProjectId = sinon.stub().resolves(fakeProjectId);
+        const result = await client.getProjectId();
+        assert.strictEqual(result, fakeProjectId);
+        assert((client.auth.getProjectId as SinonStub).calledWithExactly());
     });
-  });
+
+    it('has getProjectId method with callback', async () => {
+        const fakeProjectId = 'fake-project-id';
+        const client = new actionstestingModule.v2.ActionsTestingClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.auth.getProjectId = sinon.stub().callsArgWith(0, null, fakeProjectId);
+        const promise = new Promise((resolve, reject) => {
+            client.getProjectId((err?: Error|null, projectId?: string|null) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(projectId);
+                }
+            });
+        });
+        const result = await promise;
+        assert.strictEqual(result, fakeProjectId);
+    });
+
+    describe('sendInteraction', () => {
+        it('invokes sendInteraction without error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SendInteractionRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.SendInteractionResponse());
+            client.innerApiCalls.sendInteraction = stubSimpleCall(expectedResponse);
+            const [response] = await client.sendInteraction(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.sendInteraction as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes sendInteraction without error using callback', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SendInteractionRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.SendInteractionResponse());
+            client.innerApiCalls.sendInteraction = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.sendInteraction(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.ISendInteractionResponse|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.sendInteraction as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes sendInteraction with error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SendInteractionRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.sendInteraction = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.sendInteraction(request), expectedError);
+            assert((client.innerApiCalls.sendInteraction as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+    });
+
+    describe('matchIntents', () => {
+        it('invokes matchIntents without error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.MatchIntentsRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.MatchIntentsResponse());
+            client.innerApiCalls.matchIntents = stubSimpleCall(expectedResponse);
+            const [response] = await client.matchIntents(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.matchIntents as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes matchIntents without error using callback', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.MatchIntentsRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.MatchIntentsResponse());
+            client.innerApiCalls.matchIntents = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.matchIntents(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IMatchIntentsResponse|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.matchIntents as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes matchIntents with error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.MatchIntentsRequest());
+            request.project = '';
+            const expectedHeaderRequestParams = "project=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.matchIntents = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.matchIntents(request), expectedError);
+            assert((client.innerApiCalls.matchIntents as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+    });
+
+    describe('setWebAndAppActivityControl', () => {
+        it('invokes setWebAndAppActivityControl without error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.protobuf.Empty());
+            client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCall(expectedResponse);
+            const [response] = await client.setWebAndAppActivityControl(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes setWebAndAppActivityControl without error using callback', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.protobuf.Empty());
+            client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.setWebAndAppActivityControl(
+                    request,
+                    (err?: Error|null, result?: protos.google.protobuf.IEmpty|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes setWebAndAppActivityControl with error', async () => {
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.SetWebAndAppActivityControlRequest());
+            const expectedOptions = {};
+            const expectedError = new Error('expected');
+            client.innerApiCalls.setWebAndAppActivityControl = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.setWebAndAppActivityControl(request), expectedError);
+            assert((client.innerApiCalls.setWebAndAppActivityControl as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+    });
+
+    describe('Path templates', () => {
+
+        describe('draft', () => {
+            const fakePath = "/rendered/path/draft";
+            const expectedParameters = {
+                project: "projectValue",
+            };
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.draftPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.draftPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('draftPath', () => {
+                const result = client.draftPath("projectValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.draftPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromDraftName', () => {
+                const result = client.matchProjectFromDraftName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.draftPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('preview', () => {
+            const fakePath = "/rendered/path/preview";
+            const expectedParameters = {
+                project: "projectValue",
+                preview: "previewValue",
+            };
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.previewPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.previewPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('previewPath', () => {
+                const result = client.previewPath("projectValue", "previewValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.previewPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromPreviewName', () => {
+                const result = client.matchProjectFromPreviewName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.previewPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchPreviewFromPreviewName', () => {
+                const result = client.matchPreviewFromPreviewName(fakePath);
+                assert.strictEqual(result, "previewValue");
+                assert((client.pathTemplates.previewPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('releaseChannel', () => {
+            const fakePath = "/rendered/path/releaseChannel";
+            const expectedParameters = {
+                project: "projectValue",
+                release_channel: "releaseChannelValue",
+            };
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.releaseChannelPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.releaseChannelPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('releaseChannelPath', () => {
+                const result = client.releaseChannelPath("projectValue", "releaseChannelValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.releaseChannelPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromReleaseChannelName', () => {
+                const result = client.matchProjectFromReleaseChannelName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.releaseChannelPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchReleaseChannelFromReleaseChannelName', () => {
+                const result = client.matchReleaseChannelFromReleaseChannelName(fakePath);
+                assert.strictEqual(result, "releaseChannelValue");
+                assert((client.pathTemplates.releaseChannelPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('version', () => {
+            const fakePath = "/rendered/path/version";
+            const expectedParameters = {
+                project: "projectValue",
+                version: "versionValue",
+            };
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.versionPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.versionPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('versionPath', () => {
+                const result = client.versionPath("projectValue", "versionValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.versionPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromVersionName', () => {
+                const result = client.matchProjectFromVersionName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.versionPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchVersionFromVersionName', () => {
+                const result = client.matchVersionFromVersionName(fakePath);
+                assert.strictEqual(result, "versionValue");
+                assert((client.pathTemplates.versionPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+    });
 });

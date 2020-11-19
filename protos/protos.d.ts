@@ -950,6 +950,20 @@ export namespace google {
                     public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): ActionsSdk;
 
                     /**
+                     * Calls WriteDraft.
+                     * @param request WriteDraftRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Draft
+                     */
+                    public writeDraft(request: google.actions.sdk.v2.IWriteDraftRequest, callback: google.actions.sdk.v2.ActionsSdk.WriteDraftCallback): void;
+
+                    /**
+                     * Calls WriteDraft.
+                     * @param request WriteDraftRequest message or plain object
+                     * @returns Promise
+                     */
+                    public writeDraft(request: google.actions.sdk.v2.IWriteDraftRequest): Promise<google.actions.sdk.v2.Draft>;
+
+                    /**
                      * Calls WritePreview.
                      * @param request WritePreviewRequest message or plain object
                      * @param callback Node-style callback called with the error, if any, and Preview
@@ -962,9 +976,114 @@ export namespace google {
                      * @returns Promise
                      */
                     public writePreview(request: google.actions.sdk.v2.IWritePreviewRequest): Promise<google.actions.sdk.v2.Preview>;
+
+                    /**
+                     * Calls CreateVersion.
+                     * @param request CreateVersionRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and Version
+                     */
+                    public createVersion(request: google.actions.sdk.v2.ICreateVersionRequest, callback: google.actions.sdk.v2.ActionsSdk.CreateVersionCallback): void;
+
+                    /**
+                     * Calls CreateVersion.
+                     * @param request CreateVersionRequest message or plain object
+                     * @returns Promise
+                     */
+                    public createVersion(request: google.actions.sdk.v2.ICreateVersionRequest): Promise<google.actions.sdk.v2.Version>;
+
+                    /**
+                     * Calls ReadDraft.
+                     * @param request ReadDraftRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ReadDraftResponse
+                     */
+                    public readDraft(request: google.actions.sdk.v2.IReadDraftRequest, callback: google.actions.sdk.v2.ActionsSdk.ReadDraftCallback): void;
+
+                    /**
+                     * Calls ReadDraft.
+                     * @param request ReadDraftRequest message or plain object
+                     * @returns Promise
+                     */
+                    public readDraft(request: google.actions.sdk.v2.IReadDraftRequest): Promise<google.actions.sdk.v2.ReadDraftResponse>;
+
+                    /**
+                     * Calls ReadVersion.
+                     * @param request ReadVersionRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ReadVersionResponse
+                     */
+                    public readVersion(request: google.actions.sdk.v2.IReadVersionRequest, callback: google.actions.sdk.v2.ActionsSdk.ReadVersionCallback): void;
+
+                    /**
+                     * Calls ReadVersion.
+                     * @param request ReadVersionRequest message or plain object
+                     * @returns Promise
+                     */
+                    public readVersion(request: google.actions.sdk.v2.IReadVersionRequest): Promise<google.actions.sdk.v2.ReadVersionResponse>;
+
+                    /**
+                     * Calls EncryptSecret.
+                     * @param request EncryptSecretRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and EncryptSecretResponse
+                     */
+                    public encryptSecret(request: google.actions.sdk.v2.IEncryptSecretRequest, callback: google.actions.sdk.v2.ActionsSdk.EncryptSecretCallback): void;
+
+                    /**
+                     * Calls EncryptSecret.
+                     * @param request EncryptSecretRequest message or plain object
+                     * @returns Promise
+                     */
+                    public encryptSecret(request: google.actions.sdk.v2.IEncryptSecretRequest): Promise<google.actions.sdk.v2.EncryptSecretResponse>;
+
+                    /**
+                     * Calls DecryptSecret.
+                     * @param request DecryptSecretRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and DecryptSecretResponse
+                     */
+                    public decryptSecret(request: google.actions.sdk.v2.IDecryptSecretRequest, callback: google.actions.sdk.v2.ActionsSdk.DecryptSecretCallback): void;
+
+                    /**
+                     * Calls DecryptSecret.
+                     * @param request DecryptSecretRequest message or plain object
+                     * @returns Promise
+                     */
+                    public decryptSecret(request: google.actions.sdk.v2.IDecryptSecretRequest): Promise<google.actions.sdk.v2.DecryptSecretResponse>;
+
+                    /**
+                     * Calls ListReleaseChannels.
+                     * @param request ListReleaseChannelsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListReleaseChannelsResponse
+                     */
+                    public listReleaseChannels(request: google.actions.sdk.v2.IListReleaseChannelsRequest, callback: google.actions.sdk.v2.ActionsSdk.ListReleaseChannelsCallback): void;
+
+                    /**
+                     * Calls ListReleaseChannels.
+                     * @param request ListReleaseChannelsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listReleaseChannels(request: google.actions.sdk.v2.IListReleaseChannelsRequest): Promise<google.actions.sdk.v2.ListReleaseChannelsResponse>;
+
+                    /**
+                     * Calls ListVersions.
+                     * @param request ListVersionsRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and ListVersionsResponse
+                     */
+                    public listVersions(request: google.actions.sdk.v2.IListVersionsRequest, callback: google.actions.sdk.v2.ActionsSdk.ListVersionsCallback): void;
+
+                    /**
+                     * Calls ListVersions.
+                     * @param request ListVersionsRequest message or plain object
+                     * @returns Promise
+                     */
+                    public listVersions(request: google.actions.sdk.v2.IListVersionsRequest): Promise<google.actions.sdk.v2.ListVersionsResponse>;
                 }
 
                 namespace ActionsSdk {
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#writeDraft}.
+                     * @param error Error, if any
+                     * @param [response] Draft
+                     */
+                    type WriteDraftCallback = (error: (Error|null), response?: google.actions.sdk.v2.Draft) => void;
 
                     /**
                      * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#writePreview}.
@@ -972,6 +1091,247 @@ export namespace google {
                      * @param [response] Preview
                      */
                     type WritePreviewCallback = (error: (Error|null), response?: google.actions.sdk.v2.Preview) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#createVersion}.
+                     * @param error Error, if any
+                     * @param [response] Version
+                     */
+                    type CreateVersionCallback = (error: (Error|null), response?: google.actions.sdk.v2.Version) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#readDraft}.
+                     * @param error Error, if any
+                     * @param [response] ReadDraftResponse
+                     */
+                    type ReadDraftCallback = (error: (Error|null), response?: google.actions.sdk.v2.ReadDraftResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#readVersion}.
+                     * @param error Error, if any
+                     * @param [response] ReadVersionResponse
+                     */
+                    type ReadVersionCallback = (error: (Error|null), response?: google.actions.sdk.v2.ReadVersionResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#encryptSecret}.
+                     * @param error Error, if any
+                     * @param [response] EncryptSecretResponse
+                     */
+                    type EncryptSecretCallback = (error: (Error|null), response?: google.actions.sdk.v2.EncryptSecretResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#decryptSecret}.
+                     * @param error Error, if any
+                     * @param [response] DecryptSecretResponse
+                     */
+                    type DecryptSecretCallback = (error: (Error|null), response?: google.actions.sdk.v2.DecryptSecretResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#listReleaseChannels}.
+                     * @param error Error, if any
+                     * @param [response] ListReleaseChannelsResponse
+                     */
+                    type ListReleaseChannelsCallback = (error: (Error|null), response?: google.actions.sdk.v2.ListReleaseChannelsResponse) => void;
+
+                    /**
+                     * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#listVersions}.
+                     * @param error Error, if any
+                     * @param [response] ListVersionsResponse
+                     */
+                    type ListVersionsCallback = (error: (Error|null), response?: google.actions.sdk.v2.ListVersionsResponse) => void;
+                }
+
+                /** Properties of a WriteDraftRequest. */
+                interface IWriteDraftRequest {
+
+                    /** WriteDraftRequest parent */
+                    parent?: (string|null);
+
+                    /** WriteDraftRequest files */
+                    files?: (google.actions.sdk.v2.IFiles|null);
+                }
+
+                /** Represents a WriteDraftRequest. */
+                class WriteDraftRequest implements IWriteDraftRequest {
+
+                    /**
+                     * Constructs a new WriteDraftRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IWriteDraftRequest);
+
+                    /** WriteDraftRequest parent. */
+                    public parent: string;
+
+                    /** WriteDraftRequest files. */
+                    public files?: (google.actions.sdk.v2.IFiles|null);
+
+                    /**
+                     * Creates a new WriteDraftRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns WriteDraftRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IWriteDraftRequest): google.actions.sdk.v2.WriteDraftRequest;
+
+                    /**
+                     * Encodes the specified WriteDraftRequest message. Does not implicitly {@link google.actions.sdk.v2.WriteDraftRequest.verify|verify} messages.
+                     * @param message WriteDraftRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IWriteDraftRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified WriteDraftRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.WriteDraftRequest.verify|verify} messages.
+                     * @param message WriteDraftRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IWriteDraftRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a WriteDraftRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns WriteDraftRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.WriteDraftRequest;
+
+                    /**
+                     * Decodes a WriteDraftRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns WriteDraftRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.WriteDraftRequest;
+
+                    /**
+                     * Verifies a WriteDraftRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a WriteDraftRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns WriteDraftRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.WriteDraftRequest;
+
+                    /**
+                     * Creates a plain object from a WriteDraftRequest message. Also converts values to other types if specified.
+                     * @param message WriteDraftRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.WriteDraftRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this WriteDraftRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a Draft. */
+                interface IDraft {
+
+                    /** Draft name */
+                    name?: (string|null);
+
+                    /** Draft validationResults */
+                    validationResults?: (google.actions.sdk.v2.IValidationResults|null);
+                }
+
+                /** Represents a Draft. */
+                class Draft implements IDraft {
+
+                    /**
+                     * Constructs a new Draft.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IDraft);
+
+                    /** Draft name. */
+                    public name: string;
+
+                    /** Draft validationResults. */
+                    public validationResults?: (google.actions.sdk.v2.IValidationResults|null);
+
+                    /**
+                     * Creates a new Draft instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Draft instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IDraft): google.actions.sdk.v2.Draft;
+
+                    /**
+                     * Encodes the specified Draft message. Does not implicitly {@link google.actions.sdk.v2.Draft.verify|verify} messages.
+                     * @param message Draft message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IDraft, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Draft message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Draft.verify|verify} messages.
+                     * @param message Draft message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IDraft, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Draft message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Draft
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.Draft;
+
+                    /**
+                     * Decodes a Draft message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Draft
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.Draft;
+
+                    /**
+                     * Verifies a Draft message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Draft message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Draft
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.Draft;
+
+                    /**
+                     * Creates a plain object from a Draft message. Also converts values to other types if specified.
+                     * @param message Draft
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.Draft, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Draft to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
                 }
 
                 /** Properties of a WritePreviewRequest. */
@@ -1455,6 +1815,1236 @@ export namespace google {
 
                     /**
                      * Converts this Preview to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a CreateVersionRequest. */
+                interface ICreateVersionRequest {
+
+                    /** CreateVersionRequest parent */
+                    parent?: (string|null);
+
+                    /** CreateVersionRequest files */
+                    files?: (google.actions.sdk.v2.IFiles|null);
+
+                    /** CreateVersionRequest releaseChannel */
+                    releaseChannel?: (string|null);
+                }
+
+                /** Represents a CreateVersionRequest. */
+                class CreateVersionRequest implements ICreateVersionRequest {
+
+                    /**
+                     * Constructs a new CreateVersionRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.ICreateVersionRequest);
+
+                    /** CreateVersionRequest parent. */
+                    public parent: string;
+
+                    /** CreateVersionRequest files. */
+                    public files?: (google.actions.sdk.v2.IFiles|null);
+
+                    /** CreateVersionRequest releaseChannel. */
+                    public releaseChannel: string;
+
+                    /**
+                     * Creates a new CreateVersionRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CreateVersionRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.ICreateVersionRequest): google.actions.sdk.v2.CreateVersionRequest;
+
+                    /**
+                     * Encodes the specified CreateVersionRequest message. Does not implicitly {@link google.actions.sdk.v2.CreateVersionRequest.verify|verify} messages.
+                     * @param message CreateVersionRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.ICreateVersionRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CreateVersionRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.CreateVersionRequest.verify|verify} messages.
+                     * @param message CreateVersionRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.ICreateVersionRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CreateVersionRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CreateVersionRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.CreateVersionRequest;
+
+                    /**
+                     * Decodes a CreateVersionRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CreateVersionRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.CreateVersionRequest;
+
+                    /**
+                     * Verifies a CreateVersionRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CreateVersionRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CreateVersionRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.CreateVersionRequest;
+
+                    /**
+                     * Creates a plain object from a CreateVersionRequest message. Also converts values to other types if specified.
+                     * @param message CreateVersionRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.CreateVersionRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CreateVersionRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ReadDraftRequest. */
+                interface IReadDraftRequest {
+
+                    /** ReadDraftRequest name */
+                    name?: (string|null);
+
+                    /** ReadDraftRequest clientSecretEncryptionKeyVersion */
+                    clientSecretEncryptionKeyVersion?: (string|null);
+                }
+
+                /** Represents a ReadDraftRequest. */
+                class ReadDraftRequest implements IReadDraftRequest {
+
+                    /**
+                     * Constructs a new ReadDraftRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IReadDraftRequest);
+
+                    /** ReadDraftRequest name. */
+                    public name: string;
+
+                    /** ReadDraftRequest clientSecretEncryptionKeyVersion. */
+                    public clientSecretEncryptionKeyVersion: string;
+
+                    /**
+                     * Creates a new ReadDraftRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ReadDraftRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IReadDraftRequest): google.actions.sdk.v2.ReadDraftRequest;
+
+                    /**
+                     * Encodes the specified ReadDraftRequest message. Does not implicitly {@link google.actions.sdk.v2.ReadDraftRequest.verify|verify} messages.
+                     * @param message ReadDraftRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IReadDraftRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ReadDraftRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadDraftRequest.verify|verify} messages.
+                     * @param message ReadDraftRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IReadDraftRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ReadDraftRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ReadDraftRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ReadDraftRequest;
+
+                    /**
+                     * Decodes a ReadDraftRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ReadDraftRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ReadDraftRequest;
+
+                    /**
+                     * Verifies a ReadDraftRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ReadDraftRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ReadDraftRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ReadDraftRequest;
+
+                    /**
+                     * Creates a plain object from a ReadDraftRequest message. Also converts values to other types if specified.
+                     * @param message ReadDraftRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ReadDraftRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ReadDraftRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ReadDraftResponse. */
+                interface IReadDraftResponse {
+
+                    /** ReadDraftResponse files */
+                    files?: (google.actions.sdk.v2.IFiles|null);
+                }
+
+                /** Represents a ReadDraftResponse. */
+                class ReadDraftResponse implements IReadDraftResponse {
+
+                    /**
+                     * Constructs a new ReadDraftResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IReadDraftResponse);
+
+                    /** ReadDraftResponse files. */
+                    public files?: (google.actions.sdk.v2.IFiles|null);
+
+                    /**
+                     * Creates a new ReadDraftResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ReadDraftResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IReadDraftResponse): google.actions.sdk.v2.ReadDraftResponse;
+
+                    /**
+                     * Encodes the specified ReadDraftResponse message. Does not implicitly {@link google.actions.sdk.v2.ReadDraftResponse.verify|verify} messages.
+                     * @param message ReadDraftResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IReadDraftResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ReadDraftResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadDraftResponse.verify|verify} messages.
+                     * @param message ReadDraftResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IReadDraftResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ReadDraftResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ReadDraftResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ReadDraftResponse;
+
+                    /**
+                     * Decodes a ReadDraftResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ReadDraftResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ReadDraftResponse;
+
+                    /**
+                     * Verifies a ReadDraftResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ReadDraftResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ReadDraftResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ReadDraftResponse;
+
+                    /**
+                     * Creates a plain object from a ReadDraftResponse message. Also converts values to other types if specified.
+                     * @param message ReadDraftResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ReadDraftResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ReadDraftResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ReadVersionRequest. */
+                interface IReadVersionRequest {
+
+                    /** ReadVersionRequest name */
+                    name?: (string|null);
+
+                    /** ReadVersionRequest clientSecretEncryptionKeyVersion */
+                    clientSecretEncryptionKeyVersion?: (string|null);
+                }
+
+                /** Represents a ReadVersionRequest. */
+                class ReadVersionRequest implements IReadVersionRequest {
+
+                    /**
+                     * Constructs a new ReadVersionRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IReadVersionRequest);
+
+                    /** ReadVersionRequest name. */
+                    public name: string;
+
+                    /** ReadVersionRequest clientSecretEncryptionKeyVersion. */
+                    public clientSecretEncryptionKeyVersion: string;
+
+                    /**
+                     * Creates a new ReadVersionRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ReadVersionRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IReadVersionRequest): google.actions.sdk.v2.ReadVersionRequest;
+
+                    /**
+                     * Encodes the specified ReadVersionRequest message. Does not implicitly {@link google.actions.sdk.v2.ReadVersionRequest.verify|verify} messages.
+                     * @param message ReadVersionRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IReadVersionRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ReadVersionRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadVersionRequest.verify|verify} messages.
+                     * @param message ReadVersionRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IReadVersionRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ReadVersionRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ReadVersionRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ReadVersionRequest;
+
+                    /**
+                     * Decodes a ReadVersionRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ReadVersionRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ReadVersionRequest;
+
+                    /**
+                     * Verifies a ReadVersionRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ReadVersionRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ReadVersionRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ReadVersionRequest;
+
+                    /**
+                     * Creates a plain object from a ReadVersionRequest message. Also converts values to other types if specified.
+                     * @param message ReadVersionRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ReadVersionRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ReadVersionRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ReadVersionResponse. */
+                interface IReadVersionResponse {
+
+                    /** ReadVersionResponse files */
+                    files?: (google.actions.sdk.v2.IFiles|null);
+                }
+
+                /** Represents a ReadVersionResponse. */
+                class ReadVersionResponse implements IReadVersionResponse {
+
+                    /**
+                     * Constructs a new ReadVersionResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IReadVersionResponse);
+
+                    /** ReadVersionResponse files. */
+                    public files?: (google.actions.sdk.v2.IFiles|null);
+
+                    /**
+                     * Creates a new ReadVersionResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ReadVersionResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IReadVersionResponse): google.actions.sdk.v2.ReadVersionResponse;
+
+                    /**
+                     * Encodes the specified ReadVersionResponse message. Does not implicitly {@link google.actions.sdk.v2.ReadVersionResponse.verify|verify} messages.
+                     * @param message ReadVersionResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IReadVersionResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ReadVersionResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadVersionResponse.verify|verify} messages.
+                     * @param message ReadVersionResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IReadVersionResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ReadVersionResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ReadVersionResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ReadVersionResponse;
+
+                    /**
+                     * Decodes a ReadVersionResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ReadVersionResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ReadVersionResponse;
+
+                    /**
+                     * Verifies a ReadVersionResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ReadVersionResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ReadVersionResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ReadVersionResponse;
+
+                    /**
+                     * Creates a plain object from a ReadVersionResponse message. Also converts values to other types if specified.
+                     * @param message ReadVersionResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ReadVersionResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ReadVersionResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an EncryptSecretRequest. */
+                interface IEncryptSecretRequest {
+
+                    /** EncryptSecretRequest clientSecret */
+                    clientSecret?: (string|null);
+                }
+
+                /** Represents an EncryptSecretRequest. */
+                class EncryptSecretRequest implements IEncryptSecretRequest {
+
+                    /**
+                     * Constructs a new EncryptSecretRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IEncryptSecretRequest);
+
+                    /** EncryptSecretRequest clientSecret. */
+                    public clientSecret: string;
+
+                    /**
+                     * Creates a new EncryptSecretRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns EncryptSecretRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IEncryptSecretRequest): google.actions.sdk.v2.EncryptSecretRequest;
+
+                    /**
+                     * Encodes the specified EncryptSecretRequest message. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretRequest.verify|verify} messages.
+                     * @param message EncryptSecretRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IEncryptSecretRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified EncryptSecretRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretRequest.verify|verify} messages.
+                     * @param message EncryptSecretRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IEncryptSecretRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an EncryptSecretRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns EncryptSecretRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.EncryptSecretRequest;
+
+                    /**
+                     * Decodes an EncryptSecretRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns EncryptSecretRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.EncryptSecretRequest;
+
+                    /**
+                     * Verifies an EncryptSecretRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an EncryptSecretRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns EncryptSecretRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.EncryptSecretRequest;
+
+                    /**
+                     * Creates a plain object from an EncryptSecretRequest message. Also converts values to other types if specified.
+                     * @param message EncryptSecretRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.EncryptSecretRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this EncryptSecretRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an EncryptSecretResponse. */
+                interface IEncryptSecretResponse {
+
+                    /** EncryptSecretResponse accountLinkingSecret */
+                    accountLinkingSecret?: (google.actions.sdk.v2.IAccountLinkingSecret|null);
+                }
+
+                /** Represents an EncryptSecretResponse. */
+                class EncryptSecretResponse implements IEncryptSecretResponse {
+
+                    /**
+                     * Constructs a new EncryptSecretResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IEncryptSecretResponse);
+
+                    /** EncryptSecretResponse accountLinkingSecret. */
+                    public accountLinkingSecret?: (google.actions.sdk.v2.IAccountLinkingSecret|null);
+
+                    /**
+                     * Creates a new EncryptSecretResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns EncryptSecretResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IEncryptSecretResponse): google.actions.sdk.v2.EncryptSecretResponse;
+
+                    /**
+                     * Encodes the specified EncryptSecretResponse message. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretResponse.verify|verify} messages.
+                     * @param message EncryptSecretResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IEncryptSecretResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified EncryptSecretResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretResponse.verify|verify} messages.
+                     * @param message EncryptSecretResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IEncryptSecretResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an EncryptSecretResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns EncryptSecretResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.EncryptSecretResponse;
+
+                    /**
+                     * Decodes an EncryptSecretResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns EncryptSecretResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.EncryptSecretResponse;
+
+                    /**
+                     * Verifies an EncryptSecretResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an EncryptSecretResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns EncryptSecretResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.EncryptSecretResponse;
+
+                    /**
+                     * Creates a plain object from an EncryptSecretResponse message. Also converts values to other types if specified.
+                     * @param message EncryptSecretResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.EncryptSecretResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this EncryptSecretResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a DecryptSecretRequest. */
+                interface IDecryptSecretRequest {
+
+                    /** DecryptSecretRequest encryptedClientSecret */
+                    encryptedClientSecret?: (Uint8Array|string|null);
+                }
+
+                /** Represents a DecryptSecretRequest. */
+                class DecryptSecretRequest implements IDecryptSecretRequest {
+
+                    /**
+                     * Constructs a new DecryptSecretRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IDecryptSecretRequest);
+
+                    /** DecryptSecretRequest encryptedClientSecret. */
+                    public encryptedClientSecret: (Uint8Array|string);
+
+                    /**
+                     * Creates a new DecryptSecretRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DecryptSecretRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IDecryptSecretRequest): google.actions.sdk.v2.DecryptSecretRequest;
+
+                    /**
+                     * Encodes the specified DecryptSecretRequest message. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretRequest.verify|verify} messages.
+                     * @param message DecryptSecretRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IDecryptSecretRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DecryptSecretRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretRequest.verify|verify} messages.
+                     * @param message DecryptSecretRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IDecryptSecretRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DecryptSecretRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DecryptSecretRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.DecryptSecretRequest;
+
+                    /**
+                     * Decodes a DecryptSecretRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DecryptSecretRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.DecryptSecretRequest;
+
+                    /**
+                     * Verifies a DecryptSecretRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DecryptSecretRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DecryptSecretRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.DecryptSecretRequest;
+
+                    /**
+                     * Creates a plain object from a DecryptSecretRequest message. Also converts values to other types if specified.
+                     * @param message DecryptSecretRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.DecryptSecretRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DecryptSecretRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a DecryptSecretResponse. */
+                interface IDecryptSecretResponse {
+
+                    /** DecryptSecretResponse clientSecret */
+                    clientSecret?: (string|null);
+                }
+
+                /** Represents a DecryptSecretResponse. */
+                class DecryptSecretResponse implements IDecryptSecretResponse {
+
+                    /**
+                     * Constructs a new DecryptSecretResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IDecryptSecretResponse);
+
+                    /** DecryptSecretResponse clientSecret. */
+                    public clientSecret: string;
+
+                    /**
+                     * Creates a new DecryptSecretResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns DecryptSecretResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IDecryptSecretResponse): google.actions.sdk.v2.DecryptSecretResponse;
+
+                    /**
+                     * Encodes the specified DecryptSecretResponse message. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretResponse.verify|verify} messages.
+                     * @param message DecryptSecretResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IDecryptSecretResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified DecryptSecretResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretResponse.verify|verify} messages.
+                     * @param message DecryptSecretResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IDecryptSecretResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a DecryptSecretResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns DecryptSecretResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.DecryptSecretResponse;
+
+                    /**
+                     * Decodes a DecryptSecretResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns DecryptSecretResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.DecryptSecretResponse;
+
+                    /**
+                     * Verifies a DecryptSecretResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a DecryptSecretResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns DecryptSecretResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.DecryptSecretResponse;
+
+                    /**
+                     * Creates a plain object from a DecryptSecretResponse message. Also converts values to other types if specified.
+                     * @param message DecryptSecretResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.DecryptSecretResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this DecryptSecretResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListReleaseChannelsRequest. */
+                interface IListReleaseChannelsRequest {
+
+                    /** ListReleaseChannelsRequest parent */
+                    parent?: (string|null);
+
+                    /** ListReleaseChannelsRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListReleaseChannelsRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListReleaseChannelsRequest. */
+                class ListReleaseChannelsRequest implements IListReleaseChannelsRequest {
+
+                    /**
+                     * Constructs a new ListReleaseChannelsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IListReleaseChannelsRequest);
+
+                    /** ListReleaseChannelsRequest parent. */
+                    public parent: string;
+
+                    /** ListReleaseChannelsRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListReleaseChannelsRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListReleaseChannelsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListReleaseChannelsRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IListReleaseChannelsRequest): google.actions.sdk.v2.ListReleaseChannelsRequest;
+
+                    /**
+                     * Encodes the specified ListReleaseChannelsRequest message. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsRequest.verify|verify} messages.
+                     * @param message ListReleaseChannelsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IListReleaseChannelsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListReleaseChannelsRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsRequest.verify|verify} messages.
+                     * @param message ListReleaseChannelsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IListReleaseChannelsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListReleaseChannelsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListReleaseChannelsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ListReleaseChannelsRequest;
+
+                    /**
+                     * Decodes a ListReleaseChannelsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListReleaseChannelsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ListReleaseChannelsRequest;
+
+                    /**
+                     * Verifies a ListReleaseChannelsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListReleaseChannelsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListReleaseChannelsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ListReleaseChannelsRequest;
+
+                    /**
+                     * Creates a plain object from a ListReleaseChannelsRequest message. Also converts values to other types if specified.
+                     * @param message ListReleaseChannelsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ListReleaseChannelsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListReleaseChannelsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListReleaseChannelsResponse. */
+                interface IListReleaseChannelsResponse {
+
+                    /** ListReleaseChannelsResponse releaseChannels */
+                    releaseChannels?: (google.actions.sdk.v2.IReleaseChannel[]|null);
+
+                    /** ListReleaseChannelsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListReleaseChannelsResponse. */
+                class ListReleaseChannelsResponse implements IListReleaseChannelsResponse {
+
+                    /**
+                     * Constructs a new ListReleaseChannelsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IListReleaseChannelsResponse);
+
+                    /** ListReleaseChannelsResponse releaseChannels. */
+                    public releaseChannels: google.actions.sdk.v2.IReleaseChannel[];
+
+                    /** ListReleaseChannelsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListReleaseChannelsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListReleaseChannelsResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IListReleaseChannelsResponse): google.actions.sdk.v2.ListReleaseChannelsResponse;
+
+                    /**
+                     * Encodes the specified ListReleaseChannelsResponse message. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsResponse.verify|verify} messages.
+                     * @param message ListReleaseChannelsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IListReleaseChannelsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListReleaseChannelsResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsResponse.verify|verify} messages.
+                     * @param message ListReleaseChannelsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IListReleaseChannelsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListReleaseChannelsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListReleaseChannelsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ListReleaseChannelsResponse;
+
+                    /**
+                     * Decodes a ListReleaseChannelsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListReleaseChannelsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ListReleaseChannelsResponse;
+
+                    /**
+                     * Verifies a ListReleaseChannelsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListReleaseChannelsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListReleaseChannelsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ListReleaseChannelsResponse;
+
+                    /**
+                     * Creates a plain object from a ListReleaseChannelsResponse message. Also converts values to other types if specified.
+                     * @param message ListReleaseChannelsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ListReleaseChannelsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListReleaseChannelsResponse to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListVersionsRequest. */
+                interface IListVersionsRequest {
+
+                    /** ListVersionsRequest parent */
+                    parent?: (string|null);
+
+                    /** ListVersionsRequest pageSize */
+                    pageSize?: (number|null);
+
+                    /** ListVersionsRequest pageToken */
+                    pageToken?: (string|null);
+                }
+
+                /** Represents a ListVersionsRequest. */
+                class ListVersionsRequest implements IListVersionsRequest {
+
+                    /**
+                     * Constructs a new ListVersionsRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IListVersionsRequest);
+
+                    /** ListVersionsRequest parent. */
+                    public parent: string;
+
+                    /** ListVersionsRequest pageSize. */
+                    public pageSize: number;
+
+                    /** ListVersionsRequest pageToken. */
+                    public pageToken: string;
+
+                    /**
+                     * Creates a new ListVersionsRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListVersionsRequest instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IListVersionsRequest): google.actions.sdk.v2.ListVersionsRequest;
+
+                    /**
+                     * Encodes the specified ListVersionsRequest message. Does not implicitly {@link google.actions.sdk.v2.ListVersionsRequest.verify|verify} messages.
+                     * @param message ListVersionsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IListVersionsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListVersionsRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListVersionsRequest.verify|verify} messages.
+                     * @param message ListVersionsRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IListVersionsRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListVersionsRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListVersionsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ListVersionsRequest;
+
+                    /**
+                     * Decodes a ListVersionsRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListVersionsRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ListVersionsRequest;
+
+                    /**
+                     * Verifies a ListVersionsRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListVersionsRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListVersionsRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ListVersionsRequest;
+
+                    /**
+                     * Creates a plain object from a ListVersionsRequest message. Also converts values to other types if specified.
+                     * @param message ListVersionsRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ListVersionsRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListVersionsRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a ListVersionsResponse. */
+                interface IListVersionsResponse {
+
+                    /** ListVersionsResponse versions */
+                    versions?: (google.actions.sdk.v2.IVersion[]|null);
+
+                    /** ListVersionsResponse nextPageToken */
+                    nextPageToken?: (string|null);
+                }
+
+                /** Represents a ListVersionsResponse. */
+                class ListVersionsResponse implements IListVersionsResponse {
+
+                    /**
+                     * Constructs a new ListVersionsResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IListVersionsResponse);
+
+                    /** ListVersionsResponse versions. */
+                    public versions: google.actions.sdk.v2.IVersion[];
+
+                    /** ListVersionsResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /**
+                     * Creates a new ListVersionsResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ListVersionsResponse instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IListVersionsResponse): google.actions.sdk.v2.ListVersionsResponse;
+
+                    /**
+                     * Encodes the specified ListVersionsResponse message. Does not implicitly {@link google.actions.sdk.v2.ListVersionsResponse.verify|verify} messages.
+                     * @param message ListVersionsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IListVersionsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ListVersionsResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListVersionsResponse.verify|verify} messages.
+                     * @param message ListVersionsResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IListVersionsResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ListVersionsResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ListVersionsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ListVersionsResponse;
+
+                    /**
+                     * Decodes a ListVersionsResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ListVersionsResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ListVersionsResponse;
+
+                    /**
+                     * Verifies a ListVersionsResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ListVersionsResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ListVersionsResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ListVersionsResponse;
+
+                    /**
+                     * Creates a plain object from a ListVersionsResponse message. Also converts values to other types if specified.
+                     * @param message ListVersionsResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ListVersionsResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ListVersionsResponse to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
@@ -6763,6 +8353,9 @@ export namespace google {
 
                     /** Settings accountLinking */
                     accountLinking?: (google.actions.sdk.v2.IAccountLinking|null);
+
+                    /** Settings selectedAndroidApps */
+                    selectedAndroidApps?: (string[]|null);
                 }
 
                 /** Represents a Settings. */
@@ -6821,6 +8414,9 @@ export namespace google {
 
                     /** Settings accountLinking. */
                     public accountLinking?: (google.actions.sdk.v2.IAccountLinking|null);
+
+                    /** Settings selectedAndroidApps. */
+                    public selectedAndroidApps: string[];
 
                     /**
                      * Creates a new Settings instance using the specified properties.
@@ -7996,6 +9592,108 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
+                /** Properties of a ReleaseChannel. */
+                interface IReleaseChannel {
+
+                    /** ReleaseChannel name */
+                    name?: (string|null);
+
+                    /** ReleaseChannel currentVersion */
+                    currentVersion?: (string|null);
+
+                    /** ReleaseChannel pendingVersion */
+                    pendingVersion?: (string|null);
+                }
+
+                /** Represents a ReleaseChannel. */
+                class ReleaseChannel implements IReleaseChannel {
+
+                    /**
+                     * Constructs a new ReleaseChannel.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IReleaseChannel);
+
+                    /** ReleaseChannel name. */
+                    public name: string;
+
+                    /** ReleaseChannel currentVersion. */
+                    public currentVersion: string;
+
+                    /** ReleaseChannel pendingVersion. */
+                    public pendingVersion: string;
+
+                    /**
+                     * Creates a new ReleaseChannel instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns ReleaseChannel instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IReleaseChannel): google.actions.sdk.v2.ReleaseChannel;
+
+                    /**
+                     * Encodes the specified ReleaseChannel message. Does not implicitly {@link google.actions.sdk.v2.ReleaseChannel.verify|verify} messages.
+                     * @param message ReleaseChannel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IReleaseChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified ReleaseChannel message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReleaseChannel.verify|verify} messages.
+                     * @param message ReleaseChannel message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IReleaseChannel, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a ReleaseChannel message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns ReleaseChannel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.ReleaseChannel;
+
+                    /**
+                     * Decodes a ReleaseChannel message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns ReleaseChannel
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.ReleaseChannel;
+
+                    /**
+                     * Verifies a ReleaseChannel message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a ReleaseChannel message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns ReleaseChannel
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.ReleaseChannel;
+
+                    /**
+                     * Creates a plain object from a ReleaseChannel message. Also converts values to other types if specified.
+                     * @param message ReleaseChannel
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.ReleaseChannel, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this ReleaseChannel to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
                 /** Properties of a ValidationResults. */
                 interface IValidationResults {
 
@@ -8272,6 +9970,230 @@ export namespace google {
                          * @returns JSON object
                          */
                         public toJSON(): { [k: string]: any };
+                    }
+                }
+
+                /** Properties of a Version. */
+                interface IVersion {
+
+                    /** Version name */
+                    name?: (string|null);
+
+                    /** Version versionState */
+                    versionState?: (google.actions.sdk.v2.Version.IVersionState|null);
+
+                    /** Version creator */
+                    creator?: (string|null);
+
+                    /** Version updateTime */
+                    updateTime?: (google.protobuf.ITimestamp|null);
+                }
+
+                /** Represents a Version. */
+                class Version implements IVersion {
+
+                    /**
+                     * Constructs a new Version.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.actions.sdk.v2.IVersion);
+
+                    /** Version name. */
+                    public name: string;
+
+                    /** Version versionState. */
+                    public versionState?: (google.actions.sdk.v2.Version.IVersionState|null);
+
+                    /** Version creator. */
+                    public creator: string;
+
+                    /** Version updateTime. */
+                    public updateTime?: (google.protobuf.ITimestamp|null);
+
+                    /**
+                     * Creates a new Version instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns Version instance
+                     */
+                    public static create(properties?: google.actions.sdk.v2.IVersion): google.actions.sdk.v2.Version;
+
+                    /**
+                     * Encodes the specified Version message. Does not implicitly {@link google.actions.sdk.v2.Version.verify|verify} messages.
+                     * @param message Version message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.actions.sdk.v2.IVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified Version message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Version.verify|verify} messages.
+                     * @param message Version message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.actions.sdk.v2.IVersion, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a Version message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns Version
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.Version;
+
+                    /**
+                     * Decodes a Version message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns Version
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.Version;
+
+                    /**
+                     * Verifies a Version message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a Version message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns Version
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.Version;
+
+                    /**
+                     * Creates a plain object from a Version message. Also converts values to other types if specified.
+                     * @param message Version
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.actions.sdk.v2.Version, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this Version to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                namespace Version {
+
+                    /** Properties of a VersionState. */
+                    interface IVersionState {
+
+                        /** VersionState state */
+                        state?: (google.actions.sdk.v2.Version.VersionState.State|keyof typeof google.actions.sdk.v2.Version.VersionState.State|null);
+
+                        /** VersionState message */
+                        message?: (string|null);
+                    }
+
+                    /** Represents a VersionState. */
+                    class VersionState implements IVersionState {
+
+                        /**
+                         * Constructs a new VersionState.
+                         * @param [properties] Properties to set
+                         */
+                        constructor(properties?: google.actions.sdk.v2.Version.IVersionState);
+
+                        /** VersionState state. */
+                        public state: (google.actions.sdk.v2.Version.VersionState.State|keyof typeof google.actions.sdk.v2.Version.VersionState.State);
+
+                        /** VersionState message. */
+                        public message: string;
+
+                        /**
+                         * Creates a new VersionState instance using the specified properties.
+                         * @param [properties] Properties to set
+                         * @returns VersionState instance
+                         */
+                        public static create(properties?: google.actions.sdk.v2.Version.IVersionState): google.actions.sdk.v2.Version.VersionState;
+
+                        /**
+                         * Encodes the specified VersionState message. Does not implicitly {@link google.actions.sdk.v2.Version.VersionState.verify|verify} messages.
+                         * @param message VersionState message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encode(message: google.actions.sdk.v2.Version.IVersionState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Encodes the specified VersionState message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Version.VersionState.verify|verify} messages.
+                         * @param message VersionState message or plain object to encode
+                         * @param [writer] Writer to encode to
+                         * @returns Writer
+                         */
+                        public static encodeDelimited(message: google.actions.sdk.v2.Version.IVersionState, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                        /**
+                         * Decodes a VersionState message from the specified reader or buffer.
+                         * @param reader Reader or buffer to decode from
+                         * @param [length] Message length if known beforehand
+                         * @returns VersionState
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.actions.sdk.v2.Version.VersionState;
+
+                        /**
+                         * Decodes a VersionState message from the specified reader or buffer, length delimited.
+                         * @param reader Reader or buffer to decode from
+                         * @returns VersionState
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.actions.sdk.v2.Version.VersionState;
+
+                        /**
+                         * Verifies a VersionState message.
+                         * @param message Plain object to verify
+                         * @returns `null` if valid, otherwise the reason why it is not
+                         */
+                        public static verify(message: { [k: string]: any }): (string|null);
+
+                        /**
+                         * Creates a VersionState message from a plain object. Also converts values to their respective internal types.
+                         * @param object Plain object
+                         * @returns VersionState
+                         */
+                        public static fromObject(object: { [k: string]: any }): google.actions.sdk.v2.Version.VersionState;
+
+                        /**
+                         * Creates a plain object from a VersionState message. Also converts values to other types if specified.
+                         * @param message VersionState
+                         * @param [options] Conversion options
+                         * @returns Plain object
+                         */
+                        public static toObject(message: google.actions.sdk.v2.Version.VersionState, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                        /**
+                         * Converts this VersionState to JSON.
+                         * @returns JSON object
+                         */
+                        public toJSON(): { [k: string]: any };
+                    }
+
+                    namespace VersionState {
+
+                        /** State enum. */
+                        enum State {
+                            STATE_UNSPECIFIED = 0,
+                            CREATION_IN_PROGRESS = 1,
+                            CREATION_FAILED = 2,
+                            CREATED = 3,
+                            REVIEW_IN_PROGRESS = 4,
+                            APPROVED = 5,
+                            CONDITIONALLY_APPROVED = 6,
+                            DENIED = 7,
+                            UNDER_TAKEDOWN = 8,
+                            DELETED = 9
+                        }
                     }
                 }
 
@@ -13563,6 +15485,232 @@ export namespace google {
             IMMUTABLE = 5
         }
 
+        /** Properties of a ResourceDescriptor. */
+        interface IResourceDescriptor {
+
+            /** ResourceDescriptor type */
+            type?: (string|null);
+
+            /** ResourceDescriptor pattern */
+            pattern?: (string[]|null);
+
+            /** ResourceDescriptor nameField */
+            nameField?: (string|null);
+
+            /** ResourceDescriptor history */
+            history?: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History|null);
+
+            /** ResourceDescriptor plural */
+            plural?: (string|null);
+
+            /** ResourceDescriptor singular */
+            singular?: (string|null);
+        }
+
+        /** Represents a ResourceDescriptor. */
+        class ResourceDescriptor implements IResourceDescriptor {
+
+            /**
+             * Constructs a new ResourceDescriptor.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.IResourceDescriptor);
+
+            /** ResourceDescriptor type. */
+            public type: string;
+
+            /** ResourceDescriptor pattern. */
+            public pattern: string[];
+
+            /** ResourceDescriptor nameField. */
+            public nameField: string;
+
+            /** ResourceDescriptor history. */
+            public history: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History);
+
+            /** ResourceDescriptor plural. */
+            public plural: string;
+
+            /** ResourceDescriptor singular. */
+            public singular: string;
+
+            /**
+             * Creates a new ResourceDescriptor instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ResourceDescriptor instance
+             */
+            public static create(properties?: google.api.IResourceDescriptor): google.api.ResourceDescriptor;
+
+            /**
+             * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+             * @param message ResourceDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+             * @param message ResourceDescriptor message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ResourceDescriptor message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ResourceDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceDescriptor;
+
+            /**
+             * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ResourceDescriptor
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceDescriptor;
+
+            /**
+             * Verifies a ResourceDescriptor message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ResourceDescriptor
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.ResourceDescriptor;
+
+            /**
+             * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
+             * @param message ResourceDescriptor
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.ResourceDescriptor, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ResourceDescriptor to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
+        namespace ResourceDescriptor {
+
+            /** History enum. */
+            enum History {
+                HISTORY_UNSPECIFIED = 0,
+                ORIGINALLY_SINGLE_PATTERN = 1,
+                FUTURE_MULTI_PATTERN = 2
+            }
+        }
+
+        /** Properties of a ResourceReference. */
+        interface IResourceReference {
+
+            /** ResourceReference type */
+            type?: (string|null);
+
+            /** ResourceReference childType */
+            childType?: (string|null);
+        }
+
+        /** Represents a ResourceReference. */
+        class ResourceReference implements IResourceReference {
+
+            /**
+             * Constructs a new ResourceReference.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.api.IResourceReference);
+
+            /** ResourceReference type. */
+            public type: string;
+
+            /** ResourceReference childType. */
+            public childType: string;
+
+            /**
+             * Creates a new ResourceReference instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns ResourceReference instance
+             */
+            public static create(properties?: google.api.IResourceReference): google.api.ResourceReference;
+
+            /**
+             * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+             * @param message ResourceReference message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+             * @param message ResourceReference message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a ResourceReference message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns ResourceReference
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceReference;
+
+            /**
+             * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns ResourceReference
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceReference;
+
+            /**
+             * Verifies a ResourceReference message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns ResourceReference
+             */
+            public static fromObject(object: { [k: string]: any }): google.api.ResourceReference;
+
+            /**
+             * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
+             * @param message ResourceReference
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.api.ResourceReference, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this ResourceReference to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
         /** Properties of a Http. */
         interface IHttp {
 
@@ -13897,232 +16045,6 @@ export namespace google {
 
             /**
              * Converts this CustomHttpPattern to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
-
-        /** Properties of a ResourceDescriptor. */
-        interface IResourceDescriptor {
-
-            /** ResourceDescriptor type */
-            type?: (string|null);
-
-            /** ResourceDescriptor pattern */
-            pattern?: (string[]|null);
-
-            /** ResourceDescriptor nameField */
-            nameField?: (string|null);
-
-            /** ResourceDescriptor history */
-            history?: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History|null);
-
-            /** ResourceDescriptor plural */
-            plural?: (string|null);
-
-            /** ResourceDescriptor singular */
-            singular?: (string|null);
-        }
-
-        /** Represents a ResourceDescriptor. */
-        class ResourceDescriptor implements IResourceDescriptor {
-
-            /**
-             * Constructs a new ResourceDescriptor.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.api.IResourceDescriptor);
-
-            /** ResourceDescriptor type. */
-            public type: string;
-
-            /** ResourceDescriptor pattern. */
-            public pattern: string[];
-
-            /** ResourceDescriptor nameField. */
-            public nameField: string;
-
-            /** ResourceDescriptor history. */
-            public history: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History);
-
-            /** ResourceDescriptor plural. */
-            public plural: string;
-
-            /** ResourceDescriptor singular. */
-            public singular: string;
-
-            /**
-             * Creates a new ResourceDescriptor instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ResourceDescriptor instance
-             */
-            public static create(properties?: google.api.IResourceDescriptor): google.api.ResourceDescriptor;
-
-            /**
-             * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-             * @param message ResourceDescriptor message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-             * @param message ResourceDescriptor message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ResourceDescriptor message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ResourceDescriptor
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceDescriptor;
-
-            /**
-             * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ResourceDescriptor
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceDescriptor;
-
-            /**
-             * Verifies a ResourceDescriptor message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ResourceDescriptor
-             */
-            public static fromObject(object: { [k: string]: any }): google.api.ResourceDescriptor;
-
-            /**
-             * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
-             * @param message ResourceDescriptor
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.api.ResourceDescriptor, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ResourceDescriptor to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
-
-        namespace ResourceDescriptor {
-
-            /** History enum. */
-            enum History {
-                HISTORY_UNSPECIFIED = 0,
-                ORIGINALLY_SINGLE_PATTERN = 1,
-                FUTURE_MULTI_PATTERN = 2
-            }
-        }
-
-        /** Properties of a ResourceReference. */
-        interface IResourceReference {
-
-            /** ResourceReference type */
-            type?: (string|null);
-
-            /** ResourceReference childType */
-            childType?: (string|null);
-        }
-
-        /** Represents a ResourceReference. */
-        class ResourceReference implements IResourceReference {
-
-            /**
-             * Constructs a new ResourceReference.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.api.IResourceReference);
-
-            /** ResourceReference type. */
-            public type: string;
-
-            /** ResourceReference childType. */
-            public childType: string;
-
-            /**
-             * Creates a new ResourceReference instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ResourceReference instance
-             */
-            public static create(properties?: google.api.IResourceReference): google.api.ResourceReference;
-
-            /**
-             * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-             * @param message ResourceReference message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-             * @param message ResourceReference message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ResourceReference message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ResourceReference
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceReference;
-
-            /**
-             * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ResourceReference
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceReference;
-
-            /**
-             * Verifies a ResourceReference message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ResourceReference
-             */
-            public static fromObject(object: { [k: string]: any }): google.api.ResourceReference;
-
-            /**
-             * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
-             * @param message ResourceReference
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.api.ResourceReference, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ResourceReference to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };
@@ -17662,6 +19584,102 @@ export namespace google {
             public toJSON(): { [k: string]: any };
         }
 
+        /** Properties of a Timestamp. */
+        interface ITimestamp {
+
+            /** Timestamp seconds */
+            seconds?: (number|Long|string|null);
+
+            /** Timestamp nanos */
+            nanos?: (number|null);
+        }
+
+        /** Represents a Timestamp. */
+        class Timestamp implements ITimestamp {
+
+            /**
+             * Constructs a new Timestamp.
+             * @param [properties] Properties to set
+             */
+            constructor(properties?: google.protobuf.ITimestamp);
+
+            /** Timestamp seconds. */
+            public seconds: (number|Long|string);
+
+            /** Timestamp nanos. */
+            public nanos: number;
+
+            /**
+             * Creates a new Timestamp instance using the specified properties.
+             * @param [properties] Properties to set
+             * @returns Timestamp instance
+             */
+            public static create(properties?: google.protobuf.ITimestamp): google.protobuf.Timestamp;
+
+            /**
+             * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+             * @param message Timestamp message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encode(message: google.protobuf.ITimestamp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+             * @param message Timestamp message or plain object to encode
+             * @param [writer] Writer to encode to
+             * @returns Writer
+             */
+            public static encodeDelimited(message: google.protobuf.ITimestamp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+            /**
+             * Decodes a Timestamp message from the specified reader or buffer.
+             * @param reader Reader or buffer to decode from
+             * @param [length] Message length if known beforehand
+             * @returns Timestamp
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Timestamp;
+
+            /**
+             * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+             * @param reader Reader or buffer to decode from
+             * @returns Timestamp
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Timestamp;
+
+            /**
+             * Verifies a Timestamp message.
+             * @param message Plain object to verify
+             * @returns `null` if valid, otherwise the reason why it is not
+             */
+            public static verify(message: { [k: string]: any }): (string|null);
+
+            /**
+             * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+             * @param object Plain object
+             * @returns Timestamp
+             */
+            public static fromObject(object: { [k: string]: any }): google.protobuf.Timestamp;
+
+            /**
+             * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+             * @param message Timestamp
+             * @param [options] Conversion options
+             * @returns Plain object
+             */
+            public static toObject(message: google.protobuf.Timestamp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+            /**
+             * Converts this Timestamp to JSON.
+             * @returns JSON object
+             */
+            public toJSON(): { [k: string]: any };
+        }
+
         /** Properties of a DoubleValue. */
         interface IDoubleValue {
 
@@ -18467,102 +20485,6 @@ export namespace google {
 
             /**
              * Converts this BytesValue to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
-
-        /** Properties of a Timestamp. */
-        interface ITimestamp {
-
-            /** Timestamp seconds */
-            seconds?: (number|Long|string|null);
-
-            /** Timestamp nanos */
-            nanos?: (number|null);
-        }
-
-        /** Represents a Timestamp. */
-        class Timestamp implements ITimestamp {
-
-            /**
-             * Constructs a new Timestamp.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.protobuf.ITimestamp);
-
-            /** Timestamp seconds. */
-            public seconds: (number|Long|string);
-
-            /** Timestamp nanos. */
-            public nanos: number;
-
-            /**
-             * Creates a new Timestamp instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns Timestamp instance
-             */
-            public static create(properties?: google.protobuf.ITimestamp): google.protobuf.Timestamp;
-
-            /**
-             * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-             * @param message Timestamp message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.protobuf.ITimestamp, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-             * @param message Timestamp message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.protobuf.ITimestamp, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a Timestamp message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns Timestamp
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.protobuf.Timestamp;
-
-            /**
-             * Decodes a Timestamp message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns Timestamp
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.protobuf.Timestamp;
-
-            /**
-             * Verifies a Timestamp message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns Timestamp
-             */
-            public static fromObject(object: { [k: string]: any }): google.protobuf.Timestamp;
-
-            /**
-             * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
-             * @param message Timestamp
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.protobuf.Timestamp, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this Timestamp to JSON.
              * @returns JSON object
              */
             public toJSON(): { [k: string]: any };

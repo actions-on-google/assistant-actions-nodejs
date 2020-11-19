@@ -51,9 +51,11 @@
   "../../protos/google/actions/sdk/v2/interactionmodel/type/type.proto",
   "../../protos/google/actions/sdk/v2/localized_settings.proto",
   "../../protos/google/actions/sdk/v2/manifest.proto",
+  "../../protos/google/actions/sdk/v2/release_channel.proto",
   "../../protos/google/actions/sdk/v2/settings.proto",
   "../../protos/google/actions/sdk/v2/surface.proto",
   "../../protos/google/actions/sdk/v2/theme_customization.proto",
   "../../protos/google/actions/sdk/v2/validation_results.proto",
+  "../../protos/google/actions/sdk/v2/version.proto",
   "../../protos/google/actions/sdk/v2/webhook.proto"
 ]

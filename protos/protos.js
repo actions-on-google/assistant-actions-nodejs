@@ -2205,6 +2205,39 @@
                         };
     
                         /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#writeDraft}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef WriteDraftCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.Draft} [response] Draft
+                         */
+    
+                        /**
+                         * Calls WriteDraft.
+                         * @function writeDraft
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest} request WriteDraftRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.WriteDraftCallback} callback Node-style callback called with the error, if any, and Draft
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.writeDraft = function writeDraft(request, callback) {
+                            return this.rpcCall(writeDraft, $root.google.actions.sdk.v2.WriteDraftRequest, $root.google.actions.sdk.v2.Draft, request, callback);
+                        }, "name", { value: "WriteDraft" });
+    
+                        /**
+                         * Calls WriteDraft.
+                         * @function writeDraft
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest} request WriteDraftRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.Draft>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
                          * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#writePreview}.
                          * @memberof google.actions.sdk.v2.ActionsSdk
                          * @typedef WritePreviewCallback
@@ -2237,7 +2270,668 @@
                          * @variation 2
                          */
     
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#createVersion}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef CreateVersionCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.Version} [response] Version
+                         */
+    
+                        /**
+                         * Calls CreateVersion.
+                         * @function createVersion
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest} request CreateVersionRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.CreateVersionCallback} callback Node-style callback called with the error, if any, and Version
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.createVersion = function createVersion(request, callback) {
+                            return this.rpcCall(createVersion, $root.google.actions.sdk.v2.CreateVersionRequest, $root.google.actions.sdk.v2.Version, request, callback);
+                        }, "name", { value: "CreateVersion" });
+    
+                        /**
+                         * Calls CreateVersion.
+                         * @function createVersion
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest} request CreateVersionRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.Version>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#readDraft}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef ReadDraftCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.ReadDraftResponse} [response] ReadDraftResponse
+                         */
+    
+                        /**
+                         * Calls ReadDraft.
+                         * @function readDraft
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IReadDraftRequest} request ReadDraftRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.ReadDraftCallback} callback Node-style callback called with the error, if any, and ReadDraftResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.readDraft = function readDraft(request, callback) {
+                            return this.rpcCall(readDraft, $root.google.actions.sdk.v2.ReadDraftRequest, $root.google.actions.sdk.v2.ReadDraftResponse, request, callback);
+                        }, "name", { value: "ReadDraft" });
+    
+                        /**
+                         * Calls ReadDraft.
+                         * @function readDraft
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IReadDraftRequest} request ReadDraftRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.ReadDraftResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#readVersion}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef ReadVersionCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.ReadVersionResponse} [response] ReadVersionResponse
+                         */
+    
+                        /**
+                         * Calls ReadVersion.
+                         * @function readVersion
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IReadVersionRequest} request ReadVersionRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.ReadVersionCallback} callback Node-style callback called with the error, if any, and ReadVersionResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.readVersion = function readVersion(request, callback) {
+                            return this.rpcCall(readVersion, $root.google.actions.sdk.v2.ReadVersionRequest, $root.google.actions.sdk.v2.ReadVersionResponse, request, callback);
+                        }, "name", { value: "ReadVersion" });
+    
+                        /**
+                         * Calls ReadVersion.
+                         * @function readVersion
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IReadVersionRequest} request ReadVersionRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.ReadVersionResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#encryptSecret}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef EncryptSecretCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.EncryptSecretResponse} [response] EncryptSecretResponse
+                         */
+    
+                        /**
+                         * Calls EncryptSecret.
+                         * @function encryptSecret
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest} request EncryptSecretRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.EncryptSecretCallback} callback Node-style callback called with the error, if any, and EncryptSecretResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.encryptSecret = function encryptSecret(request, callback) {
+                            return this.rpcCall(encryptSecret, $root.google.actions.sdk.v2.EncryptSecretRequest, $root.google.actions.sdk.v2.EncryptSecretResponse, request, callback);
+                        }, "name", { value: "EncryptSecret" });
+    
+                        /**
+                         * Calls EncryptSecret.
+                         * @function encryptSecret
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest} request EncryptSecretRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.EncryptSecretResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#decryptSecret}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef DecryptSecretCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.DecryptSecretResponse} [response] DecryptSecretResponse
+                         */
+    
+                        /**
+                         * Calls DecryptSecret.
+                         * @function decryptSecret
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest} request DecryptSecretRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.DecryptSecretCallback} callback Node-style callback called with the error, if any, and DecryptSecretResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.decryptSecret = function decryptSecret(request, callback) {
+                            return this.rpcCall(decryptSecret, $root.google.actions.sdk.v2.DecryptSecretRequest, $root.google.actions.sdk.v2.DecryptSecretResponse, request, callback);
+                        }, "name", { value: "DecryptSecret" });
+    
+                        /**
+                         * Calls DecryptSecret.
+                         * @function decryptSecret
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest} request DecryptSecretRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.DecryptSecretResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#listReleaseChannels}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef ListReleaseChannelsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.ListReleaseChannelsResponse} [response] ListReleaseChannelsResponse
+                         */
+    
+                        /**
+                         * Calls ListReleaseChannels.
+                         * @function listReleaseChannels
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest} request ListReleaseChannelsRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.ListReleaseChannelsCallback} callback Node-style callback called with the error, if any, and ListReleaseChannelsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.listReleaseChannels = function listReleaseChannels(request, callback) {
+                            return this.rpcCall(listReleaseChannels, $root.google.actions.sdk.v2.ListReleaseChannelsRequest, $root.google.actions.sdk.v2.ListReleaseChannelsResponse, request, callback);
+                        }, "name", { value: "ListReleaseChannels" });
+    
+                        /**
+                         * Calls ListReleaseChannels.
+                         * @function listReleaseChannels
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest} request ListReleaseChannelsRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.ListReleaseChannelsResponse>} Promise
+                         * @variation 2
+                         */
+    
+                        /**
+                         * Callback as used by {@link google.actions.sdk.v2.ActionsSdk#listVersions}.
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @typedef ListVersionsCallback
+                         * @type {function}
+                         * @param {Error|null} error Error, if any
+                         * @param {google.actions.sdk.v2.ListVersionsResponse} [response] ListVersionsResponse
+                         */
+    
+                        /**
+                         * Calls ListVersions.
+                         * @function listVersions
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IListVersionsRequest} request ListVersionsRequest message or plain object
+                         * @param {google.actions.sdk.v2.ActionsSdk.ListVersionsCallback} callback Node-style callback called with the error, if any, and ListVersionsResponse
+                         * @returns {undefined}
+                         * @variation 1
+                         */
+                        Object.defineProperty(ActionsSdk.prototype.listVersions = function listVersions(request, callback) {
+                            return this.rpcCall(listVersions, $root.google.actions.sdk.v2.ListVersionsRequest, $root.google.actions.sdk.v2.ListVersionsResponse, request, callback);
+                        }, "name", { value: "ListVersions" });
+    
+                        /**
+                         * Calls ListVersions.
+                         * @function listVersions
+                         * @memberof google.actions.sdk.v2.ActionsSdk
+                         * @instance
+                         * @param {google.actions.sdk.v2.IListVersionsRequest} request ListVersionsRequest message or plain object
+                         * @returns {Promise<google.actions.sdk.v2.ListVersionsResponse>} Promise
+                         * @variation 2
+                         */
+    
                         return ActionsSdk;
+                    })();
+    
+                    v2.WriteDraftRequest = (function() {
+    
+                        /**
+                         * Properties of a WriteDraftRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IWriteDraftRequest
+                         * @property {string|null} [parent] WriteDraftRequest parent
+                         * @property {google.actions.sdk.v2.IFiles|null} [files] WriteDraftRequest files
+                         */
+    
+                        /**
+                         * Constructs a new WriteDraftRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a WriteDraftRequest.
+                         * @implements IWriteDraftRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest=} [properties] Properties to set
+                         */
+                        function WriteDraftRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * WriteDraftRequest parent.
+                         * @member {string} parent
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @instance
+                         */
+                        WriteDraftRequest.prototype.parent = "";
+    
+                        /**
+                         * WriteDraftRequest files.
+                         * @member {google.actions.sdk.v2.IFiles|null|undefined} files
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @instance
+                         */
+                        WriteDraftRequest.prototype.files = null;
+    
+                        /**
+                         * Creates a new WriteDraftRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.WriteDraftRequest} WriteDraftRequest instance
+                         */
+                        WriteDraftRequest.create = function create(properties) {
+                            return new WriteDraftRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified WriteDraftRequest message. Does not implicitly {@link google.actions.sdk.v2.WriteDraftRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest} message WriteDraftRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        WriteDraftRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.files != null && Object.hasOwnProperty.call(message, "files"))
+                                $root.google.actions.sdk.v2.Files.encode(message.files, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified WriteDraftRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.WriteDraftRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IWriteDraftRequest} message WriteDraftRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        WriteDraftRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a WriteDraftRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.WriteDraftRequest} WriteDraftRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        WriteDraftRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.WriteDraftRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.parent = reader.string();
+                                    break;
+                                case 4:
+                                    message.files = $root.google.actions.sdk.v2.Files.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a WriteDraftRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.WriteDraftRequest} WriteDraftRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        WriteDraftRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a WriteDraftRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        WriteDraftRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.files != null && message.hasOwnProperty("files")) {
+                                var error = $root.google.actions.sdk.v2.Files.verify(message.files);
+                                if (error)
+                                    return "files." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a WriteDraftRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.WriteDraftRequest} WriteDraftRequest
+                         */
+                        WriteDraftRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.WriteDraftRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.WriteDraftRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.files != null) {
+                                if (typeof object.files !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.WriteDraftRequest.files: object expected");
+                                message.files = $root.google.actions.sdk.v2.Files.fromObject(object.files);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a WriteDraftRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.WriteDraftRequest} message WriteDraftRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        WriteDraftRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.files = null;
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.files != null && message.hasOwnProperty("files"))
+                                object.files = $root.google.actions.sdk.v2.Files.toObject(message.files, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this WriteDraftRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.WriteDraftRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        WriteDraftRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return WriteDraftRequest;
+                    })();
+    
+                    v2.Draft = (function() {
+    
+                        /**
+                         * Properties of a Draft.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IDraft
+                         * @property {string|null} [name] Draft name
+                         * @property {google.actions.sdk.v2.IValidationResults|null} [validationResults] Draft validationResults
+                         */
+    
+                        /**
+                         * Constructs a new Draft.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a Draft.
+                         * @implements IDraft
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IDraft=} [properties] Properties to set
+                         */
+                        function Draft(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Draft name.
+                         * @member {string} name
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @instance
+                         */
+                        Draft.prototype.name = "";
+    
+                        /**
+                         * Draft validationResults.
+                         * @member {google.actions.sdk.v2.IValidationResults|null|undefined} validationResults
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @instance
+                         */
+                        Draft.prototype.validationResults = null;
+    
+                        /**
+                         * Creates a new Draft instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {google.actions.sdk.v2.IDraft=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.Draft} Draft instance
+                         */
+                        Draft.create = function create(properties) {
+                            return new Draft(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Draft message. Does not implicitly {@link google.actions.sdk.v2.Draft.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {google.actions.sdk.v2.IDraft} message Draft message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Draft.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.validationResults != null && Object.hasOwnProperty.call(message, "validationResults"))
+                                $root.google.actions.sdk.v2.ValidationResults.encode(message.validationResults, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Draft message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Draft.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {google.actions.sdk.v2.IDraft} message Draft message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Draft.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Draft message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.Draft} Draft
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Draft.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.Draft();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.validationResults = $root.google.actions.sdk.v2.ValidationResults.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Draft message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.Draft} Draft
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Draft.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Draft message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Draft.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.validationResults != null && message.hasOwnProperty("validationResults")) {
+                                var error = $root.google.actions.sdk.v2.ValidationResults.verify(message.validationResults);
+                                if (error)
+                                    return "validationResults." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Draft message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.Draft} Draft
+                         */
+                        Draft.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.Draft)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.Draft();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.validationResults != null) {
+                                if (typeof object.validationResults !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.Draft.validationResults: object expected");
+                                message.validationResults = $root.google.actions.sdk.v2.ValidationResults.fromObject(object.validationResults);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Draft message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @static
+                         * @param {google.actions.sdk.v2.Draft} message Draft
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Draft.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.validationResults = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.validationResults != null && message.hasOwnProperty("validationResults"))
+                                object.validationResults = $root.google.actions.sdk.v2.ValidationResults.toObject(message.validationResults, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Draft to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.Draft
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Draft.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return Draft;
                     })();
     
                     v2.WritePreviewRequest = (function() {
@@ -3344,6 +4038,2735 @@
                         };
     
                         return Preview;
+                    })();
+    
+                    v2.CreateVersionRequest = (function() {
+    
+                        /**
+                         * Properties of a CreateVersionRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface ICreateVersionRequest
+                         * @property {string|null} [parent] CreateVersionRequest parent
+                         * @property {google.actions.sdk.v2.IFiles|null} [files] CreateVersionRequest files
+                         * @property {string|null} [releaseChannel] CreateVersionRequest releaseChannel
+                         */
+    
+                        /**
+                         * Constructs a new CreateVersionRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a CreateVersionRequest.
+                         * @implements ICreateVersionRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest=} [properties] Properties to set
+                         */
+                        function CreateVersionRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CreateVersionRequest parent.
+                         * @member {string} parent
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @instance
+                         */
+                        CreateVersionRequest.prototype.parent = "";
+    
+                        /**
+                         * CreateVersionRequest files.
+                         * @member {google.actions.sdk.v2.IFiles|null|undefined} files
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @instance
+                         */
+                        CreateVersionRequest.prototype.files = null;
+    
+                        /**
+                         * CreateVersionRequest releaseChannel.
+                         * @member {string} releaseChannel
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @instance
+                         */
+                        CreateVersionRequest.prototype.releaseChannel = "";
+    
+                        /**
+                         * Creates a new CreateVersionRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.CreateVersionRequest} CreateVersionRequest instance
+                         */
+                        CreateVersionRequest.create = function create(properties) {
+                            return new CreateVersionRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CreateVersionRequest message. Does not implicitly {@link google.actions.sdk.v2.CreateVersionRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest} message CreateVersionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateVersionRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.releaseChannel != null && Object.hasOwnProperty.call(message, "releaseChannel"))
+                                writer.uint32(/* id 4, wireType 2 =*/34).string(message.releaseChannel);
+                            if (message.files != null && Object.hasOwnProperty.call(message, "files"))
+                                $root.google.actions.sdk.v2.Files.encode(message.files, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CreateVersionRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.CreateVersionRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ICreateVersionRequest} message CreateVersionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CreateVersionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CreateVersionRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.CreateVersionRequest} CreateVersionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateVersionRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.CreateVersionRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.parent = reader.string();
+                                    break;
+                                case 5:
+                                    message.files = $root.google.actions.sdk.v2.Files.decode(reader, reader.uint32());
+                                    break;
+                                case 4:
+                                    message.releaseChannel = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CreateVersionRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.CreateVersionRequest} CreateVersionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CreateVersionRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CreateVersionRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CreateVersionRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.files != null && message.hasOwnProperty("files")) {
+                                var error = $root.google.actions.sdk.v2.Files.verify(message.files);
+                                if (error)
+                                    return "files." + error;
+                            }
+                            if (message.releaseChannel != null && message.hasOwnProperty("releaseChannel"))
+                                if (!$util.isString(message.releaseChannel))
+                                    return "releaseChannel: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CreateVersionRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.CreateVersionRequest} CreateVersionRequest
+                         */
+                        CreateVersionRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.CreateVersionRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.CreateVersionRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.files != null) {
+                                if (typeof object.files !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.CreateVersionRequest.files: object expected");
+                                message.files = $root.google.actions.sdk.v2.Files.fromObject(object.files);
+                            }
+                            if (object.releaseChannel != null)
+                                message.releaseChannel = String(object.releaseChannel);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CreateVersionRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.CreateVersionRequest} message CreateVersionRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CreateVersionRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.releaseChannel = "";
+                                object.files = null;
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.releaseChannel != null && message.hasOwnProperty("releaseChannel"))
+                                object.releaseChannel = message.releaseChannel;
+                            if (message.files != null && message.hasOwnProperty("files"))
+                                object.files = $root.google.actions.sdk.v2.Files.toObject(message.files, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CreateVersionRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.CreateVersionRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CreateVersionRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return CreateVersionRequest;
+                    })();
+    
+                    v2.ReadDraftRequest = (function() {
+    
+                        /**
+                         * Properties of a ReadDraftRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IReadDraftRequest
+                         * @property {string|null} [name] ReadDraftRequest name
+                         * @property {string|null} [clientSecretEncryptionKeyVersion] ReadDraftRequest clientSecretEncryptionKeyVersion
+                         */
+    
+                        /**
+                         * Constructs a new ReadDraftRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ReadDraftRequest.
+                         * @implements IReadDraftRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IReadDraftRequest=} [properties] Properties to set
+                         */
+                        function ReadDraftRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReadDraftRequest name.
+                         * @member {string} name
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @instance
+                         */
+                        ReadDraftRequest.prototype.name = "";
+    
+                        /**
+                         * ReadDraftRequest clientSecretEncryptionKeyVersion.
+                         * @member {string} clientSecretEncryptionKeyVersion
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @instance
+                         */
+                        ReadDraftRequest.prototype.clientSecretEncryptionKeyVersion = "";
+    
+                        /**
+                         * Creates a new ReadDraftRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ReadDraftRequest} ReadDraftRequest instance
+                         */
+                        ReadDraftRequest.create = function create(properties) {
+                            return new ReadDraftRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReadDraftRequest message. Does not implicitly {@link google.actions.sdk.v2.ReadDraftRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftRequest} message ReadDraftRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadDraftRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.clientSecretEncryptionKeyVersion != null && Object.hasOwnProperty.call(message, "clientSecretEncryptionKeyVersion"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.clientSecretEncryptionKeyVersion);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReadDraftRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadDraftRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftRequest} message ReadDraftRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadDraftRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReadDraftRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ReadDraftRequest} ReadDraftRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadDraftRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ReadDraftRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.clientSecretEncryptionKeyVersion = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReadDraftRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ReadDraftRequest} ReadDraftRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadDraftRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReadDraftRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReadDraftRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.clientSecretEncryptionKeyVersion != null && message.hasOwnProperty("clientSecretEncryptionKeyVersion"))
+                                if (!$util.isString(message.clientSecretEncryptionKeyVersion))
+                                    return "clientSecretEncryptionKeyVersion: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReadDraftRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ReadDraftRequest} ReadDraftRequest
+                         */
+                        ReadDraftRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ReadDraftRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ReadDraftRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.clientSecretEncryptionKeyVersion != null)
+                                message.clientSecretEncryptionKeyVersion = String(object.clientSecretEncryptionKeyVersion);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReadDraftRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ReadDraftRequest} message ReadDraftRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReadDraftRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.clientSecretEncryptionKeyVersion = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.clientSecretEncryptionKeyVersion != null && message.hasOwnProperty("clientSecretEncryptionKeyVersion"))
+                                object.clientSecretEncryptionKeyVersion = message.clientSecretEncryptionKeyVersion;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReadDraftRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ReadDraftRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReadDraftRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ReadDraftRequest;
+                    })();
+    
+                    v2.ReadDraftResponse = (function() {
+    
+                        /**
+                         * Properties of a ReadDraftResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IReadDraftResponse
+                         * @property {google.actions.sdk.v2.IFiles|null} [files] ReadDraftResponse files
+                         */
+    
+                        /**
+                         * Constructs a new ReadDraftResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ReadDraftResponse.
+                         * @implements IReadDraftResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IReadDraftResponse=} [properties] Properties to set
+                         */
+                        function ReadDraftResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReadDraftResponse files.
+                         * @member {google.actions.sdk.v2.IFiles|null|undefined} files
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @instance
+                         */
+                        ReadDraftResponse.prototype.files = null;
+    
+                        /**
+                         * Creates a new ReadDraftResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ReadDraftResponse} ReadDraftResponse instance
+                         */
+                        ReadDraftResponse.create = function create(properties) {
+                            return new ReadDraftResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReadDraftResponse message. Does not implicitly {@link google.actions.sdk.v2.ReadDraftResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftResponse} message ReadDraftResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadDraftResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.files != null && Object.hasOwnProperty.call(message, "files"))
+                                $root.google.actions.sdk.v2.Files.encode(message.files, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReadDraftResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadDraftResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadDraftResponse} message ReadDraftResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadDraftResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReadDraftResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ReadDraftResponse} ReadDraftResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadDraftResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ReadDraftResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 3:
+                                    message.files = $root.google.actions.sdk.v2.Files.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReadDraftResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ReadDraftResponse} ReadDraftResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadDraftResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReadDraftResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReadDraftResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.files != null && message.hasOwnProperty("files")) {
+                                var error = $root.google.actions.sdk.v2.Files.verify(message.files);
+                                if (error)
+                                    return "files." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReadDraftResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ReadDraftResponse} ReadDraftResponse
+                         */
+                        ReadDraftResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ReadDraftResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ReadDraftResponse();
+                            if (object.files != null) {
+                                if (typeof object.files !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.ReadDraftResponse.files: object expected");
+                                message.files = $root.google.actions.sdk.v2.Files.fromObject(object.files);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReadDraftResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.ReadDraftResponse} message ReadDraftResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReadDraftResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.files = null;
+                            if (message.files != null && message.hasOwnProperty("files"))
+                                object.files = $root.google.actions.sdk.v2.Files.toObject(message.files, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReadDraftResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ReadDraftResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReadDraftResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ReadDraftResponse;
+                    })();
+    
+                    v2.ReadVersionRequest = (function() {
+    
+                        /**
+                         * Properties of a ReadVersionRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IReadVersionRequest
+                         * @property {string|null} [name] ReadVersionRequest name
+                         * @property {string|null} [clientSecretEncryptionKeyVersion] ReadVersionRequest clientSecretEncryptionKeyVersion
+                         */
+    
+                        /**
+                         * Constructs a new ReadVersionRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ReadVersionRequest.
+                         * @implements IReadVersionRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IReadVersionRequest=} [properties] Properties to set
+                         */
+                        function ReadVersionRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReadVersionRequest name.
+                         * @member {string} name
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @instance
+                         */
+                        ReadVersionRequest.prototype.name = "";
+    
+                        /**
+                         * ReadVersionRequest clientSecretEncryptionKeyVersion.
+                         * @member {string} clientSecretEncryptionKeyVersion
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @instance
+                         */
+                        ReadVersionRequest.prototype.clientSecretEncryptionKeyVersion = "";
+    
+                        /**
+                         * Creates a new ReadVersionRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ReadVersionRequest} ReadVersionRequest instance
+                         */
+                        ReadVersionRequest.create = function create(properties) {
+                            return new ReadVersionRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReadVersionRequest message. Does not implicitly {@link google.actions.sdk.v2.ReadVersionRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionRequest} message ReadVersionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadVersionRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.clientSecretEncryptionKeyVersion != null && Object.hasOwnProperty.call(message, "clientSecretEncryptionKeyVersion"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.clientSecretEncryptionKeyVersion);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReadVersionRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadVersionRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionRequest} message ReadVersionRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadVersionRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReadVersionRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ReadVersionRequest} ReadVersionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadVersionRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ReadVersionRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.clientSecretEncryptionKeyVersion = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReadVersionRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ReadVersionRequest} ReadVersionRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadVersionRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReadVersionRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReadVersionRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.clientSecretEncryptionKeyVersion != null && message.hasOwnProperty("clientSecretEncryptionKeyVersion"))
+                                if (!$util.isString(message.clientSecretEncryptionKeyVersion))
+                                    return "clientSecretEncryptionKeyVersion: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReadVersionRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ReadVersionRequest} ReadVersionRequest
+                         */
+                        ReadVersionRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ReadVersionRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ReadVersionRequest();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.clientSecretEncryptionKeyVersion != null)
+                                message.clientSecretEncryptionKeyVersion = String(object.clientSecretEncryptionKeyVersion);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReadVersionRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ReadVersionRequest} message ReadVersionRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReadVersionRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.clientSecretEncryptionKeyVersion = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.clientSecretEncryptionKeyVersion != null && message.hasOwnProperty("clientSecretEncryptionKeyVersion"))
+                                object.clientSecretEncryptionKeyVersion = message.clientSecretEncryptionKeyVersion;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReadVersionRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ReadVersionRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReadVersionRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ReadVersionRequest;
+                    })();
+    
+                    v2.ReadVersionResponse = (function() {
+    
+                        /**
+                         * Properties of a ReadVersionResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IReadVersionResponse
+                         * @property {google.actions.sdk.v2.IFiles|null} [files] ReadVersionResponse files
+                         */
+    
+                        /**
+                         * Constructs a new ReadVersionResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ReadVersionResponse.
+                         * @implements IReadVersionResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IReadVersionResponse=} [properties] Properties to set
+                         */
+                        function ReadVersionResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReadVersionResponse files.
+                         * @member {google.actions.sdk.v2.IFiles|null|undefined} files
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @instance
+                         */
+                        ReadVersionResponse.prototype.files = null;
+    
+                        /**
+                         * Creates a new ReadVersionResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ReadVersionResponse} ReadVersionResponse instance
+                         */
+                        ReadVersionResponse.create = function create(properties) {
+                            return new ReadVersionResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReadVersionResponse message. Does not implicitly {@link google.actions.sdk.v2.ReadVersionResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionResponse} message ReadVersionResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadVersionResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.files != null && Object.hasOwnProperty.call(message, "files"))
+                                $root.google.actions.sdk.v2.Files.encode(message.files, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReadVersionResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReadVersionResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IReadVersionResponse} message ReadVersionResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReadVersionResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReadVersionResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ReadVersionResponse} ReadVersionResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadVersionResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ReadVersionResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.files = $root.google.actions.sdk.v2.Files.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReadVersionResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ReadVersionResponse} ReadVersionResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReadVersionResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReadVersionResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReadVersionResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.files != null && message.hasOwnProperty("files")) {
+                                var error = $root.google.actions.sdk.v2.Files.verify(message.files);
+                                if (error)
+                                    return "files." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReadVersionResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ReadVersionResponse} ReadVersionResponse
+                         */
+                        ReadVersionResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ReadVersionResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ReadVersionResponse();
+                            if (object.files != null) {
+                                if (typeof object.files !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.ReadVersionResponse.files: object expected");
+                                message.files = $root.google.actions.sdk.v2.Files.fromObject(object.files);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReadVersionResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.ReadVersionResponse} message ReadVersionResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReadVersionResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.files = null;
+                            if (message.files != null && message.hasOwnProperty("files"))
+                                object.files = $root.google.actions.sdk.v2.Files.toObject(message.files, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReadVersionResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ReadVersionResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReadVersionResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ReadVersionResponse;
+                    })();
+    
+                    v2.EncryptSecretRequest = (function() {
+    
+                        /**
+                         * Properties of an EncryptSecretRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IEncryptSecretRequest
+                         * @property {string|null} [clientSecret] EncryptSecretRequest clientSecret
+                         */
+    
+                        /**
+                         * Constructs a new EncryptSecretRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents an EncryptSecretRequest.
+                         * @implements IEncryptSecretRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest=} [properties] Properties to set
+                         */
+                        function EncryptSecretRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * EncryptSecretRequest clientSecret.
+                         * @member {string} clientSecret
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @instance
+                         */
+                        EncryptSecretRequest.prototype.clientSecret = "";
+    
+                        /**
+                         * Creates a new EncryptSecretRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.EncryptSecretRequest} EncryptSecretRequest instance
+                         */
+                        EncryptSecretRequest.create = function create(properties) {
+                            return new EncryptSecretRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified EncryptSecretRequest message. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest} message EncryptSecretRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EncryptSecretRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.clientSecret != null && Object.hasOwnProperty.call(message, "clientSecret"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.clientSecret);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified EncryptSecretRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretRequest} message EncryptSecretRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EncryptSecretRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an EncryptSecretRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.EncryptSecretRequest} EncryptSecretRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EncryptSecretRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.EncryptSecretRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.clientSecret = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an EncryptSecretRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.EncryptSecretRequest} EncryptSecretRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EncryptSecretRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an EncryptSecretRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        EncryptSecretRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                if (!$util.isString(message.clientSecret))
+                                    return "clientSecret: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an EncryptSecretRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.EncryptSecretRequest} EncryptSecretRequest
+                         */
+                        EncryptSecretRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.EncryptSecretRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.EncryptSecretRequest();
+                            if (object.clientSecret != null)
+                                message.clientSecret = String(object.clientSecret);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an EncryptSecretRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.EncryptSecretRequest} message EncryptSecretRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        EncryptSecretRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.clientSecret = "";
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                object.clientSecret = message.clientSecret;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this EncryptSecretRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.EncryptSecretRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        EncryptSecretRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return EncryptSecretRequest;
+                    })();
+    
+                    v2.EncryptSecretResponse = (function() {
+    
+                        /**
+                         * Properties of an EncryptSecretResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IEncryptSecretResponse
+                         * @property {google.actions.sdk.v2.IAccountLinkingSecret|null} [accountLinkingSecret] EncryptSecretResponse accountLinkingSecret
+                         */
+    
+                        /**
+                         * Constructs a new EncryptSecretResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents an EncryptSecretResponse.
+                         * @implements IEncryptSecretResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IEncryptSecretResponse=} [properties] Properties to set
+                         */
+                        function EncryptSecretResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * EncryptSecretResponse accountLinkingSecret.
+                         * @member {google.actions.sdk.v2.IAccountLinkingSecret|null|undefined} accountLinkingSecret
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @instance
+                         */
+                        EncryptSecretResponse.prototype.accountLinkingSecret = null;
+    
+                        /**
+                         * Creates a new EncryptSecretResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.EncryptSecretResponse} EncryptSecretResponse instance
+                         */
+                        EncryptSecretResponse.create = function create(properties) {
+                            return new EncryptSecretResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified EncryptSecretResponse message. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretResponse} message EncryptSecretResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EncryptSecretResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.accountLinkingSecret != null && Object.hasOwnProperty.call(message, "accountLinkingSecret"))
+                                $root.google.actions.sdk.v2.AccountLinkingSecret.encode(message.accountLinkingSecret, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified EncryptSecretResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.EncryptSecretResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IEncryptSecretResponse} message EncryptSecretResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        EncryptSecretResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an EncryptSecretResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.EncryptSecretResponse} EncryptSecretResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EncryptSecretResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.EncryptSecretResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.accountLinkingSecret = $root.google.actions.sdk.v2.AccountLinkingSecret.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes an EncryptSecretResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.EncryptSecretResponse} EncryptSecretResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        EncryptSecretResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies an EncryptSecretResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        EncryptSecretResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.accountLinkingSecret != null && message.hasOwnProperty("accountLinkingSecret")) {
+                                var error = $root.google.actions.sdk.v2.AccountLinkingSecret.verify(message.accountLinkingSecret);
+                                if (error)
+                                    return "accountLinkingSecret." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates an EncryptSecretResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.EncryptSecretResponse} EncryptSecretResponse
+                         */
+                        EncryptSecretResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.EncryptSecretResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.EncryptSecretResponse();
+                            if (object.accountLinkingSecret != null) {
+                                if (typeof object.accountLinkingSecret !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.EncryptSecretResponse.accountLinkingSecret: object expected");
+                                message.accountLinkingSecret = $root.google.actions.sdk.v2.AccountLinkingSecret.fromObject(object.accountLinkingSecret);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from an EncryptSecretResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.EncryptSecretResponse} message EncryptSecretResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        EncryptSecretResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.accountLinkingSecret = null;
+                            if (message.accountLinkingSecret != null && message.hasOwnProperty("accountLinkingSecret"))
+                                object.accountLinkingSecret = $root.google.actions.sdk.v2.AccountLinkingSecret.toObject(message.accountLinkingSecret, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this EncryptSecretResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.EncryptSecretResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        EncryptSecretResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return EncryptSecretResponse;
+                    })();
+    
+                    v2.DecryptSecretRequest = (function() {
+    
+                        /**
+                         * Properties of a DecryptSecretRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IDecryptSecretRequest
+                         * @property {Uint8Array|null} [encryptedClientSecret] DecryptSecretRequest encryptedClientSecret
+                         */
+    
+                        /**
+                         * Constructs a new DecryptSecretRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a DecryptSecretRequest.
+                         * @implements IDecryptSecretRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest=} [properties] Properties to set
+                         */
+                        function DecryptSecretRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * DecryptSecretRequest encryptedClientSecret.
+                         * @member {Uint8Array} encryptedClientSecret
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @instance
+                         */
+                        DecryptSecretRequest.prototype.encryptedClientSecret = $util.newBuffer([]);
+    
+                        /**
+                         * Creates a new DecryptSecretRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.DecryptSecretRequest} DecryptSecretRequest instance
+                         */
+                        DecryptSecretRequest.create = function create(properties) {
+                            return new DecryptSecretRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified DecryptSecretRequest message. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest} message DecryptSecretRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DecryptSecretRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.encryptedClientSecret != null && Object.hasOwnProperty.call(message, "encryptedClientSecret"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.encryptedClientSecret);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified DecryptSecretRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretRequest} message DecryptSecretRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DecryptSecretRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a DecryptSecretRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.DecryptSecretRequest} DecryptSecretRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DecryptSecretRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.DecryptSecretRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.encryptedClientSecret = reader.bytes();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a DecryptSecretRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.DecryptSecretRequest} DecryptSecretRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DecryptSecretRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a DecryptSecretRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        DecryptSecretRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.encryptedClientSecret != null && message.hasOwnProperty("encryptedClientSecret"))
+                                if (!(message.encryptedClientSecret && typeof message.encryptedClientSecret.length === "number" || $util.isString(message.encryptedClientSecret)))
+                                    return "encryptedClientSecret: buffer expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a DecryptSecretRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.DecryptSecretRequest} DecryptSecretRequest
+                         */
+                        DecryptSecretRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.DecryptSecretRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.DecryptSecretRequest();
+                            if (object.encryptedClientSecret != null)
+                                if (typeof object.encryptedClientSecret === "string")
+                                    $util.base64.decode(object.encryptedClientSecret, message.encryptedClientSecret = $util.newBuffer($util.base64.length(object.encryptedClientSecret)), 0);
+                                else if (object.encryptedClientSecret.length)
+                                    message.encryptedClientSecret = object.encryptedClientSecret;
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a DecryptSecretRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.DecryptSecretRequest} message DecryptSecretRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        DecryptSecretRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                if (options.bytes === String)
+                                    object.encryptedClientSecret = "";
+                                else {
+                                    object.encryptedClientSecret = [];
+                                    if (options.bytes !== Array)
+                                        object.encryptedClientSecret = $util.newBuffer(object.encryptedClientSecret);
+                                }
+                            if (message.encryptedClientSecret != null && message.hasOwnProperty("encryptedClientSecret"))
+                                object.encryptedClientSecret = options.bytes === String ? $util.base64.encode(message.encryptedClientSecret, 0, message.encryptedClientSecret.length) : options.bytes === Array ? Array.prototype.slice.call(message.encryptedClientSecret) : message.encryptedClientSecret;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this DecryptSecretRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.DecryptSecretRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        DecryptSecretRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return DecryptSecretRequest;
+                    })();
+    
+                    v2.DecryptSecretResponse = (function() {
+    
+                        /**
+                         * Properties of a DecryptSecretResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IDecryptSecretResponse
+                         * @property {string|null} [clientSecret] DecryptSecretResponse clientSecret
+                         */
+    
+                        /**
+                         * Constructs a new DecryptSecretResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a DecryptSecretResponse.
+                         * @implements IDecryptSecretResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IDecryptSecretResponse=} [properties] Properties to set
+                         */
+                        function DecryptSecretResponse(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * DecryptSecretResponse clientSecret.
+                         * @member {string} clientSecret
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @instance
+                         */
+                        DecryptSecretResponse.prototype.clientSecret = "";
+    
+                        /**
+                         * Creates a new DecryptSecretResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.DecryptSecretResponse} DecryptSecretResponse instance
+                         */
+                        DecryptSecretResponse.create = function create(properties) {
+                            return new DecryptSecretResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified DecryptSecretResponse message. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretResponse} message DecryptSecretResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DecryptSecretResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.clientSecret != null && Object.hasOwnProperty.call(message, "clientSecret"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.clientSecret);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified DecryptSecretResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.DecryptSecretResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IDecryptSecretResponse} message DecryptSecretResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        DecryptSecretResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a DecryptSecretResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.DecryptSecretResponse} DecryptSecretResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DecryptSecretResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.DecryptSecretResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.clientSecret = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a DecryptSecretResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.DecryptSecretResponse} DecryptSecretResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        DecryptSecretResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a DecryptSecretResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        DecryptSecretResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                if (!$util.isString(message.clientSecret))
+                                    return "clientSecret: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a DecryptSecretResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.DecryptSecretResponse} DecryptSecretResponse
+                         */
+                        DecryptSecretResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.DecryptSecretResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.DecryptSecretResponse();
+                            if (object.clientSecret != null)
+                                message.clientSecret = String(object.clientSecret);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a DecryptSecretResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.DecryptSecretResponse} message DecryptSecretResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        DecryptSecretResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.clientSecret = "";
+                            if (message.clientSecret != null && message.hasOwnProperty("clientSecret"))
+                                object.clientSecret = message.clientSecret;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this DecryptSecretResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.DecryptSecretResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        DecryptSecretResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return DecryptSecretResponse;
+                    })();
+    
+                    v2.ListReleaseChannelsRequest = (function() {
+    
+                        /**
+                         * Properties of a ListReleaseChannelsRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IListReleaseChannelsRequest
+                         * @property {string|null} [parent] ListReleaseChannelsRequest parent
+                         * @property {number|null} [pageSize] ListReleaseChannelsRequest pageSize
+                         * @property {string|null} [pageToken] ListReleaseChannelsRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListReleaseChannelsRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ListReleaseChannelsRequest.
+                         * @implements IListReleaseChannelsRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest=} [properties] Properties to set
+                         */
+                        function ListReleaseChannelsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListReleaseChannelsRequest parent.
+                         * @member {string} parent
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @instance
+                         */
+                        ListReleaseChannelsRequest.prototype.parent = "";
+    
+                        /**
+                         * ListReleaseChannelsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @instance
+                         */
+                        ListReleaseChannelsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListReleaseChannelsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @instance
+                         */
+                        ListReleaseChannelsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListReleaseChannelsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsRequest} ListReleaseChannelsRequest instance
+                         */
+                        ListReleaseChannelsRequest.create = function create(properties) {
+                            return new ListReleaseChannelsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListReleaseChannelsRequest message. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest} message ListReleaseChannelsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListReleaseChannelsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListReleaseChannelsRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsRequest} message ListReleaseChannelsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListReleaseChannelsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListReleaseChannelsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsRequest} ListReleaseChannelsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListReleaseChannelsRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ListReleaseChannelsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.parent = reader.string();
+                                    break;
+                                case 2:
+                                    message.pageSize = reader.int32();
+                                    break;
+                                case 3:
+                                    message.pageToken = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListReleaseChannelsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsRequest} ListReleaseChannelsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListReleaseChannelsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListReleaseChannelsRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListReleaseChannelsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListReleaseChannelsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsRequest} ListReleaseChannelsRequest
+                         */
+                        ListReleaseChannelsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ListReleaseChannelsRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ListReleaseChannelsRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListReleaseChannelsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ListReleaseChannelsRequest} message ListReleaseChannelsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListReleaseChannelsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListReleaseChannelsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListReleaseChannelsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListReleaseChannelsRequest;
+                    })();
+    
+                    v2.ListReleaseChannelsResponse = (function() {
+    
+                        /**
+                         * Properties of a ListReleaseChannelsResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IListReleaseChannelsResponse
+                         * @property {Array.<google.actions.sdk.v2.IReleaseChannel>|null} [releaseChannels] ListReleaseChannelsResponse releaseChannels
+                         * @property {string|null} [nextPageToken] ListReleaseChannelsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListReleaseChannelsResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ListReleaseChannelsResponse.
+                         * @implements IListReleaseChannelsResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsResponse=} [properties] Properties to set
+                         */
+                        function ListReleaseChannelsResponse(properties) {
+                            this.releaseChannels = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListReleaseChannelsResponse releaseChannels.
+                         * @member {Array.<google.actions.sdk.v2.IReleaseChannel>} releaseChannels
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @instance
+                         */
+                        ListReleaseChannelsResponse.prototype.releaseChannels = $util.emptyArray;
+    
+                        /**
+                         * ListReleaseChannelsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @instance
+                         */
+                        ListReleaseChannelsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListReleaseChannelsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsResponse} ListReleaseChannelsResponse instance
+                         */
+                        ListReleaseChannelsResponse.create = function create(properties) {
+                            return new ListReleaseChannelsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListReleaseChannelsResponse message. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsResponse} message ListReleaseChannelsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListReleaseChannelsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.releaseChannels != null && message.releaseChannels.length)
+                                for (var i = 0; i < message.releaseChannels.length; ++i)
+                                    $root.google.actions.sdk.v2.ReleaseChannel.encode(message.releaseChannels[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListReleaseChannelsResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListReleaseChannelsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListReleaseChannelsResponse} message ListReleaseChannelsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListReleaseChannelsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListReleaseChannelsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsResponse} ListReleaseChannelsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListReleaseChannelsResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ListReleaseChannelsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.releaseChannels && message.releaseChannels.length))
+                                        message.releaseChannels = [];
+                                    message.releaseChannels.push($root.google.actions.sdk.v2.ReleaseChannel.decode(reader, reader.uint32()));
+                                    break;
+                                case 2:
+                                    message.nextPageToken = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListReleaseChannelsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsResponse} ListReleaseChannelsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListReleaseChannelsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListReleaseChannelsResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListReleaseChannelsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.releaseChannels != null && message.hasOwnProperty("releaseChannels")) {
+                                if (!Array.isArray(message.releaseChannels))
+                                    return "releaseChannels: array expected";
+                                for (var i = 0; i < message.releaseChannels.length; ++i) {
+                                    var error = $root.google.actions.sdk.v2.ReleaseChannel.verify(message.releaseChannels[i]);
+                                    if (error)
+                                        return "releaseChannels." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListReleaseChannelsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ListReleaseChannelsResponse} ListReleaseChannelsResponse
+                         */
+                        ListReleaseChannelsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ListReleaseChannelsResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ListReleaseChannelsResponse();
+                            if (object.releaseChannels) {
+                                if (!Array.isArray(object.releaseChannels))
+                                    throw TypeError(".google.actions.sdk.v2.ListReleaseChannelsResponse.releaseChannels: array expected");
+                                message.releaseChannels = [];
+                                for (var i = 0; i < object.releaseChannels.length; ++i) {
+                                    if (typeof object.releaseChannels[i] !== "object")
+                                        throw TypeError(".google.actions.sdk.v2.ListReleaseChannelsResponse.releaseChannels: object expected");
+                                    message.releaseChannels[i] = $root.google.actions.sdk.v2.ReleaseChannel.fromObject(object.releaseChannels[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListReleaseChannelsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.ListReleaseChannelsResponse} message ListReleaseChannelsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListReleaseChannelsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.releaseChannels = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.releaseChannels && message.releaseChannels.length) {
+                                object.releaseChannels = [];
+                                for (var j = 0; j < message.releaseChannels.length; ++j)
+                                    object.releaseChannels[j] = $root.google.actions.sdk.v2.ReleaseChannel.toObject(message.releaseChannels[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListReleaseChannelsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ListReleaseChannelsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListReleaseChannelsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListReleaseChannelsResponse;
+                    })();
+    
+                    v2.ListVersionsRequest = (function() {
+    
+                        /**
+                         * Properties of a ListVersionsRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IListVersionsRequest
+                         * @property {string|null} [parent] ListVersionsRequest parent
+                         * @property {number|null} [pageSize] ListVersionsRequest pageSize
+                         * @property {string|null} [pageToken] ListVersionsRequest pageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListVersionsRequest.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ListVersionsRequest.
+                         * @implements IListVersionsRequest
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IListVersionsRequest=} [properties] Properties to set
+                         */
+                        function ListVersionsRequest(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListVersionsRequest parent.
+                         * @member {string} parent
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @instance
+                         */
+                        ListVersionsRequest.prototype.parent = "";
+    
+                        /**
+                         * ListVersionsRequest pageSize.
+                         * @member {number} pageSize
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @instance
+                         */
+                        ListVersionsRequest.prototype.pageSize = 0;
+    
+                        /**
+                         * ListVersionsRequest pageToken.
+                         * @member {string} pageToken
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @instance
+                         */
+                        ListVersionsRequest.prototype.pageToken = "";
+    
+                        /**
+                         * Creates a new ListVersionsRequest instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsRequest=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ListVersionsRequest} ListVersionsRequest instance
+                         */
+                        ListVersionsRequest.create = function create(properties) {
+                            return new ListVersionsRequest(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListVersionsRequest message. Does not implicitly {@link google.actions.sdk.v2.ListVersionsRequest.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsRequest} message ListVersionsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListVersionsRequest.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.parent != null && Object.hasOwnProperty.call(message, "parent"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.parent);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 2, wireType 0 =*/16).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListVersionsRequest message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListVersionsRequest.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsRequest} message ListVersionsRequest message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListVersionsRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListVersionsRequest message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ListVersionsRequest} ListVersionsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListVersionsRequest.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ListVersionsRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.parent = reader.string();
+                                    break;
+                                case 2:
+                                    message.pageSize = reader.int32();
+                                    break;
+                                case 3:
+                                    message.pageToken = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListVersionsRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ListVersionsRequest} ListVersionsRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListVersionsRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListVersionsRequest message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListVersionsRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                if (!$util.isString(message.parent))
+                                    return "parent: string expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListVersionsRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ListVersionsRequest} ListVersionsRequest
+                         */
+                        ListVersionsRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ListVersionsRequest)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ListVersionsRequest();
+                            if (object.parent != null)
+                                message.parent = String(object.parent);
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListVersionsRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @static
+                         * @param {google.actions.sdk.v2.ListVersionsRequest} message ListVersionsRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListVersionsRequest.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.parent = "";
+                                object.pageSize = 0;
+                                object.pageToken = "";
+                            }
+                            if (message.parent != null && message.hasOwnProperty("parent"))
+                                object.parent = message.parent;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListVersionsRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ListVersionsRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListVersionsRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListVersionsRequest;
+                    })();
+    
+                    v2.ListVersionsResponse = (function() {
+    
+                        /**
+                         * Properties of a ListVersionsResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IListVersionsResponse
+                         * @property {Array.<google.actions.sdk.v2.IVersion>|null} [versions] ListVersionsResponse versions
+                         * @property {string|null} [nextPageToken] ListVersionsResponse nextPageToken
+                         */
+    
+                        /**
+                         * Constructs a new ListVersionsResponse.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ListVersionsResponse.
+                         * @implements IListVersionsResponse
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IListVersionsResponse=} [properties] Properties to set
+                         */
+                        function ListVersionsResponse(properties) {
+                            this.versions = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ListVersionsResponse versions.
+                         * @member {Array.<google.actions.sdk.v2.IVersion>} versions
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @instance
+                         */
+                        ListVersionsResponse.prototype.versions = $util.emptyArray;
+    
+                        /**
+                         * ListVersionsResponse nextPageToken.
+                         * @member {string} nextPageToken
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @instance
+                         */
+                        ListVersionsResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * Creates a new ListVersionsResponse instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsResponse=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ListVersionsResponse} ListVersionsResponse instance
+                         */
+                        ListVersionsResponse.create = function create(properties) {
+                            return new ListVersionsResponse(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ListVersionsResponse message. Does not implicitly {@link google.actions.sdk.v2.ListVersionsResponse.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsResponse} message ListVersionsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListVersionsResponse.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.versions != null && message.versions.length)
+                                for (var i = 0; i < message.versions.length; ++i)
+                                    $root.google.actions.sdk.v2.Version.encode(message.versions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.nextPageToken);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ListVersionsResponse message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ListVersionsResponse.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.IListVersionsResponse} message ListVersionsResponse message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ListVersionsResponse.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ListVersionsResponse message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ListVersionsResponse} ListVersionsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListVersionsResponse.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ListVersionsResponse();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    if (!(message.versions && message.versions.length))
+                                        message.versions = [];
+                                    message.versions.push($root.google.actions.sdk.v2.Version.decode(reader, reader.uint32()));
+                                    break;
+                                case 2:
+                                    message.nextPageToken = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ListVersionsResponse message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ListVersionsResponse} ListVersionsResponse
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ListVersionsResponse.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ListVersionsResponse message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ListVersionsResponse.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.versions != null && message.hasOwnProperty("versions")) {
+                                if (!Array.isArray(message.versions))
+                                    return "versions: array expected";
+                                for (var i = 0; i < message.versions.length; ++i) {
+                                    var error = $root.google.actions.sdk.v2.Version.verify(message.versions[i]);
+                                    if (error)
+                                        return "versions." + error;
+                                }
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ListVersionsResponse message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ListVersionsResponse} ListVersionsResponse
+                         */
+                        ListVersionsResponse.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ListVersionsResponse)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ListVersionsResponse();
+                            if (object.versions) {
+                                if (!Array.isArray(object.versions))
+                                    throw TypeError(".google.actions.sdk.v2.ListVersionsResponse.versions: array expected");
+                                message.versions = [];
+                                for (var i = 0; i < object.versions.length; ++i) {
+                                    if (typeof object.versions[i] !== "object")
+                                        throw TypeError(".google.actions.sdk.v2.ListVersionsResponse.versions: object expected");
+                                    message.versions[i] = $root.google.actions.sdk.v2.Version.fromObject(object.versions[i]);
+                                }
+                            }
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ListVersionsResponse message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @static
+                         * @param {google.actions.sdk.v2.ListVersionsResponse} message ListVersionsResponse
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ListVersionsResponse.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.arrays || options.defaults)
+                                object.versions = [];
+                            if (options.defaults)
+                                object.nextPageToken = "";
+                            if (message.versions && message.versions.length) {
+                                object.versions = [];
+                                for (var j = 0; j < message.versions.length; ++j)
+                                    object.versions[j] = $root.google.actions.sdk.v2.Version.toObject(message.versions[j], options);
+                            }
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ListVersionsResponse to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ListVersionsResponse
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ListVersionsResponse.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ListVersionsResponse;
                     })();
     
                     v2.Files = (function() {
@@ -16558,6 +19981,7 @@
                          * @property {string|null} [testingInstructions] Settings testingInstructions
                          * @property {google.actions.sdk.v2.ILocalizedSettings|null} [localizedSettings] Settings localizedSettings
                          * @property {google.actions.sdk.v2.IAccountLinking|null} [accountLinking] Settings accountLinking
+                         * @property {Array.<string>|null} [selectedAndroidApps] Settings selectedAndroidApps
                          */
     
                         /**
@@ -16571,6 +19995,7 @@
                         function Settings(properties) {
                             this.enabledRegions = [];
                             this.disabledRegions = [];
+                            this.selectedAndroidApps = [];
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -16706,6 +20131,14 @@
                         Settings.prototype.accountLinking = null;
     
                         /**
+                         * Settings selectedAndroidApps.
+                         * @member {Array.<string>} selectedAndroidApps
+                         * @memberof google.actions.sdk.v2.Settings
+                         * @instance
+                         */
+                        Settings.prototype.selectedAndroidApps = $util.emptyArray;
+    
+                        /**
                          * Creates a new Settings instance using the specified properties.
                          * @function create
                          * @memberof google.actions.sdk.v2.Settings
@@ -16763,6 +20196,9 @@
                                 $root.google.actions.sdk.v2.AccountLinking.encode(message.accountLinking, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
                             if (message.usesHomeStorage != null && Object.hasOwnProperty.call(message, "usesHomeStorage"))
                                 writer.uint32(/* id 17, wireType 0 =*/136).bool(message.usesHomeStorage);
+                            if (message.selectedAndroidApps != null && message.selectedAndroidApps.length)
+                                for (var i = 0; i < message.selectedAndroidApps.length; ++i)
+                                    writer.uint32(/* id 20, wireType 2 =*/162).string(message.selectedAndroidApps[i]);
                             return writer;
                         };
     
@@ -16848,6 +20284,11 @@
                                     break;
                                 case 16:
                                     message.accountLinking = $root.google.actions.sdk.v2.AccountLinking.decode(reader, reader.uint32());
+                                    break;
+                                case 20:
+                                    if (!(message.selectedAndroidApps && message.selectedAndroidApps.length))
+                                        message.selectedAndroidApps = [];
+                                    message.selectedAndroidApps.push(reader.string());
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -16969,6 +20410,13 @@
                                 var error = $root.google.actions.sdk.v2.AccountLinking.verify(message.accountLinking);
                                 if (error)
                                     return "accountLinking." + error;
+                            }
+                            if (message.selectedAndroidApps != null && message.hasOwnProperty("selectedAndroidApps")) {
+                                if (!Array.isArray(message.selectedAndroidApps))
+                                    return "selectedAndroidApps: array expected";
+                                for (var i = 0; i < message.selectedAndroidApps.length; ++i)
+                                    if (!$util.isString(message.selectedAndroidApps[i]))
+                                        return "selectedAndroidApps: string[] expected";
                             }
                             return null;
                         };
@@ -17120,6 +20568,13 @@
                                     throw TypeError(".google.actions.sdk.v2.Settings.accountLinking: object expected");
                                 message.accountLinking = $root.google.actions.sdk.v2.AccountLinking.fromObject(object.accountLinking);
                             }
+                            if (object.selectedAndroidApps) {
+                                if (!Array.isArray(object.selectedAndroidApps))
+                                    throw TypeError(".google.actions.sdk.v2.Settings.selectedAndroidApps: array expected");
+                                message.selectedAndroidApps = [];
+                                for (var i = 0; i < object.selectedAndroidApps.length; ++i)
+                                    message.selectedAndroidApps[i] = String(object.selectedAndroidApps[i]);
+                            }
                             return message;
                         };
     
@@ -17139,6 +20594,7 @@
                             if (options.arrays || options.defaults) {
                                 object.enabledRegions = [];
                                 object.disabledRegions = [];
+                                object.selectedAndroidApps = [];
                             }
                             if (options.defaults) {
                                 object.projectId = "";
@@ -17194,6 +20650,11 @@
                                 object.accountLinking = $root.google.actions.sdk.v2.AccountLinking.toObject(message.accountLinking, options);
                             if (message.usesHomeStorage != null && message.hasOwnProperty("usesHomeStorage"))
                                 object.usesHomeStorage = message.usesHomeStorage;
+                            if (message.selectedAndroidApps && message.selectedAndroidApps.length) {
+                                object.selectedAndroidApps = [];
+                                for (var j = 0; j < message.selectedAndroidApps.length; ++j)
+                                    object.selectedAndroidApps[j] = message.selectedAndroidApps[j];
+                            }
                             return object;
                         };
     
@@ -19935,6 +23396,238 @@
                         return DataFile;
                     })();
     
+                    v2.ReleaseChannel = (function() {
+    
+                        /**
+                         * Properties of a ReleaseChannel.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IReleaseChannel
+                         * @property {string|null} [name] ReleaseChannel name
+                         * @property {string|null} [currentVersion] ReleaseChannel currentVersion
+                         * @property {string|null} [pendingVersion] ReleaseChannel pendingVersion
+                         */
+    
+                        /**
+                         * Constructs a new ReleaseChannel.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a ReleaseChannel.
+                         * @implements IReleaseChannel
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IReleaseChannel=} [properties] Properties to set
+                         */
+                        function ReleaseChannel(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * ReleaseChannel name.
+                         * @member {string} name
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @instance
+                         */
+                        ReleaseChannel.prototype.name = "";
+    
+                        /**
+                         * ReleaseChannel currentVersion.
+                         * @member {string} currentVersion
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @instance
+                         */
+                        ReleaseChannel.prototype.currentVersion = "";
+    
+                        /**
+                         * ReleaseChannel pendingVersion.
+                         * @member {string} pendingVersion
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @instance
+                         */
+                        ReleaseChannel.prototype.pendingVersion = "";
+    
+                        /**
+                         * Creates a new ReleaseChannel instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {google.actions.sdk.v2.IReleaseChannel=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.ReleaseChannel} ReleaseChannel instance
+                         */
+                        ReleaseChannel.create = function create(properties) {
+                            return new ReleaseChannel(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified ReleaseChannel message. Does not implicitly {@link google.actions.sdk.v2.ReleaseChannel.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {google.actions.sdk.v2.IReleaseChannel} message ReleaseChannel message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReleaseChannel.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.currentVersion != null && Object.hasOwnProperty.call(message, "currentVersion"))
+                                writer.uint32(/* id 2, wireType 2 =*/18).string(message.currentVersion);
+                            if (message.pendingVersion != null && Object.hasOwnProperty.call(message, "pendingVersion"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.pendingVersion);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified ReleaseChannel message, length delimited. Does not implicitly {@link google.actions.sdk.v2.ReleaseChannel.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {google.actions.sdk.v2.IReleaseChannel} message ReleaseChannel message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        ReleaseChannel.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a ReleaseChannel message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.ReleaseChannel} ReleaseChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReleaseChannel.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.ReleaseChannel();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.currentVersion = reader.string();
+                                    break;
+                                case 3:
+                                    message.pendingVersion = reader.string();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a ReleaseChannel message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.ReleaseChannel} ReleaseChannel
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        ReleaseChannel.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a ReleaseChannel message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        ReleaseChannel.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.currentVersion != null && message.hasOwnProperty("currentVersion"))
+                                if (!$util.isString(message.currentVersion))
+                                    return "currentVersion: string expected";
+                            if (message.pendingVersion != null && message.hasOwnProperty("pendingVersion"))
+                                if (!$util.isString(message.pendingVersion))
+                                    return "pendingVersion: string expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a ReleaseChannel message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.ReleaseChannel} ReleaseChannel
+                         */
+                        ReleaseChannel.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.ReleaseChannel)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.ReleaseChannel();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.currentVersion != null)
+                                message.currentVersion = String(object.currentVersion);
+                            if (object.pendingVersion != null)
+                                message.pendingVersion = String(object.pendingVersion);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a ReleaseChannel message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @static
+                         * @param {google.actions.sdk.v2.ReleaseChannel} message ReleaseChannel
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        ReleaseChannel.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.currentVersion = "";
+                                object.pendingVersion = "";
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.currentVersion != null && message.hasOwnProperty("currentVersion"))
+                                object.currentVersion = message.currentVersion;
+                            if (message.pendingVersion != null && message.hasOwnProperty("pendingVersion"))
+                                object.pendingVersion = message.pendingVersion;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this ReleaseChannel to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.ReleaseChannel
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        ReleaseChannel.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return ReleaseChannel;
+                    })();
+    
                     v2.ValidationResults = (function() {
     
                         /**
@@ -20543,6 +24236,563 @@
                         })();
     
                         return ValidationResult;
+                    })();
+    
+                    v2.Version = (function() {
+    
+                        /**
+                         * Properties of a Version.
+                         * @memberof google.actions.sdk.v2
+                         * @interface IVersion
+                         * @property {string|null} [name] Version name
+                         * @property {google.actions.sdk.v2.Version.IVersionState|null} [versionState] Version versionState
+                         * @property {string|null} [creator] Version creator
+                         * @property {google.protobuf.ITimestamp|null} [updateTime] Version updateTime
+                         */
+    
+                        /**
+                         * Constructs a new Version.
+                         * @memberof google.actions.sdk.v2
+                         * @classdesc Represents a Version.
+                         * @implements IVersion
+                         * @constructor
+                         * @param {google.actions.sdk.v2.IVersion=} [properties] Properties to set
+                         */
+                        function Version(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * Version name.
+                         * @member {string} name
+                         * @memberof google.actions.sdk.v2.Version
+                         * @instance
+                         */
+                        Version.prototype.name = "";
+    
+                        /**
+                         * Version versionState.
+                         * @member {google.actions.sdk.v2.Version.IVersionState|null|undefined} versionState
+                         * @memberof google.actions.sdk.v2.Version
+                         * @instance
+                         */
+                        Version.prototype.versionState = null;
+    
+                        /**
+                         * Version creator.
+                         * @member {string} creator
+                         * @memberof google.actions.sdk.v2.Version
+                         * @instance
+                         */
+                        Version.prototype.creator = "";
+    
+                        /**
+                         * Version updateTime.
+                         * @member {google.protobuf.ITimestamp|null|undefined} updateTime
+                         * @memberof google.actions.sdk.v2.Version
+                         * @instance
+                         */
+                        Version.prototype.updateTime = null;
+    
+                        /**
+                         * Creates a new Version instance using the specified properties.
+                         * @function create
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {google.actions.sdk.v2.IVersion=} [properties] Properties to set
+                         * @returns {google.actions.sdk.v2.Version} Version instance
+                         */
+                        Version.create = function create(properties) {
+                            return new Version(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified Version message. Does not implicitly {@link google.actions.sdk.v2.Version.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {google.actions.sdk.v2.IVersion} message Version message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Version.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
+                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                            if (message.versionState != null && Object.hasOwnProperty.call(message, "versionState"))
+                                $root.google.actions.sdk.v2.Version.VersionState.encode(message.versionState, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            if (message.creator != null && Object.hasOwnProperty.call(message, "creator"))
+                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.creator);
+                            if (message.updateTime != null && Object.hasOwnProperty.call(message, "updateTime"))
+                                $root.google.protobuf.Timestamp.encode(message.updateTime, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified Version message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Version.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {google.actions.sdk.v2.IVersion} message Version message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        Version.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a Version message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.actions.sdk.v2.Version} Version
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Version.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.Version();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.name = reader.string();
+                                    break;
+                                case 2:
+                                    message.versionState = $root.google.actions.sdk.v2.Version.VersionState.decode(reader, reader.uint32());
+                                    break;
+                                case 3:
+                                    message.creator = reader.string();
+                                    break;
+                                case 4:
+                                    message.updateTime = $root.google.protobuf.Timestamp.decode(reader, reader.uint32());
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a Version message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.actions.sdk.v2.Version} Version
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        Version.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a Version message.
+                         * @function verify
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        Version.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                if (!$util.isString(message.name))
+                                    return "name: string expected";
+                            if (message.versionState != null && message.hasOwnProperty("versionState")) {
+                                var error = $root.google.actions.sdk.v2.Version.VersionState.verify(message.versionState);
+                                if (error)
+                                    return "versionState." + error;
+                            }
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                if (!$util.isString(message.creator))
+                                    return "creator: string expected";
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime")) {
+                                var error = $root.google.protobuf.Timestamp.verify(message.updateTime);
+                                if (error)
+                                    return "updateTime." + error;
+                            }
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a Version message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.actions.sdk.v2.Version} Version
+                         */
+                        Version.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.actions.sdk.v2.Version)
+                                return object;
+                            var message = new $root.google.actions.sdk.v2.Version();
+                            if (object.name != null)
+                                message.name = String(object.name);
+                            if (object.versionState != null) {
+                                if (typeof object.versionState !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.Version.versionState: object expected");
+                                message.versionState = $root.google.actions.sdk.v2.Version.VersionState.fromObject(object.versionState);
+                            }
+                            if (object.creator != null)
+                                message.creator = String(object.creator);
+                            if (object.updateTime != null) {
+                                if (typeof object.updateTime !== "object")
+                                    throw TypeError(".google.actions.sdk.v2.Version.updateTime: object expected");
+                                message.updateTime = $root.google.protobuf.Timestamp.fromObject(object.updateTime);
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a Version message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.actions.sdk.v2.Version
+                         * @static
+                         * @param {google.actions.sdk.v2.Version} message Version
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        Version.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults) {
+                                object.name = "";
+                                object.versionState = null;
+                                object.creator = "";
+                                object.updateTime = null;
+                            }
+                            if (message.name != null && message.hasOwnProperty("name"))
+                                object.name = message.name;
+                            if (message.versionState != null && message.hasOwnProperty("versionState"))
+                                object.versionState = $root.google.actions.sdk.v2.Version.VersionState.toObject(message.versionState, options);
+                            if (message.creator != null && message.hasOwnProperty("creator"))
+                                object.creator = message.creator;
+                            if (message.updateTime != null && message.hasOwnProperty("updateTime"))
+                                object.updateTime = $root.google.protobuf.Timestamp.toObject(message.updateTime, options);
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this Version to JSON.
+                         * @function toJSON
+                         * @memberof google.actions.sdk.v2.Version
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        Version.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        Version.VersionState = (function() {
+    
+                            /**
+                             * Properties of a VersionState.
+                             * @memberof google.actions.sdk.v2.Version
+                             * @interface IVersionState
+                             * @property {google.actions.sdk.v2.Version.VersionState.State|null} [state] VersionState state
+                             * @property {string|null} [message] VersionState message
+                             */
+    
+                            /**
+                             * Constructs a new VersionState.
+                             * @memberof google.actions.sdk.v2.Version
+                             * @classdesc Represents a VersionState.
+                             * @implements IVersionState
+                             * @constructor
+                             * @param {google.actions.sdk.v2.Version.IVersionState=} [properties] Properties to set
+                             */
+                            function VersionState(properties) {
+                                if (properties)
+                                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                        if (properties[keys[i]] != null)
+                                            this[keys[i]] = properties[keys[i]];
+                            }
+    
+                            /**
+                             * VersionState state.
+                             * @member {google.actions.sdk.v2.Version.VersionState.State} state
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @instance
+                             */
+                            VersionState.prototype.state = 0;
+    
+                            /**
+                             * VersionState message.
+                             * @member {string} message
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @instance
+                             */
+                            VersionState.prototype.message = "";
+    
+                            /**
+                             * Creates a new VersionState instance using the specified properties.
+                             * @function create
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {google.actions.sdk.v2.Version.IVersionState=} [properties] Properties to set
+                             * @returns {google.actions.sdk.v2.Version.VersionState} VersionState instance
+                             */
+                            VersionState.create = function create(properties) {
+                                return new VersionState(properties);
+                            };
+    
+                            /**
+                             * Encodes the specified VersionState message. Does not implicitly {@link google.actions.sdk.v2.Version.VersionState.verify|verify} messages.
+                             * @function encode
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {google.actions.sdk.v2.Version.IVersionState} message VersionState message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            VersionState.encode = function encode(message, writer) {
+                                if (!writer)
+                                    writer = $Writer.create();
+                                if (message.state != null && Object.hasOwnProperty.call(message, "state"))
+                                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.state);
+                                if (message.message != null && Object.hasOwnProperty.call(message, "message"))
+                                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.message);
+                                return writer;
+                            };
+    
+                            /**
+                             * Encodes the specified VersionState message, length delimited. Does not implicitly {@link google.actions.sdk.v2.Version.VersionState.verify|verify} messages.
+                             * @function encodeDelimited
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {google.actions.sdk.v2.Version.IVersionState} message VersionState message or plain object to encode
+                             * @param {$protobuf.Writer} [writer] Writer to encode to
+                             * @returns {$protobuf.Writer} Writer
+                             */
+                            VersionState.encodeDelimited = function encodeDelimited(message, writer) {
+                                return this.encode(message, writer).ldelim();
+                            };
+    
+                            /**
+                             * Decodes a VersionState message from the specified reader or buffer.
+                             * @function decode
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @param {number} [length] Message length if known beforehand
+                             * @returns {google.actions.sdk.v2.Version.VersionState} VersionState
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            VersionState.decode = function decode(reader, length) {
+                                if (!(reader instanceof $Reader))
+                                    reader = $Reader.create(reader);
+                                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.actions.sdk.v2.Version.VersionState();
+                                while (reader.pos < end) {
+                                    var tag = reader.uint32();
+                                    switch (tag >>> 3) {
+                                    case 1:
+                                        message.state = reader.int32();
+                                        break;
+                                    case 2:
+                                        message.message = reader.string();
+                                        break;
+                                    default:
+                                        reader.skipType(tag & 7);
+                                        break;
+                                    }
+                                }
+                                return message;
+                            };
+    
+                            /**
+                             * Decodes a VersionState message from the specified reader or buffer, length delimited.
+                             * @function decodeDelimited
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                             * @returns {google.actions.sdk.v2.Version.VersionState} VersionState
+                             * @throws {Error} If the payload is not a reader or valid buffer
+                             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                             */
+                            VersionState.decodeDelimited = function decodeDelimited(reader) {
+                                if (!(reader instanceof $Reader))
+                                    reader = new $Reader(reader);
+                                return this.decode(reader, reader.uint32());
+                            };
+    
+                            /**
+                             * Verifies a VersionState message.
+                             * @function verify
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {Object.<string,*>} message Plain object to verify
+                             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                             */
+                            VersionState.verify = function verify(message) {
+                                if (typeof message !== "object" || message === null)
+                                    return "object expected";
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    switch (message.state) {
+                                    default:
+                                        return "state: enum value expected";
+                                    case 0:
+                                    case 1:
+                                    case 2:
+                                    case 3:
+                                    case 4:
+                                    case 5:
+                                    case 6:
+                                    case 7:
+                                    case 8:
+                                    case 9:
+                                        break;
+                                    }
+                                if (message.message != null && message.hasOwnProperty("message"))
+                                    if (!$util.isString(message.message))
+                                        return "message: string expected";
+                                return null;
+                            };
+    
+                            /**
+                             * Creates a VersionState message from a plain object. Also converts values to their respective internal types.
+                             * @function fromObject
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {Object.<string,*>} object Plain object
+                             * @returns {google.actions.sdk.v2.Version.VersionState} VersionState
+                             */
+                            VersionState.fromObject = function fromObject(object) {
+                                if (object instanceof $root.google.actions.sdk.v2.Version.VersionState)
+                                    return object;
+                                var message = new $root.google.actions.sdk.v2.Version.VersionState();
+                                switch (object.state) {
+                                case "STATE_UNSPECIFIED":
+                                case 0:
+                                    message.state = 0;
+                                    break;
+                                case "CREATION_IN_PROGRESS":
+                                case 1:
+                                    message.state = 1;
+                                    break;
+                                case "CREATION_FAILED":
+                                case 2:
+                                    message.state = 2;
+                                    break;
+                                case "CREATED":
+                                case 3:
+                                    message.state = 3;
+                                    break;
+                                case "REVIEW_IN_PROGRESS":
+                                case 4:
+                                    message.state = 4;
+                                    break;
+                                case "APPROVED":
+                                case 5:
+                                    message.state = 5;
+                                    break;
+                                case "CONDITIONALLY_APPROVED":
+                                case 6:
+                                    message.state = 6;
+                                    break;
+                                case "DENIED":
+                                case 7:
+                                    message.state = 7;
+                                    break;
+                                case "UNDER_TAKEDOWN":
+                                case 8:
+                                    message.state = 8;
+                                    break;
+                                case "DELETED":
+                                case 9:
+                                    message.state = 9;
+                                    break;
+                                }
+                                if (object.message != null)
+                                    message.message = String(object.message);
+                                return message;
+                            };
+    
+                            /**
+                             * Creates a plain object from a VersionState message. Also converts values to other types if specified.
+                             * @function toObject
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @static
+                             * @param {google.actions.sdk.v2.Version.VersionState} message VersionState
+                             * @param {$protobuf.IConversionOptions} [options] Conversion options
+                             * @returns {Object.<string,*>} Plain object
+                             */
+                            VersionState.toObject = function toObject(message, options) {
+                                if (!options)
+                                    options = {};
+                                var object = {};
+                                if (options.defaults) {
+                                    object.state = options.enums === String ? "STATE_UNSPECIFIED" : 0;
+                                    object.message = "";
+                                }
+                                if (message.state != null && message.hasOwnProperty("state"))
+                                    object.state = options.enums === String ? $root.google.actions.sdk.v2.Version.VersionState.State[message.state] : message.state;
+                                if (message.message != null && message.hasOwnProperty("message"))
+                                    object.message = message.message;
+                                return object;
+                            };
+    
+                            /**
+                             * Converts this VersionState to JSON.
+                             * @function toJSON
+                             * @memberof google.actions.sdk.v2.Version.VersionState
+                             * @instance
+                             * @returns {Object.<string,*>} JSON object
+                             */
+                            VersionState.prototype.toJSON = function toJSON() {
+                                return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                            };
+    
+                            /**
+                             * State enum.
+                             * @name google.actions.sdk.v2.Version.VersionState.State
+                             * @enum {number}
+                             * @property {number} STATE_UNSPECIFIED=0 STATE_UNSPECIFIED value
+                             * @property {number} CREATION_IN_PROGRESS=1 CREATION_IN_PROGRESS value
+                             * @property {number} CREATION_FAILED=2 CREATION_FAILED value
+                             * @property {number} CREATED=3 CREATED value
+                             * @property {number} REVIEW_IN_PROGRESS=4 REVIEW_IN_PROGRESS value
+                             * @property {number} APPROVED=5 APPROVED value
+                             * @property {number} CONDITIONALLY_APPROVED=6 CONDITIONALLY_APPROVED value
+                             * @property {number} DENIED=7 DENIED value
+                             * @property {number} UNDER_TAKEDOWN=8 UNDER_TAKEDOWN value
+                             * @property {number} DELETED=9 DELETED value
+                             */
+                            VersionState.State = (function() {
+                                var valuesById = {}, values = Object.create(valuesById);
+                                values[valuesById[0] = "STATE_UNSPECIFIED"] = 0;
+                                values[valuesById[1] = "CREATION_IN_PROGRESS"] = 1;
+                                values[valuesById[2] = "CREATION_FAILED"] = 2;
+                                values[valuesById[3] = "CREATED"] = 3;
+                                values[valuesById[4] = "REVIEW_IN_PROGRESS"] = 4;
+                                values[valuesById[5] = "APPROVED"] = 5;
+                                values[valuesById[6] = "CONDITIONALLY_APPROVED"] = 6;
+                                values[valuesById[7] = "DENIED"] = 7;
+                                values[valuesById[8] = "UNDER_TAKEDOWN"] = 8;
+                                values[valuesById[9] = "DELETED"] = 9;
+                                return values;
+                            })();
+    
+                            return VersionState;
+                        })();
+    
+                        return Version;
                     })();
     
                     v2.ActionsTesting = (function() {
@@ -33554,6 +37804,565 @@
                 return values;
             })();
     
+            api.ResourceDescriptor = (function() {
+    
+                /**
+                 * Properties of a ResourceDescriptor.
+                 * @memberof google.api
+                 * @interface IResourceDescriptor
+                 * @property {string|null} [type] ResourceDescriptor type
+                 * @property {Array.<string>|null} [pattern] ResourceDescriptor pattern
+                 * @property {string|null} [nameField] ResourceDescriptor nameField
+                 * @property {google.api.ResourceDescriptor.History|null} [history] ResourceDescriptor history
+                 * @property {string|null} [plural] ResourceDescriptor plural
+                 * @property {string|null} [singular] ResourceDescriptor singular
+                 */
+    
+                /**
+                 * Constructs a new ResourceDescriptor.
+                 * @memberof google.api
+                 * @classdesc Represents a ResourceDescriptor.
+                 * @implements IResourceDescriptor
+                 * @constructor
+                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
+                 */
+                function ResourceDescriptor(properties) {
+                    this.pattern = [];
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ResourceDescriptor type.
+                 * @member {string} type
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.type = "";
+    
+                /**
+                 * ResourceDescriptor pattern.
+                 * @member {Array.<string>} pattern
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.pattern = $util.emptyArray;
+    
+                /**
+                 * ResourceDescriptor nameField.
+                 * @member {string} nameField
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.nameField = "";
+    
+                /**
+                 * ResourceDescriptor history.
+                 * @member {google.api.ResourceDescriptor.History} history
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.history = 0;
+    
+                /**
+                 * ResourceDescriptor plural.
+                 * @member {string} plural
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.plural = "";
+    
+                /**
+                 * ResourceDescriptor singular.
+                 * @member {string} singular
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 */
+                ResourceDescriptor.prototype.singular = "";
+    
+                /**
+                 * Creates a new ResourceDescriptor instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor instance
+                 */
+                ResourceDescriptor.create = function create(properties) {
+                    return new ResourceDescriptor(properties);
+                };
+    
+                /**
+                 * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceDescriptor.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
+                    if (message.pattern != null && message.pattern.length)
+                        for (var i = 0; i < message.pattern.length; ++i)
+                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.pattern[i]);
+                    if (message.nameField != null && Object.hasOwnProperty.call(message, "nameField"))
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.nameField);
+                    if (message.history != null && Object.hasOwnProperty.call(message, "history"))
+                        writer.uint32(/* id 4, wireType 0 =*/32).int32(message.history);
+                    if (message.plural != null && Object.hasOwnProperty.call(message, "plural"))
+                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.plural);
+                    if (message.singular != null && Object.hasOwnProperty.call(message, "singular"))
+                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.singular);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ResourceDescriptor message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceDescriptor.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.type = reader.string();
+                            break;
+                        case 2:
+                            if (!(message.pattern && message.pattern.length))
+                                message.pattern = [];
+                            message.pattern.push(reader.string());
+                            break;
+                        case 3:
+                            message.nameField = reader.string();
+                            break;
+                        case 4:
+                            message.history = reader.int32();
+                            break;
+                        case 5:
+                            message.plural = reader.string();
+                            break;
+                        case 6:
+                            message.singular = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceDescriptor.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ResourceDescriptor message.
+                 * @function verify
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ResourceDescriptor.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        if (!$util.isString(message.type))
+                            return "type: string expected";
+                    if (message.pattern != null && message.hasOwnProperty("pattern")) {
+                        if (!Array.isArray(message.pattern))
+                            return "pattern: array expected";
+                        for (var i = 0; i < message.pattern.length; ++i)
+                            if (!$util.isString(message.pattern[i]))
+                                return "pattern: string[] expected";
+                    }
+                    if (message.nameField != null && message.hasOwnProperty("nameField"))
+                        if (!$util.isString(message.nameField))
+                            return "nameField: string expected";
+                    if (message.history != null && message.hasOwnProperty("history"))
+                        switch (message.history) {
+                        default:
+                            return "history: enum value expected";
+                        case 0:
+                        case 1:
+                        case 2:
+                            break;
+                        }
+                    if (message.plural != null && message.hasOwnProperty("plural"))
+                        if (!$util.isString(message.plural))
+                            return "plural: string expected";
+                    if (message.singular != null && message.hasOwnProperty("singular"))
+                        if (!$util.isString(message.singular))
+                            return "singular: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
+                 */
+                ResourceDescriptor.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.ResourceDescriptor)
+                        return object;
+                    var message = new $root.google.api.ResourceDescriptor();
+                    if (object.type != null)
+                        message.type = String(object.type);
+                    if (object.pattern) {
+                        if (!Array.isArray(object.pattern))
+                            throw TypeError(".google.api.ResourceDescriptor.pattern: array expected");
+                        message.pattern = [];
+                        for (var i = 0; i < object.pattern.length; ++i)
+                            message.pattern[i] = String(object.pattern[i]);
+                    }
+                    if (object.nameField != null)
+                        message.nameField = String(object.nameField);
+                    switch (object.history) {
+                    case "HISTORY_UNSPECIFIED":
+                    case 0:
+                        message.history = 0;
+                        break;
+                    case "ORIGINALLY_SINGLE_PATTERN":
+                    case 1:
+                        message.history = 1;
+                        break;
+                    case "FUTURE_MULTI_PATTERN":
+                    case 2:
+                        message.history = 2;
+                        break;
+                    }
+                    if (object.plural != null)
+                        message.plural = String(object.plural);
+                    if (object.singular != null)
+                        message.singular = String(object.singular);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.ResourceDescriptor
+                 * @static
+                 * @param {google.api.ResourceDescriptor} message ResourceDescriptor
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ResourceDescriptor.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.arrays || options.defaults)
+                        object.pattern = [];
+                    if (options.defaults) {
+                        object.type = "";
+                        object.nameField = "";
+                        object.history = options.enums === String ? "HISTORY_UNSPECIFIED" : 0;
+                        object.plural = "";
+                        object.singular = "";
+                    }
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = message.type;
+                    if (message.pattern && message.pattern.length) {
+                        object.pattern = [];
+                        for (var j = 0; j < message.pattern.length; ++j)
+                            object.pattern[j] = message.pattern[j];
+                    }
+                    if (message.nameField != null && message.hasOwnProperty("nameField"))
+                        object.nameField = message.nameField;
+                    if (message.history != null && message.hasOwnProperty("history"))
+                        object.history = options.enums === String ? $root.google.api.ResourceDescriptor.History[message.history] : message.history;
+                    if (message.plural != null && message.hasOwnProperty("plural"))
+                        object.plural = message.plural;
+                    if (message.singular != null && message.hasOwnProperty("singular"))
+                        object.singular = message.singular;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ResourceDescriptor to JSON.
+                 * @function toJSON
+                 * @memberof google.api.ResourceDescriptor
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ResourceDescriptor.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                /**
+                 * History enum.
+                 * @name google.api.ResourceDescriptor.History
+                 * @enum {number}
+                 * @property {number} HISTORY_UNSPECIFIED=0 HISTORY_UNSPECIFIED value
+                 * @property {number} ORIGINALLY_SINGLE_PATTERN=1 ORIGINALLY_SINGLE_PATTERN value
+                 * @property {number} FUTURE_MULTI_PATTERN=2 FUTURE_MULTI_PATTERN value
+                 */
+                ResourceDescriptor.History = (function() {
+                    var valuesById = {}, values = Object.create(valuesById);
+                    values[valuesById[0] = "HISTORY_UNSPECIFIED"] = 0;
+                    values[valuesById[1] = "ORIGINALLY_SINGLE_PATTERN"] = 1;
+                    values[valuesById[2] = "FUTURE_MULTI_PATTERN"] = 2;
+                    return values;
+                })();
+    
+                return ResourceDescriptor;
+            })();
+    
+            api.ResourceReference = (function() {
+    
+                /**
+                 * Properties of a ResourceReference.
+                 * @memberof google.api
+                 * @interface IResourceReference
+                 * @property {string|null} [type] ResourceReference type
+                 * @property {string|null} [childType] ResourceReference childType
+                 */
+    
+                /**
+                 * Constructs a new ResourceReference.
+                 * @memberof google.api
+                 * @classdesc Represents a ResourceReference.
+                 * @implements IResourceReference
+                 * @constructor
+                 * @param {google.api.IResourceReference=} [properties] Properties to set
+                 */
+                function ResourceReference(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * ResourceReference type.
+                 * @member {string} type
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 */
+                ResourceReference.prototype.type = "";
+    
+                /**
+                 * ResourceReference childType.
+                 * @member {string} childType
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 */
+                ResourceReference.prototype.childType = "";
+    
+                /**
+                 * Creates a new ResourceReference instance using the specified properties.
+                 * @function create
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference=} [properties] Properties to set
+                 * @returns {google.api.ResourceReference} ResourceReference instance
+                 */
+                ResourceReference.create = function create(properties) {
+                    return new ResourceReference(properties);
+                };
+    
+                /**
+                 * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceReference.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
+                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
+                    if (message.childType != null && Object.hasOwnProperty.call(message, "childType"))
+                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.childType);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                ResourceReference.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a ResourceReference message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceReference.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.type = reader.string();
+                            break;
+                        case 2:
+                            message.childType = reader.string();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                ResourceReference.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a ResourceReference message.
+                 * @function verify
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                ResourceReference.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        if (!$util.isString(message.type))
+                            return "type: string expected";
+                    if (message.childType != null && message.hasOwnProperty("childType"))
+                        if (!$util.isString(message.childType))
+                            return "childType: string expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.api.ResourceReference} ResourceReference
+                 */
+                ResourceReference.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.api.ResourceReference)
+                        return object;
+                    var message = new $root.google.api.ResourceReference();
+                    if (object.type != null)
+                        message.type = String(object.type);
+                    if (object.childType != null)
+                        message.childType = String(object.childType);
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.api.ResourceReference
+                 * @static
+                 * @param {google.api.ResourceReference} message ResourceReference
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                ResourceReference.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        object.type = "";
+                        object.childType = "";
+                    }
+                    if (message.type != null && message.hasOwnProperty("type"))
+                        object.type = message.type;
+                    if (message.childType != null && message.hasOwnProperty("childType"))
+                        object.childType = message.childType;
+                    return object;
+                };
+    
+                /**
+                 * Converts this ResourceReference to JSON.
+                 * @function toJSON
+                 * @memberof google.api.ResourceReference
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                ResourceReference.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                return ResourceReference;
+            })();
+    
             api.Http = (function() {
     
                 /**
@@ -34456,565 +39265,6 @@
                 };
     
                 return CustomHttpPattern;
-            })();
-    
-            api.ResourceDescriptor = (function() {
-    
-                /**
-                 * Properties of a ResourceDescriptor.
-                 * @memberof google.api
-                 * @interface IResourceDescriptor
-                 * @property {string|null} [type] ResourceDescriptor type
-                 * @property {Array.<string>|null} [pattern] ResourceDescriptor pattern
-                 * @property {string|null} [nameField] ResourceDescriptor nameField
-                 * @property {google.api.ResourceDescriptor.History|null} [history] ResourceDescriptor history
-                 * @property {string|null} [plural] ResourceDescriptor plural
-                 * @property {string|null} [singular] ResourceDescriptor singular
-                 */
-    
-                /**
-                 * Constructs a new ResourceDescriptor.
-                 * @memberof google.api
-                 * @classdesc Represents a ResourceDescriptor.
-                 * @implements IResourceDescriptor
-                 * @constructor
-                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
-                 */
-                function ResourceDescriptor(properties) {
-                    this.pattern = [];
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ResourceDescriptor type.
-                 * @member {string} type
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.type = "";
-    
-                /**
-                 * ResourceDescriptor pattern.
-                 * @member {Array.<string>} pattern
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.pattern = $util.emptyArray;
-    
-                /**
-                 * ResourceDescriptor nameField.
-                 * @member {string} nameField
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.nameField = "";
-    
-                /**
-                 * ResourceDescriptor history.
-                 * @member {google.api.ResourceDescriptor.History} history
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.history = 0;
-    
-                /**
-                 * ResourceDescriptor plural.
-                 * @member {string} plural
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.plural = "";
-    
-                /**
-                 * ResourceDescriptor singular.
-                 * @member {string} singular
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.singular = "";
-    
-                /**
-                 * Creates a new ResourceDescriptor instance using the specified properties.
-                 * @function create
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor instance
-                 */
-                ResourceDescriptor.create = function create(properties) {
-                    return new ResourceDescriptor(properties);
-                };
-    
-                /**
-                 * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceDescriptor.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
-                    if (message.pattern != null && message.pattern.length)
-                        for (var i = 0; i < message.pattern.length; ++i)
-                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.pattern[i]);
-                    if (message.nameField != null && Object.hasOwnProperty.call(message, "nameField"))
-                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.nameField);
-                    if (message.history != null && Object.hasOwnProperty.call(message, "history"))
-                        writer.uint32(/* id 4, wireType 0 =*/32).int32(message.history);
-                    if (message.plural != null && Object.hasOwnProperty.call(message, "plural"))
-                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.plural);
-                    if (message.singular != null && Object.hasOwnProperty.call(message, "singular"))
-                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.singular);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ResourceDescriptor message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceDescriptor.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.type = reader.string();
-                            break;
-                        case 2:
-                            if (!(message.pattern && message.pattern.length))
-                                message.pattern = [];
-                            message.pattern.push(reader.string());
-                            break;
-                        case 3:
-                            message.nameField = reader.string();
-                            break;
-                        case 4:
-                            message.history = reader.int32();
-                            break;
-                        case 5:
-                            message.plural = reader.string();
-                            break;
-                        case 6:
-                            message.singular = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceDescriptor.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ResourceDescriptor message.
-                 * @function verify
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ResourceDescriptor.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        if (!$util.isString(message.type))
-                            return "type: string expected";
-                    if (message.pattern != null && message.hasOwnProperty("pattern")) {
-                        if (!Array.isArray(message.pattern))
-                            return "pattern: array expected";
-                        for (var i = 0; i < message.pattern.length; ++i)
-                            if (!$util.isString(message.pattern[i]))
-                                return "pattern: string[] expected";
-                    }
-                    if (message.nameField != null && message.hasOwnProperty("nameField"))
-                        if (!$util.isString(message.nameField))
-                            return "nameField: string expected";
-                    if (message.history != null && message.hasOwnProperty("history"))
-                        switch (message.history) {
-                        default:
-                            return "history: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                            break;
-                        }
-                    if (message.plural != null && message.hasOwnProperty("plural"))
-                        if (!$util.isString(message.plural))
-                            return "plural: string expected";
-                    if (message.singular != null && message.hasOwnProperty("singular"))
-                        if (!$util.isString(message.singular))
-                            return "singular: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 */
-                ResourceDescriptor.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.api.ResourceDescriptor)
-                        return object;
-                    var message = new $root.google.api.ResourceDescriptor();
-                    if (object.type != null)
-                        message.type = String(object.type);
-                    if (object.pattern) {
-                        if (!Array.isArray(object.pattern))
-                            throw TypeError(".google.api.ResourceDescriptor.pattern: array expected");
-                        message.pattern = [];
-                        for (var i = 0; i < object.pattern.length; ++i)
-                            message.pattern[i] = String(object.pattern[i]);
-                    }
-                    if (object.nameField != null)
-                        message.nameField = String(object.nameField);
-                    switch (object.history) {
-                    case "HISTORY_UNSPECIFIED":
-                    case 0:
-                        message.history = 0;
-                        break;
-                    case "ORIGINALLY_SINGLE_PATTERN":
-                    case 1:
-                        message.history = 1;
-                        break;
-                    case "FUTURE_MULTI_PATTERN":
-                    case 2:
-                        message.history = 2;
-                        break;
-                    }
-                    if (object.plural != null)
-                        message.plural = String(object.plural);
-                    if (object.singular != null)
-                        message.singular = String(object.singular);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.ResourceDescriptor} message ResourceDescriptor
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ResourceDescriptor.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.arrays || options.defaults)
-                        object.pattern = [];
-                    if (options.defaults) {
-                        object.type = "";
-                        object.nameField = "";
-                        object.history = options.enums === String ? "HISTORY_UNSPECIFIED" : 0;
-                        object.plural = "";
-                        object.singular = "";
-                    }
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        object.type = message.type;
-                    if (message.pattern && message.pattern.length) {
-                        object.pattern = [];
-                        for (var j = 0; j < message.pattern.length; ++j)
-                            object.pattern[j] = message.pattern[j];
-                    }
-                    if (message.nameField != null && message.hasOwnProperty("nameField"))
-                        object.nameField = message.nameField;
-                    if (message.history != null && message.hasOwnProperty("history"))
-                        object.history = options.enums === String ? $root.google.api.ResourceDescriptor.History[message.history] : message.history;
-                    if (message.plural != null && message.hasOwnProperty("plural"))
-                        object.plural = message.plural;
-                    if (message.singular != null && message.hasOwnProperty("singular"))
-                        object.singular = message.singular;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ResourceDescriptor to JSON.
-                 * @function toJSON
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ResourceDescriptor.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * History enum.
-                 * @name google.api.ResourceDescriptor.History
-                 * @enum {number}
-                 * @property {number} HISTORY_UNSPECIFIED=0 HISTORY_UNSPECIFIED value
-                 * @property {number} ORIGINALLY_SINGLE_PATTERN=1 ORIGINALLY_SINGLE_PATTERN value
-                 * @property {number} FUTURE_MULTI_PATTERN=2 FUTURE_MULTI_PATTERN value
-                 */
-                ResourceDescriptor.History = (function() {
-                    var valuesById = {}, values = Object.create(valuesById);
-                    values[valuesById[0] = "HISTORY_UNSPECIFIED"] = 0;
-                    values[valuesById[1] = "ORIGINALLY_SINGLE_PATTERN"] = 1;
-                    values[valuesById[2] = "FUTURE_MULTI_PATTERN"] = 2;
-                    return values;
-                })();
-    
-                return ResourceDescriptor;
-            })();
-    
-            api.ResourceReference = (function() {
-    
-                /**
-                 * Properties of a ResourceReference.
-                 * @memberof google.api
-                 * @interface IResourceReference
-                 * @property {string|null} [type] ResourceReference type
-                 * @property {string|null} [childType] ResourceReference childType
-                 */
-    
-                /**
-                 * Constructs a new ResourceReference.
-                 * @memberof google.api
-                 * @classdesc Represents a ResourceReference.
-                 * @implements IResourceReference
-                 * @constructor
-                 * @param {google.api.IResourceReference=} [properties] Properties to set
-                 */
-                function ResourceReference(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ResourceReference type.
-                 * @member {string} type
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 */
-                ResourceReference.prototype.type = "";
-    
-                /**
-                 * ResourceReference childType.
-                 * @member {string} childType
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 */
-                ResourceReference.prototype.childType = "";
-    
-                /**
-                 * Creates a new ResourceReference instance using the specified properties.
-                 * @function create
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference=} [properties] Properties to set
-                 * @returns {google.api.ResourceReference} ResourceReference instance
-                 */
-                ResourceReference.create = function create(properties) {
-                    return new ResourceReference(properties);
-                };
-    
-                /**
-                 * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceReference.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
-                    if (message.childType != null && Object.hasOwnProperty.call(message, "childType"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.childType);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceReference.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ResourceReference message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceReference.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.type = reader.string();
-                            break;
-                        case 2:
-                            message.childType = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceReference.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ResourceReference message.
-                 * @function verify
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ResourceReference.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        if (!$util.isString(message.type))
-                            return "type: string expected";
-                    if (message.childType != null && message.hasOwnProperty("childType"))
-                        if (!$util.isString(message.childType))
-                            return "childType: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 */
-                ResourceReference.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.api.ResourceReference)
-                        return object;
-                    var message = new $root.google.api.ResourceReference();
-                    if (object.type != null)
-                        message.type = String(object.type);
-                    if (object.childType != null)
-                        message.childType = String(object.childType);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.ResourceReference} message ResourceReference
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ResourceReference.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.type = "";
-                        object.childType = "";
-                    }
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        object.type = message.type;
-                    if (message.childType != null && message.hasOwnProperty("childType"))
-                        object.childType = message.childType;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ResourceReference to JSON.
-                 * @function toJSON
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ResourceReference.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                return ResourceReference;
             })();
     
             return api;
@@ -44742,6 +48992,230 @@
                 return ListValue;
             })();
     
+            protobuf.Timestamp = (function() {
+    
+                /**
+                 * Properties of a Timestamp.
+                 * @memberof google.protobuf
+                 * @interface ITimestamp
+                 * @property {number|Long|null} [seconds] Timestamp seconds
+                 * @property {number|null} [nanos] Timestamp nanos
+                 */
+    
+                /**
+                 * Constructs a new Timestamp.
+                 * @memberof google.protobuf
+                 * @classdesc Represents a Timestamp.
+                 * @implements ITimestamp
+                 * @constructor
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 */
+                function Timestamp(properties) {
+                    if (properties)
+                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                            if (properties[keys[i]] != null)
+                                this[keys[i]] = properties[keys[i]];
+                }
+    
+                /**
+                 * Timestamp seconds.
+                 * @member {number|Long} seconds
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+    
+                /**
+                 * Timestamp nanos.
+                 * @member {number} nanos
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 */
+                Timestamp.prototype.nanos = 0;
+    
+                /**
+                 * Creates a new Timestamp instance using the specified properties.
+                 * @function create
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
+                 * @returns {google.protobuf.Timestamp} Timestamp instance
+                 */
+                Timestamp.create = function create(properties) {
+                    return new Timestamp(properties);
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encode = function encode(message, writer) {
+                    if (!writer)
+                        writer = $Writer.create();
+                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
+                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
+                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
+                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
+                    return writer;
+                };
+    
+                /**
+                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
+                 * @function encodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
+                 * @param {$protobuf.Writer} [writer] Writer to encode to
+                 * @returns {$protobuf.Writer} Writer
+                 */
+                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
+                    return this.encode(message, writer).ldelim();
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer.
+                 * @function decode
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @param {number} [length] Message length if known beforehand
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decode = function decode(reader, length) {
+                    if (!(reader instanceof $Reader))
+                        reader = $Reader.create(reader);
+                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
+                    while (reader.pos < end) {
+                        var tag = reader.uint32();
+                        switch (tag >>> 3) {
+                        case 1:
+                            message.seconds = reader.int64();
+                            break;
+                        case 2:
+                            message.nanos = reader.int32();
+                            break;
+                        default:
+                            reader.skipType(tag & 7);
+                            break;
+                        }
+                    }
+                    return message;
+                };
+    
+                /**
+                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
+                 * @function decodeDelimited
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 * @throws {Error} If the payload is not a reader or valid buffer
+                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                 */
+                Timestamp.decodeDelimited = function decodeDelimited(reader) {
+                    if (!(reader instanceof $Reader))
+                        reader = new $Reader(reader);
+                    return this.decode(reader, reader.uint32());
+                };
+    
+                /**
+                 * Verifies a Timestamp message.
+                 * @function verify
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} message Plain object to verify
+                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                 */
+                Timestamp.verify = function verify(message) {
+                    if (typeof message !== "object" || message === null)
+                        return "object expected";
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
+                            return "seconds: integer|Long expected";
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        if (!$util.isInteger(message.nanos))
+                            return "nanos: integer expected";
+                    return null;
+                };
+    
+                /**
+                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
+                 * @function fromObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {Object.<string,*>} object Plain object
+                 * @returns {google.protobuf.Timestamp} Timestamp
+                 */
+                Timestamp.fromObject = function fromObject(object) {
+                    if (object instanceof $root.google.protobuf.Timestamp)
+                        return object;
+                    var message = new $root.google.protobuf.Timestamp();
+                    if (object.seconds != null)
+                        if ($util.Long)
+                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
+                        else if (typeof object.seconds === "string")
+                            message.seconds = parseInt(object.seconds, 10);
+                        else if (typeof object.seconds === "number")
+                            message.seconds = object.seconds;
+                        else if (typeof object.seconds === "object")
+                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
+                    if (object.nanos != null)
+                        message.nanos = object.nanos | 0;
+                    return message;
+                };
+    
+                /**
+                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
+                 * @function toObject
+                 * @memberof google.protobuf.Timestamp
+                 * @static
+                 * @param {google.protobuf.Timestamp} message Timestamp
+                 * @param {$protobuf.IConversionOptions} [options] Conversion options
+                 * @returns {Object.<string,*>} Plain object
+                 */
+                Timestamp.toObject = function toObject(message, options) {
+                    if (!options)
+                        options = {};
+                    var object = {};
+                    if (options.defaults) {
+                        if ($util.Long) {
+                            var long = new $util.Long(0, 0, false);
+                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                        } else
+                            object.seconds = options.longs === String ? "0" : 0;
+                        object.nanos = 0;
+                    }
+                    if (message.seconds != null && message.hasOwnProperty("seconds"))
+                        if (typeof message.seconds === "number")
+                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
+                        else
+                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
+                    if (message.nanos != null && message.hasOwnProperty("nanos"))
+                        object.nanos = message.nanos;
+                    return object;
+                };
+    
+                /**
+                 * Converts this Timestamp to JSON.
+                 * @function toJSON
+                 * @memberof google.protobuf.Timestamp
+                 * @instance
+                 * @returns {Object.<string,*>} JSON object
+                 */
+                Timestamp.prototype.toJSON = function toJSON() {
+                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                };
+    
+                return Timestamp;
+            })();
+    
             protobuf.DoubleValue = (function() {
     
                 /**
@@ -46460,230 +50934,6 @@
                 };
     
                 return BytesValue;
-            })();
-    
-            protobuf.Timestamp = (function() {
-    
-                /**
-                 * Properties of a Timestamp.
-                 * @memberof google.protobuf
-                 * @interface ITimestamp
-                 * @property {number|Long|null} [seconds] Timestamp seconds
-                 * @property {number|null} [nanos] Timestamp nanos
-                 */
-    
-                /**
-                 * Constructs a new Timestamp.
-                 * @memberof google.protobuf
-                 * @classdesc Represents a Timestamp.
-                 * @implements ITimestamp
-                 * @constructor
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 */
-                function Timestamp(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * Timestamp seconds.
-                 * @member {number|Long} seconds
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.seconds = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-    
-                /**
-                 * Timestamp nanos.
-                 * @member {number} nanos
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 */
-                Timestamp.prototype.nanos = 0;
-    
-                /**
-                 * Creates a new Timestamp instance using the specified properties.
-                 * @function create
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp=} [properties] Properties to set
-                 * @returns {google.protobuf.Timestamp} Timestamp instance
-                 */
-                Timestamp.create = function create(properties) {
-                    return new Timestamp(properties);
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.seconds != null && Object.hasOwnProperty.call(message, "seconds"))
-                        writer.uint32(/* id 1, wireType 0 =*/8).int64(message.seconds);
-                    if (message.nanos != null && Object.hasOwnProperty.call(message, "nanos"))
-                        writer.uint32(/* id 2, wireType 0 =*/16).int32(message.nanos);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified Timestamp message, length delimited. Does not implicitly {@link google.protobuf.Timestamp.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.ITimestamp} message Timestamp message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Timestamp.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.protobuf.Timestamp();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.seconds = reader.int64();
-                            break;
-                        case 2:
-                            message.nanos = reader.int32();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a Timestamp message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Timestamp.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a Timestamp message.
-                 * @function verify
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Timestamp.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (!$util.isInteger(message.seconds) && !(message.seconds && $util.isInteger(message.seconds.low) && $util.isInteger(message.seconds.high)))
-                            return "seconds: integer|Long expected";
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        if (!$util.isInteger(message.nanos))
-                            return "nanos: integer expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a Timestamp message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.protobuf.Timestamp} Timestamp
-                 */
-                Timestamp.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.protobuf.Timestamp)
-                        return object;
-                    var message = new $root.google.protobuf.Timestamp();
-                    if (object.seconds != null)
-                        if ($util.Long)
-                            (message.seconds = $util.Long.fromValue(object.seconds)).unsigned = false;
-                        else if (typeof object.seconds === "string")
-                            message.seconds = parseInt(object.seconds, 10);
-                        else if (typeof object.seconds === "number")
-                            message.seconds = object.seconds;
-                        else if (typeof object.seconds === "object")
-                            message.seconds = new $util.LongBits(object.seconds.low >>> 0, object.seconds.high >>> 0).toNumber();
-                    if (object.nanos != null)
-                        message.nanos = object.nanos | 0;
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a Timestamp message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.protobuf.Timestamp
-                 * @static
-                 * @param {google.protobuf.Timestamp} message Timestamp
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Timestamp.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        if ($util.Long) {
-                            var long = new $util.Long(0, 0, false);
-                            object.seconds = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.seconds = options.longs === String ? "0" : 0;
-                        object.nanos = 0;
-                    }
-                    if (message.seconds != null && message.hasOwnProperty("seconds"))
-                        if (typeof message.seconds === "number")
-                            object.seconds = options.longs === String ? String(message.seconds) : message.seconds;
-                        else
-                            object.seconds = options.longs === String ? $util.Long.prototype.toString.call(message.seconds) : options.longs === Number ? new $util.LongBits(message.seconds.low >>> 0, message.seconds.high >>> 0).toNumber() : message.seconds;
-                    if (message.nanos != null && message.hasOwnProperty("nanos"))
-                        object.nanos = message.nanos;
-                    return object;
-                };
-    
-                /**
-                 * Converts this Timestamp to JSON.
-                 * @function toJSON
-                 * @memberof google.protobuf.Timestamp
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Timestamp.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                return Timestamp;
             })();
     
             protobuf.Any = (function() {

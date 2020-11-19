@@ -20,7 +20,7 @@ import * as protos from '../protos/protos';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 import {SinonStub} from 'sinon';
-import {describe, it} from 'mocha';
+import { describe, it } from 'mocha';
 import * as actionssdkModule from '../src';
 
 import {PassThrough} from 'stream';
@@ -28,283 +28,1213 @@ import {PassThrough} from 'stream';
 import {protobuf} from 'google-gax';
 
 function generateSampleMessage<T extends object>(instance: T) {
-  const filledObject = (instance.constructor as typeof protobuf.Message).toObject(
-    instance as protobuf.Message<T>,
-    {defaults: true}
-  );
-  return (instance.constructor as typeof protobuf.Message).fromObject(
-    filledObject
-  ) as T;
+    const filledObject = (instance.constructor as typeof protobuf.Message)
+        .toObject(instance as protobuf.Message<T>, {defaults: true});
+    return (instance.constructor as typeof protobuf.Message).fromObject(filledObject) as T;
 }
 
-function stubClientStreamingCall<ResponseType>(
-  response?: ResponseType,
-  error?: Error
-) {
-  if (error) {
-    return sinon.stub().callsArgWith(2, error);
-  }
-  const transformStub = sinon.stub();
-  const mockStream = new PassThrough({
-    objectMode: true,
-    transform: transformStub,
-  });
-  return sinon.stub().returns(mockStream).callsArgWith(2, null, response);
+function stubSimpleCall<ResponseType>(response?: ResponseType, error?: Error) {
+    return error ? sinon.stub().rejects(error) : sinon.stub().resolves([response]);
+}
+
+function stubSimpleCallWithCallback<ResponseType>(response?: ResponseType, error?: Error) {
+    return error ? sinon.stub().callsArgWith(2, error) : sinon.stub().callsArgWith(2, null, response);
+}
+
+function stubServerStreamingCall<ResponseType>(response?: ResponseType, error?: Error) {
+    const transformStub = error ? sinon.stub().callsArgWith(2, error) : sinon.stub().callsArgWith(2, null, response);
+    const mockStream = new PassThrough({
+        objectMode: true,
+        transform: transformStub,
+    });
+    // write something to the stream to trigger transformStub and send the response back to the client
+    setImmediate(() => { mockStream.write({}); });
+    setImmediate(() => { mockStream.end(); });
+    return sinon.stub().returns(mockStream);
+}
+
+function stubClientStreamingCall<ResponseType>(response?: ResponseType, error?: Error) {
+    if (error) {
+        return sinon.stub().callsArgWith(2, error);
+    }
+    const transformStub = sinon.stub();
+    const mockStream = new PassThrough({
+        objectMode: true,
+        transform: transformStub,
+    });
+    return sinon.stub().returns(mockStream).callsArgWith(2, null, response);
+}
+
+function stubPageStreamingCall<ResponseType>(responses?: ResponseType[], error?: Error) {
+    const pagingStub = sinon.stub();
+    if (responses) {
+        for (let i = 0; i < responses.length; ++i) {
+            pagingStub.onCall(i).callsArgWith(2, null, responses[i]);
+        }
+    }
+    const transformStub = error ? sinon.stub().callsArgWith(2, error) : pagingStub;
+    const mockStream = new PassThrough({
+        objectMode: true,
+        transform: transformStub,
+    });
+    // trigger as many responses as needed
+    if (responses) {
+        for (let i = 0; i < responses.length; ++i) {
+            setImmediate(() => { mockStream.write({}); });
+        }
+        setImmediate(() => { mockStream.end(); });
+    } else {
+        setImmediate(() => { mockStream.write({}); });
+        setImmediate(() => { mockStream.end(); });
+    }
+    return sinon.stub().returns(mockStream);
+}
+
+function stubAsyncIterationCall<ResponseType>(responses?: ResponseType[], error?: Error) {
+    let counter = 0;
+    const asyncIterable = {
+        [Symbol.asyncIterator]() {
+            return {
+                async next() {
+                    if (error) {
+                        return Promise.reject(error);
+                    }
+                    if (counter >= responses!.length) {
+                        return Promise.resolve({done: true, value: undefined});
+                    }
+                    return Promise.resolve({done: false, value: responses![counter++]});
+                }
+            };
+        }
+    };
+    return sinon.stub().returns(asyncIterable);
 }
 
 describe('v2.ActionsSdkClient', () => {
-  it('has servicePath', () => {
-    const servicePath = actionssdkModule.v2.ActionsSdkClient.servicePath;
-    assert(servicePath);
-  });
-
-  it('has apiEndpoint', () => {
-    const apiEndpoint = actionssdkModule.v2.ActionsSdkClient.apiEndpoint;
-    assert(apiEndpoint);
-  });
-
-  it('has port', () => {
-    const port = actionssdkModule.v2.ActionsSdkClient.port;
-    assert(port);
-    assert(typeof port === 'number');
-  });
-
-  it('should create a client with no option', () => {
-    const client = new actionssdkModule.v2.ActionsSdkClient();
-    assert(client);
-  });
-
-  it('should create a client with gRPC fallback', () => {
-    const client = new actionssdkModule.v2.ActionsSdkClient({
-      fallback: true,
+    it('has servicePath', () => {
+        const servicePath = actionssdkModule.v2.ActionsSdkClient.servicePath;
+        assert(servicePath);
     });
-    assert(client);
-  });
 
-  it('has initialize method and supports deferred initialization', async () => {
-    const client = new actionssdkModule.v2.ActionsSdkClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has apiEndpoint', () => {
+        const apiEndpoint = actionssdkModule.v2.ActionsSdkClient.apiEndpoint;
+        assert(apiEndpoint);
     });
-    assert.strictEqual(client.actionsSdkStub, undefined);
-    await client.initialize();
-    assert(client.actionsSdkStub);
-  });
 
-  it('has close method', () => {
-    const client = new actionssdkModule.v2.ActionsSdkClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('has port', () => {
+        const port = actionssdkModule.v2.ActionsSdkClient.port;
+        assert(port);
+        assert(typeof port === 'number');
     });
-    client.close();
-  });
 
-  it('has getProjectId method', async () => {
-    const fakeProjectId = 'fake-project-id';
-    const client = new actionssdkModule.v2.ActionsSdkClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('should create a client with no option', () => {
+        const client = new actionssdkModule.v2.ActionsSdkClient();
+        assert(client);
     });
-    client.auth.getProjectId = sinon.stub().resolves(fakeProjectId);
-    const result = await client.getProjectId();
-    assert.strictEqual(result, fakeProjectId);
-    assert((client.auth.getProjectId as SinonStub).calledWithExactly());
-  });
 
-  it('has getProjectId method with callback', async () => {
-    const fakeProjectId = 'fake-project-id';
-    const client = new actionssdkModule.v2.ActionsSdkClient({
-      credentials: {client_email: 'bogus', private_key: 'bogus'},
-      projectId: 'bogus',
+    it('should create a client with gRPC fallback', () => {
+        const client = new actionssdkModule.v2.ActionsSdkClient({
+            fallback: true,
+        });
+        assert(client);
     });
-    client.auth.getProjectId = sinon
-      .stub()
-      .callsArgWith(0, null, fakeProjectId);
-    const promise = new Promise((resolve, reject) => {
-      client.getProjectId((err?: Error | null, projectId?: string | null) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(projectId);
-        }
-      });
-    });
-    const result = await promise;
-    assert.strictEqual(result, fakeProjectId);
-  });
 
-  describe('writePreview', () => {
-    it('invokes writePreview without error', async () => {
-      const client = new actionssdkModule.v2.ActionsSdkClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.WritePreviewRequest()
-      );
-      const expectedResponse = generateSampleMessage(
-        new protos.google.actions.sdk.v2.Preview()
-      );
-      client.innerApiCalls.writePreview = stubClientStreamingCall(
-        expectedResponse
-      );
-      let stream: PassThrough;
-      const promise = new Promise((resolve, reject) => {
-        stream = (client.writePreview(
-          (
-            err?: Error | null,
-            result?: protos.google.actions.sdk.v2.IPreview | null
-          ) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
+    it('has initialize method and supports deferred initialization', async () => {
+        const client = new actionssdkModule.v2.ActionsSdkClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        assert.strictEqual(client.actionsSdkStub, undefined);
+        await client.initialize();
+        assert(client.actionsSdkStub);
+    });
+
+    it('has close method', () => {
+        const client = new actionssdkModule.v2.ActionsSdkClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.close();
+    });
+
+    it('has getProjectId method', async () => {
+        const fakeProjectId = 'fake-project-id';
+        const client = new actionssdkModule.v2.ActionsSdkClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.auth.getProjectId = sinon.stub().resolves(fakeProjectId);
+        const result = await client.getProjectId();
+        assert.strictEqual(result, fakeProjectId);
+        assert((client.auth.getProjectId as SinonStub).calledWithExactly());
+    });
+
+    it('has getProjectId method with callback', async () => {
+        const fakeProjectId = 'fake-project-id';
+        const client = new actionssdkModule.v2.ActionsSdkClient({
+            credentials: { client_email: 'bogus', private_key: 'bogus' },
+            projectId: 'bogus',
+        });
+        client.auth.getProjectId = sinon.stub().callsArgWith(0, null, fakeProjectId);
+        const promise = new Promise((resolve, reject) => {
+            client.getProjectId((err?: Error|null, projectId?: string|null) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(projectId);
+                }
+            });
+        });
+        const result = await promise;
+        assert.strictEqual(result, fakeProjectId);
+    });
+
+    describe('encryptSecret', () => {
+        it('invokes encryptSecret without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.EncryptSecretRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.EncryptSecretResponse());
+            client.innerApiCalls.encryptSecret = stubSimpleCall(expectedResponse);
+            const [response] = await client.encryptSecret(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.encryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes encryptSecret without error using callback', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.EncryptSecretRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.EncryptSecretResponse());
+            client.innerApiCalls.encryptSecret = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.encryptSecret(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IEncryptSecretResponse|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.encryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes encryptSecret with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.EncryptSecretRequest());
+            const expectedOptions = {};
+            const expectedError = new Error('expected');
+            client.innerApiCalls.encryptSecret = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.encryptSecret(request), expectedError);
+            assert((client.innerApiCalls.encryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+    });
+
+    describe('decryptSecret', () => {
+        it('invokes decryptSecret without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.DecryptSecretRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.DecryptSecretResponse());
+            client.innerApiCalls.decryptSecret = stubSimpleCall(expectedResponse);
+            const [response] = await client.decryptSecret(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.decryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes decryptSecret without error using callback', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.DecryptSecretRequest());
+            const expectedOptions = {};
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.DecryptSecretResponse());
+            client.innerApiCalls.decryptSecret = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.decryptSecret(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IDecryptSecretResponse|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.decryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes decryptSecret with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.DecryptSecretRequest());
+            const expectedOptions = {};
+            const expectedError = new Error('expected');
+            client.innerApiCalls.decryptSecret = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.decryptSecret(request), expectedError);
+            assert((client.innerApiCalls.decryptSecret as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+    });
+
+    describe('readDraft', () => {
+        it('invokes readDraft without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ReadDraftRequest());
+            request.name = '';
+            const expectedHeaderRequestParams = "name=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.ReadDraftResponse());
+            client.innerApiCalls.readDraft = stubServerStreamingCall(expectedResponse);
+            const stream = client.readDraft(request);
+            const promise = new Promise((resolve, reject) => {
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReadDraftResponse) => {
+                    resolve(response);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.readDraft as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions));
+        });
+
+        it('invokes readDraft with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ReadDraftRequest());
+            request.name = '';
+            const expectedHeaderRequestParams = "name=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.readDraft = stubServerStreamingCall(undefined, expectedError);
+            const stream = client.readDraft(request);
+            const promise = new Promise((resolve, reject) => {
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReadDraftResponse) => {
+                    resolve(response);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.innerApiCalls.readDraft as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions));
+        });
+    });
+
+    describe('readVersion', () => {
+        it('invokes readVersion without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ReadVersionRequest());
+            request.name = '';
+            const expectedHeaderRequestParams = "name=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.ReadVersionResponse());
+            client.innerApiCalls.readVersion = stubServerStreamingCall(expectedResponse);
+            const stream = client.readVersion(request);
+            const promise = new Promise((resolve, reject) => {
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReadVersionResponse) => {
+                    resolve(response);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.readVersion as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions));
+        });
+
+        it('invokes readVersion with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ReadVersionRequest());
+            request.name = '';
+            const expectedHeaderRequestParams = "name=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.readVersion = stubServerStreamingCall(undefined, expectedError);
+            const stream = client.readVersion(request);
+            const promise = new Promise((resolve, reject) => {
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReadVersionResponse) => {
+                    resolve(response);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.innerApiCalls.readVersion as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions));
+        });
+    });
+
+    describe('writeDraft', () => {
+        it('invokes writeDraft without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.WriteDraftRequest());
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.Draft());
+            client.innerApiCalls.writeDraft = stubClientStreamingCall(expectedResponse);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.writeDraft(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IDraft|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.writeDraft as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+            assert.deepStrictEqual((stream!._transform as SinonStub).getCall(0).args[0], request);
+        });
+
+        it('invokes writeDraft with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.WriteDraftRequest());
+            const expectedError = new Error('expected');
+            client.innerApiCalls.writeDraft = stubClientStreamingCall(undefined, expectedError);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.writeDraft(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IDraft|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.innerApiCalls.writeDraft as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+        });
+    });
+
+    describe('writePreview', () => {
+        it('invokes writePreview without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.WritePreviewRequest());
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.Preview());
+            client.innerApiCalls.writePreview = stubClientStreamingCall(expectedResponse);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.writePreview(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IPreview|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.writePreview as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+            assert.deepStrictEqual((stream!._transform as SinonStub).getCall(0).args[0], request);
+        });
+
+        it('invokes writePreview with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.WritePreviewRequest());
+            const expectedError = new Error('expected');
+            client.innerApiCalls.writePreview = stubClientStreamingCall(undefined, expectedError);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.writePreview(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IPreview|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.innerApiCalls.writePreview as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+        });
+    });
+
+    describe('createVersion', () => {
+        it('invokes createVersion without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.CreateVersionRequest());
+            const expectedResponse = generateSampleMessage(new protos.google.actions.sdk.v2.Version());
+            client.innerApiCalls.createVersion = stubClientStreamingCall(expectedResponse);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.createVersion(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IVersion|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.createVersion as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+            assert.deepStrictEqual((stream!._transform as SinonStub).getCall(0).args[0], request);
+        });
+
+        it('invokes createVersion with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.CreateVersionRequest());
+            const expectedError = new Error('expected');
+            client.innerApiCalls.createVersion = stubClientStreamingCall(undefined, expectedError);
+            let stream: PassThrough;
+            const promise = new Promise((resolve, reject) => {
+                stream = client.createVersion(
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IVersion|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    }) as unknown as PassThrough;
+                stream.write(request);
+                stream.end();
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.innerApiCalls.createVersion as SinonStub)
+                .getCall(0).calledWith(null, {} /*, callback defined above */));
+        });
+    });
+
+    describe('listReleaseChannels', () => {
+        it('invokes listReleaseChannels without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+            ];
+            client.innerApiCalls.listReleaseChannels = stubSimpleCall(expectedResponse);
+            const [response] = await client.listReleaseChannels(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listReleaseChannels as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listReleaseChannels without error using callback', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+            ];
+            client.innerApiCalls.listReleaseChannels = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.listReleaseChannels(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IReleaseChannel[]|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listReleaseChannels as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes listReleaseChannels with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.listReleaseChannels = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.listReleaseChannels(request), expectedError);
+            assert((client.innerApiCalls.listReleaseChannels as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listReleaseChannelsStream without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+            ];
+            client.descriptors.page.listReleaseChannels.createStream = stubPageStreamingCall(expectedResponse);
+            const stream = client.listReleaseChannelsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.ReleaseChannel[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReleaseChannel) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            const responses = await promise;
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert((client.descriptors.page.listReleaseChannels.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listReleaseChannels, request));
+            assert.strictEqual(
+                (client.descriptors.page.listReleaseChannels.createStream as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
+
+        it('invokes listReleaseChannelsStream with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedError = new Error('expected');
+            client.descriptors.page.listReleaseChannels.createStream = stubPageStreamingCall(undefined, expectedError);
+            const stream = client.listReleaseChannelsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.ReleaseChannel[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.ReleaseChannel) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.descriptors.page.listReleaseChannels.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listReleaseChannels, request));
+            assert.strictEqual(
+                (client.descriptors.page.listReleaseChannels.createStream as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
+
+        it('uses async iteration with listReleaseChannels without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.ReleaseChannel()),
+            ];
+            client.descriptors.page.listReleaseChannels.asyncIterate = stubAsyncIterationCall(expectedResponse);
+            const responses: protos.google.actions.sdk.v2.IReleaseChannel[] = [];
+            const iterable = client.listReleaseChannelsAsync(request);
+            for await (const resource of iterable) {
+                responses.push(resource!);
             }
-          }
-        ) as unknown) as PassThrough;
-        stream.write(request);
-        stream.end();
-      });
-      const response = await promise;
-      assert.deepStrictEqual(response, expectedResponse);
-      assert(
-        (client.innerApiCalls.writePreview as SinonStub)
-          .getCall(0)
-          .calledWith(null, {} /*, callback defined above */)
-      );
-      assert.deepStrictEqual(
-        (stream!._transform as SinonStub).getCall(0).args[0],
-        request
-      );
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert.deepStrictEqual(
+                (client.descriptors.page.listReleaseChannels.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+            assert.strictEqual(
+                (client.descriptors.page.listReleaseChannels.asyncIterate as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
+
+        it('uses async iteration with listReleaseChannels with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListReleaseChannelsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";const expectedError = new Error('expected');
+            client.descriptors.page.listReleaseChannels.asyncIterate = stubAsyncIterationCall(undefined, expectedError);
+            const iterable = client.listReleaseChannelsAsync(request);
+            await assert.rejects(async () => {
+                const responses: protos.google.actions.sdk.v2.IReleaseChannel[] = [];
+                for await (const resource of iterable) {
+                    responses.push(resource!);
+                }
+            });
+            assert.deepStrictEqual(
+                (client.descriptors.page.listReleaseChannels.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+            assert.strictEqual(
+                (client.descriptors.page.listReleaseChannels.asyncIterate as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
     });
 
-    it('invokes writePreview with error', async () => {
-      const client = new actionssdkModule.v2.ActionsSdkClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      const request = generateSampleMessage(
-        new protos.google.actions.sdk.v2.WritePreviewRequest()
-      );
-      const expectedError = new Error('expected');
-      client.innerApiCalls.writePreview = stubClientStreamingCall(
-        undefined,
-        expectedError
-      );
-      let stream: PassThrough;
-      const promise = new Promise((resolve, reject) => {
-        stream = (client.writePreview(
-          (
-            err?: Error | null,
-            result?: protos.google.actions.sdk.v2.IPreview | null
-          ) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(result);
+    describe('listVersions', () => {
+        it('invokes listVersions without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+            ];
+            client.innerApiCalls.listVersions = stubSimpleCall(expectedResponse);
+            const [response] = await client.listVersions(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listVersions as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listVersions without error using callback', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+            ];
+            client.innerApiCalls.listVersions = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.listVersions(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.IVersion[]|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listVersions as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes listVersions with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedOptions = {
+                otherArgs: {
+                    headers: {
+                        'x-goog-request-params': expectedHeaderRequestParams,
+                    },
+                },
+            };
+            const expectedError = new Error('expected');
+            client.innerApiCalls.listVersions = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.listVersions(request), expectedError);
+            assert((client.innerApiCalls.listVersions as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listVersionsStream without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+            ];
+            client.descriptors.page.listVersions.createStream = stubPageStreamingCall(expectedResponse);
+            const stream = client.listVersionsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.Version[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.Version) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            const responses = await promise;
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert((client.descriptors.page.listVersions.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listVersions, request));
+            assert.strictEqual(
+                (client.descriptors.page.listVersions.createStream as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
+
+        it('invokes listVersionsStream with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";
+            const expectedError = new Error('expected');
+            client.descriptors.page.listVersions.createStream = stubPageStreamingCall(undefined, expectedError);
+            const stream = client.listVersionsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.Version[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.Version) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.descriptors.page.listVersions.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listVersions, request));
+            assert.strictEqual(
+                (client.descriptors.page.listVersions.createStream as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
+
+        it('uses async iteration with listVersions without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.Version()),
+            ];
+            client.descriptors.page.listVersions.asyncIterate = stubAsyncIterationCall(expectedResponse);
+            const responses: protos.google.actions.sdk.v2.IVersion[] = [];
+            const iterable = client.listVersionsAsync(request);
+            for await (const resource of iterable) {
+                responses.push(resource!);
             }
-          }
-        ) as unknown) as PassThrough;
-        stream.write(request);
-        stream.end();
-      });
-      await assert.rejects(promise, expectedError);
-      assert(
-        (client.innerApiCalls.writePreview as SinonStub)
-          .getCall(0)
-          .calledWith(null, {} /*, callback defined above */)
-      );
-    });
-  });
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert.deepStrictEqual(
+                (client.descriptors.page.listVersions.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+            assert.strictEqual(
+                (client.descriptors.page.listVersions.asyncIterate as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
 
-  describe('Path templates', () => {
-    describe('preview', () => {
-      const fakePath = '/rendered/path/preview';
-      const expectedParameters = {
-        project: 'projectValue',
-        preview: 'previewValue',
-      };
-      const client = new actionssdkModule.v2.ActionsSdkClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      client.pathTemplates.previewPathTemplate.render = sinon
-        .stub()
-        .returns(fakePath);
-      client.pathTemplates.previewPathTemplate.match = sinon
-        .stub()
-        .returns(expectedParameters);
-
-      it('previewPath', () => {
-        const result = client.previewPath('projectValue', 'previewValue');
-        assert.strictEqual(result, fakePath);
-        assert(
-          (client.pathTemplates.previewPathTemplate.render as SinonStub)
-            .getCall(-1)
-            .calledWith(expectedParameters)
-        );
-      });
-
-      it('matchProjectFromPreviewName', () => {
-        const result = client.matchProjectFromPreviewName(fakePath);
-        assert.strictEqual(result, 'projectValue');
-        assert(
-          (client.pathTemplates.previewPathTemplate.match as SinonStub)
-            .getCall(-1)
-            .calledWith(fakePath)
-        );
-      });
-
-      it('matchPreviewFromPreviewName', () => {
-        const result = client.matchPreviewFromPreviewName(fakePath);
-        assert.strictEqual(result, 'previewValue');
-        assert(
-          (client.pathTemplates.previewPathTemplate.match as SinonStub)
-            .getCall(-1)
-            .calledWith(fakePath)
-        );
-      });
+        it('uses async iteration with listVersions with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListVersionsRequest());
+            request.parent = '';
+            const expectedHeaderRequestParams = "parent=";const expectedError = new Error('expected');
+            client.descriptors.page.listVersions.asyncIterate = stubAsyncIterationCall(undefined, expectedError);
+            const iterable = client.listVersionsAsync(request);
+            await assert.rejects(async () => {
+                const responses: protos.google.actions.sdk.v2.IVersion[] = [];
+                for await (const resource of iterable) {
+                    responses.push(resource!);
+                }
+            });
+            assert.deepStrictEqual(
+                (client.descriptors.page.listVersions.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+            assert.strictEqual(
+                (client.descriptors.page.listVersions.asyncIterate as SinonStub)
+                    .getCall(0).args[2].otherArgs.headers['x-goog-request-params'],
+                expectedHeaderRequestParams
+            );
+        });
     });
 
-    describe('project', () => {
-      const fakePath = '/rendered/path/project';
-      const expectedParameters = {
-        project: 'projectValue',
-      };
-      const client = new actionssdkModule.v2.ActionsSdkClient({
-        credentials: {client_email: 'bogus', private_key: 'bogus'},
-        projectId: 'bogus',
-      });
-      client.initialize();
-      client.pathTemplates.projectPathTemplate.render = sinon
-        .stub()
-        .returns(fakePath);
-      client.pathTemplates.projectPathTemplate.match = sinon
-        .stub()
-        .returns(expectedParameters);
+    describe('Path templates', () => {
 
-      it('projectPath', () => {
-        const result = client.projectPath('projectValue');
-        assert.strictEqual(result, fakePath);
-        assert(
-          (client.pathTemplates.projectPathTemplate.render as SinonStub)
-            .getCall(-1)
-            .calledWith(expectedParameters)
-        );
-      });
+        describe('draft', () => {
+            const fakePath = "/rendered/path/draft";
+            const expectedParameters = {
+                project: "projectValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.draftPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.draftPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
 
-      it('matchProjectFromProjectName', () => {
-        const result = client.matchProjectFromProjectName(fakePath);
-        assert.strictEqual(result, 'projectValue');
-        assert(
-          (client.pathTemplates.projectPathTemplate.match as SinonStub)
-            .getCall(-1)
-            .calledWith(fakePath)
-        );
-      });
+            it('draftPath', () => {
+                const result = client.draftPath("projectValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.draftPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromDraftName', () => {
+                const result = client.matchProjectFromDraftName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.draftPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('preview', () => {
+            const fakePath = "/rendered/path/preview";
+            const expectedParameters = {
+                project: "projectValue",
+                preview: "previewValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.previewPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.previewPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('previewPath', () => {
+                const result = client.previewPath("projectValue", "previewValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.previewPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromPreviewName', () => {
+                const result = client.matchProjectFromPreviewName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.previewPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchPreviewFromPreviewName', () => {
+                const result = client.matchPreviewFromPreviewName(fakePath);
+                assert.strictEqual(result, "previewValue");
+                assert((client.pathTemplates.previewPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('project', () => {
+            const fakePath = "/rendered/path/project";
+            const expectedParameters = {
+                project: "projectValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.projectPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.projectPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('projectPath', () => {
+                const result = client.projectPath("projectValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.projectPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromProjectName', () => {
+                const result = client.matchProjectFromProjectName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.projectPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('releaseChannel', () => {
+            const fakePath = "/rendered/path/releaseChannel";
+            const expectedParameters = {
+                project: "projectValue",
+                release_channel: "releaseChannelValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.releaseChannelPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.releaseChannelPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('releaseChannelPath', () => {
+                const result = client.releaseChannelPath("projectValue", "releaseChannelValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.releaseChannelPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromReleaseChannelName', () => {
+                const result = client.matchProjectFromReleaseChannelName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.releaseChannelPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchReleaseChannelFromReleaseChannelName', () => {
+                const result = client.matchReleaseChannelFromReleaseChannelName(fakePath);
+                assert.strictEqual(result, "releaseChannelValue");
+                assert((client.pathTemplates.releaseChannelPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('version', () => {
+            const fakePath = "/rendered/path/version";
+            const expectedParameters = {
+                project: "projectValue",
+                version: "versionValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.versionPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.versionPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('versionPath', () => {
+                const result = client.versionPath("projectValue", "versionValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.versionPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchProjectFromVersionName', () => {
+                const result = client.matchProjectFromVersionName(fakePath);
+                assert.strictEqual(result, "projectValue");
+                assert((client.pathTemplates.versionPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+
+            it('matchVersionFromVersionName', () => {
+                const result = client.matchVersionFromVersionName(fakePath);
+                assert.strictEqual(result, "versionValue");
+                assert((client.pathTemplates.versionPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
     });
-  });
 });

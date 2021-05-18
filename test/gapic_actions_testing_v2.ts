@@ -454,6 +454,36 @@ describe('v2.ActionsTestingClient', () => {
             });
         });
 
+        describe('sampleProject', () => {
+            const fakePath = "/rendered/path/sampleProject";
+            const expectedParameters = {
+                sample_project: "sampleProjectValue",
+            };
+            const client = new actionstestingModule.v2.ActionsTestingClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.sampleProjectPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.sampleProjectPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('sampleProjectPath', () => {
+                const result = client.sampleProjectPath("sampleProjectValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.sampleProjectPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchSampleProjectFromSampleProjectName', () => {
+                const result = client.matchSampleProjectFromSampleProjectName(fakePath);
+                assert.strictEqual(result, "sampleProjectValue");
+                assert((client.pathTemplates.sampleProjectPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
         describe('version', () => {
             const fakePath = "/rendered/path/version";
             const expectedParameters = {

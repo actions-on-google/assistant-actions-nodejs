@@ -55,6 +55,11 @@
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         },
+        "ListSampleProjects": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
         "ListReleaseChannels": {
           "timeout_millis": 60000,
           "retry_codes_name": "non_idempotent",

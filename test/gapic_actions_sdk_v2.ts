@@ -617,6 +617,176 @@ describe('v2.ActionsSdkClient', () => {
         });
     });
 
+    describe('listSampleProjects', () => {
+        it('invokes listSampleProjects without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());
+            const expectedOptions = {};
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+            ];
+            client.innerApiCalls.listSampleProjects = stubSimpleCall(expectedResponse);
+            const [response] = await client.listSampleProjects(request);
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listSampleProjects as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listSampleProjects without error using callback', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());
+            const expectedOptions = {};
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+            ];
+            client.innerApiCalls.listSampleProjects = stubSimpleCallWithCallback(expectedResponse);
+            const promise = new Promise((resolve, reject) => {
+                 client.listSampleProjects(
+                    request,
+                    (err?: Error|null, result?: protos.google.actions.sdk.v2.ISampleProject[]|null) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });
+            });
+            const response = await promise;
+            assert.deepStrictEqual(response, expectedResponse);
+            assert((client.innerApiCalls.listSampleProjects as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions /*, callback defined above */));
+        });
+
+        it('invokes listSampleProjects with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());
+            const expectedOptions = {};
+            const expectedError = new Error('expected');
+            client.innerApiCalls.listSampleProjects = stubSimpleCall(undefined, expectedError);
+            await assert.rejects(client.listSampleProjects(request), expectedError);
+            assert((client.innerApiCalls.listSampleProjects as SinonStub)
+                .getCall(0).calledWith(request, expectedOptions, undefined));
+        });
+
+        it('invokes listSampleProjectsStream without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());
+            const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+            ];
+            client.descriptors.page.listSampleProjects.createStream = stubPageStreamingCall(expectedResponse);
+            const stream = client.listSampleProjectsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.SampleProject[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.SampleProject) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            const responses = await promise;
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert((client.descriptors.page.listSampleProjects.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listSampleProjects, request));
+        });
+
+        it('invokes listSampleProjectsStream with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());
+            const expectedError = new Error('expected');
+            client.descriptors.page.listSampleProjects.createStream = stubPageStreamingCall(undefined, expectedError);
+            const stream = client.listSampleProjectsStream(request);
+            const promise = new Promise((resolve, reject) => {
+                const responses: protos.google.actions.sdk.v2.SampleProject[] = [];
+                stream.on('data', (response: protos.google.actions.sdk.v2.SampleProject) => {
+                    responses.push(response);
+                });
+                stream.on('end', () => {
+                    resolve(responses);
+                });
+                stream.on('error', (err: Error) => {
+                    reject(err);
+                });
+            });
+            await assert.rejects(promise, expectedError);
+            assert((client.descriptors.page.listSampleProjects.createStream as SinonStub)
+                .getCall(0).calledWith(client.innerApiCalls.listSampleProjects, request));
+        });
+
+        it('uses async iteration with listSampleProjects without error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());const expectedResponse = [
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+              generateSampleMessage(new protos.google.actions.sdk.v2.SampleProject()),
+            ];
+            client.descriptors.page.listSampleProjects.asyncIterate = stubAsyncIterationCall(expectedResponse);
+            const responses: protos.google.actions.sdk.v2.ISampleProject[] = [];
+            const iterable = client.listSampleProjectsAsync(request);
+            for await (const resource of iterable) {
+                responses.push(resource!);
+            }
+            assert.deepStrictEqual(responses, expectedResponse);
+            assert.deepStrictEqual(
+                (client.descriptors.page.listSampleProjects.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+        });
+
+        it('uses async iteration with listSampleProjects with error', async () => {
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            const request = generateSampleMessage(new protos.google.actions.sdk.v2.ListSampleProjectsRequest());const expectedError = new Error('expected');
+            client.descriptors.page.listSampleProjects.asyncIterate = stubAsyncIterationCall(undefined, expectedError);
+            const iterable = client.listSampleProjectsAsync(request);
+            await assert.rejects(async () => {
+                const responses: protos.google.actions.sdk.v2.ISampleProject[] = [];
+                for await (const resource of iterable) {
+                    responses.push(resource!);
+                }
+            });
+            assert.deepStrictEqual(
+                (client.descriptors.page.listSampleProjects.asyncIterate as SinonStub)
+                    .getCall(0).args[1], request);
+        });
+    });
+
     describe('listReleaseChannels', () => {
         it('invokes listReleaseChannels without error', async () => {
             const client = new actionssdkModule.v2.ActionsSdkClient({
@@ -1195,6 +1365,36 @@ describe('v2.ActionsSdkClient', () => {
                 const result = client.matchReleaseChannelFromReleaseChannelName(fakePath);
                 assert.strictEqual(result, "releaseChannelValue");
                 assert((client.pathTemplates.releaseChannelPathTemplate.match as SinonStub)
+                    .getCall(-1).calledWith(fakePath));
+            });
+        });
+
+        describe('sampleProject', () => {
+            const fakePath = "/rendered/path/sampleProject";
+            const expectedParameters = {
+                sample_project: "sampleProjectValue",
+            };
+            const client = new actionssdkModule.v2.ActionsSdkClient({
+                credentials: {client_email: 'bogus', private_key: 'bogus'},
+                projectId: 'bogus',
+            });
+            client.initialize();
+            client.pathTemplates.sampleProjectPathTemplate.render =
+                sinon.stub().returns(fakePath);
+            client.pathTemplates.sampleProjectPathTemplate.match =
+                sinon.stub().returns(expectedParameters);
+
+            it('sampleProjectPath', () => {
+                const result = client.sampleProjectPath("sampleProjectValue");
+                assert.strictEqual(result, fakePath);
+                assert((client.pathTemplates.sampleProjectPathTemplate.render as SinonStub)
+                    .getCall(-1).calledWith(expectedParameters));
+            });
+
+            it('matchSampleProjectFromSampleProjectName', () => {
+                const result = client.matchSampleProjectFromSampleProjectName(fakePath);
+                assert.strictEqual(result, "sampleProjectValue");
+                assert((client.pathTemplates.sampleProjectPathTemplate.match as SinonStub)
                     .getCall(-1).calledWith(fakePath));
             });
         });

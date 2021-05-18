@@ -23,6 +23,7 @@
   "../../protos/google/actions/sdk/v2/event_logs.proto",
   "../../protos/google/actions/sdk/v2/files.proto",
   "../../protos/google/actions/sdk/v2/interactionmodel/conditional_event.proto",
+  "../../protos/google/actions/sdk/v2/interactionmodel/entity_set.proto",
   "../../protos/google/actions/sdk/v2/interactionmodel/event_handler.proto",
   "../../protos/google/actions/sdk/v2/interactionmodel/global_intent_event.proto",
   "../../protos/google/actions/sdk/v2/interactionmodel/intent.proto",

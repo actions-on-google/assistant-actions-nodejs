@@ -47,7 +47,7 @@ async function writePreviewFromDraft(projectId = 'your-project-id') {
   // Create request payload
   const request = {
     parent: `projects/${projectId}`,
-    reviewSettings: {sandbox: {value: true}},
+    previewSettings: {sandbox: {value: true}},
     draft: {}
   };
   const [responsePromise, responseCallback] = getStreamResponsePromise();
